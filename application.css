@@ -9,6 +9,10 @@
   --fs-400: 1.1rem;
   --fs-600: 1.35rem;
   --fs-900: 2rem;
+  
+  --ff-body: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+  --ff-heading: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
+  --ff-heading-xl: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
 }
 
 *,
@@ -37,6 +41,8 @@ fieldset {
 
 legend {
   color: var(--clr-primary-400);
+  
+  font-family: var(--ff-heading);
 }
 
 .field {
@@ -66,13 +72,20 @@ legend {
     display: block;
     color: var(--clr-primary-400);
     background-color: transparent;
+    
+    place-self: end left;
+    
+    font-family: var(--ff-body);
   }
   
-  & :is(input, .input) {
+  & input {
     --_text-font-size: var(--fs-600);
     font-size: var(--_text-font-size);
+    
     margin: .5em 1em;
     border: none;
+    
+    place-self: start left;
   }
   
   /* outer slanted background (red) */
