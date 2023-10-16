@@ -4,15 +4,20 @@
   --clr-primary-400: red;
   --clr-secondary-400: orange;
   
-  --fs-200: 0.8rem;
-  --fs-300: 0.9rem;
-  --fs-400: 1.1rem;
-  --fs-600: 1.35rem;
-  --fs-900: 2rem;
+  --fs-100: 0.354rem;
+  --fs-200: 0.5rem;
+  --fs-300: 0.707rem;
+  --fs-400: 1rem;
+  --fs-500: 1.414rem;
+  --fs-600: 1.999rem;
+  --fs-700: 2.827rem;
+  --fs-800: 3.998rem;
+  --fs-900: 5.653rem;
   
   --ff-body: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
   --ff-heading: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
   --ff-heading-xl: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
+  --fs-cursive: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
 }
 
 *,
@@ -33,16 +38,45 @@ body {
   
   color: var(--_text-color);
   font-size: var(--_text-font-size);
+  
+  counter-reset: section -1;
 }
 
 fieldset {
-  /* padding-inline: 3rem; */
+  position: relative;
+  
+  border: none;
+  border-left: 50px solid var(--clr-primary-400);
+  min-height: 100vh;
+  padding-left: 2rem;
+  
+  counter-increment: section;
 }
 
 legend {
   color: var(--clr-primary-400);
   
   font-family: var(--ff-heading);
+  position: absolute;
+  
+  font-size: var(--fs-800);
+  text-transform: lowercase;
+  left: 1rem;
+  bottom: 1rem;
+  
+  &::before {
+    content: counter(section); 
+    display: block;
+    position: absolute;
+    text-align: center;
+    vertical-align: bottom;
+    font-size: var(--fs-900);
+    line-height: 100%;
+    color: var(--clr-neutral-100);
+    left: calc(-1rem - 50px);
+    bottom: 0;
+    width: 50px;
+  }
 }
 
 .field {
@@ -81,11 +115,18 @@ legend {
   & input {
     --_text-font-size: var(--fs-600);
     font-size: var(--_text-font-size);
+    font-family: var(--fs-cursive);
     
-    margin: .5em 1em;
+    margin: .25em .5em;
+    
     border: none;
     
-    place-self: start left;
+    place-self: stretch left;
+    
+    &:focus-visible {
+      border: none;
+      outline: none;
+    }
   }
   
   /* outer slanted background (red) */

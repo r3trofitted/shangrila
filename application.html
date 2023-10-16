@@ -20,9 +20,14 @@
           <label for="role">Role</label>
           <div class="options-carousel">
             <button class="back"></button>
-            <input type="text" name="role" />
+            <input type="text" name="role" list="roles" readonly="readonly"/>
             <button class="forward"></button>
           </div>
+          <datalist id="roles">
+            <option value="Fixer"></option>
+            <option value="Solo"></option>
+            <option value="Exec"></option>
+          </datalist>
         </div>
       </fieldset>
       <fieldset>
