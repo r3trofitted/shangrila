@@ -31,18 +31,24 @@ body {
   font-size: var(--_text-font-size);
 }
 
+fieldset {
+  /* padding-inline: 3rem; */
+}
+
 legend {
   color: var(--clr-primary-400);
 }
 
 .field {
-  --_label-height: 2em;
-  --_input-height: 4em;
+  --_label-height: calc(2 * var(--_text-font-size));
+  --_input-height: calc(4 * var(--_text-font-size));
   
   --_border-width: 3px;
-  --_border-cutoff: calc(var(--_label-height) / 2);
   --_border-margin-top: var(--_label-height);
-  --_border-gap: 2px;
+  --_cutoff-gap: 2px;
+  --_cutoff-width: calc(var(--_label-height) / 2);
+  --_block-cutoff-width: calc(var(--_cutoff-width) / 2);
+  --_arrow-cutoff-width: calc(2 * var(--_block-cutoff-width));
   
   font-size: var(--_text-font-size);
   margin-block: 1em;
@@ -54,13 +60,15 @@ legend {
   position: relative;
   isolation: isolate;
   
+  left: calc(var(--_border-width) + var(--_cutoff-gap) + var(--_arrow-cutoff-width)); /* leaving room for the largest cutoff possible */
+  
   & label {
     display: block;
     color: var(--clr-primary-400);
     background-color: transparent;
   }
   
-  & input {
+  & :is(input, .input) {
     --_text-font-size: var(--fs-600);
     font-size: var(--_text-font-size);
     margin: .5em 1em;
@@ -77,16 +85,16 @@ legend {
     inset: 0;
     background: var(--clr-primary-400);
     clip-path: polygon(0% var(--_border-margin-top),
-                       calc(100% - var(--_border-cutoff)) var(--_border-margin-top),
-                       100% calc(var(--_border-cutoff) + var(--_border-margin-top)),
+                       calc(100% - var(--_cutoff-width)) var(--_border-margin-top),
+                       100% calc(var(--_cutoff-width) + var(--_border-margin-top)),
                        100% 100%,
-                       var(--_border-cutoff) 100%,
-                       0 calc(100% - var(--_border-cutoff)));
+                       var(--_cutoff-width) 100%,
+                       0 calc(100% - var(--_cutoff-width)));
   }
   
   /* inner slanted background (white) */
   &::after {
-    --_border-cutoff: calc(1em - (var(--_border-width) / 2)); /* smaller cutoff to make up for the border width */
+    --_cutoff-width: calc(1em - (var(--_border-width) / 2)); /* smaller cutoff to make up for the border width */
     
     position: absolute;
     content: '';
@@ -96,11 +104,11 @@ legend {
     inset: var(--_border-width);
     background: var(--clr-neutral-100);
     clip-path:  polygon(0% var(--_border-margin-top),
-                        calc(100% - var(--_border-cutoff)) var(--_border-margin-top),
-                        100% calc(var(--_border-cutoff) + var(--_border-margin-top)),
+                        calc(100% - var(--_cutoff-width)) var(--_border-margin-top),
+                        100% calc(var(--_cutoff-width) + var(--_border-margin-top)),
                         100% 100%,
-                        var(--_border-cutoff) 100%,
-                        0% calc(100% - var(--_border-cutoff)));
+                        var(--_cutoff-width) 100%,
+                        0% calc(100% - var(--_cutoff-width)));
   }
   
   &:has(input[required]) label::after {
@@ -109,29 +117,73 @@ legend {
     
     top: var(--_border-margin-top);
     right: 0;
-    width: var(--_border-cutoff);
+    width: var(--_cutoff-width);
     aspect-ratio: 1;
     
     background-color: var(--clr-primary-400);
-    clip-path: polygon(var(--_border-gap) 0, 100% 0%, 100% calc(100% - var(--_border-gap)));
+    clip-path: polygon(var(--_cutoff-gap) 0, 100% 0%, 100% calc(100% - var(--_cutoff-gap)));
   }
   
   &:has(input:focus-visible) label::before {
-    --_block-width: calc(0.5 * var(--_border-cutoff));
-
     position: absolute;
     content: '';
     
     top: var(--_border-margin-top);
     bottom: 0;
-    left: calc(-1 * var(--_block-width) - var(--_border-gap));
-    width: calc(var(--_border-cutoff) * 2);
+    left: calc(-1 * var(--_block-cutoff-width) - var(--_cutoff-gap));
+    width: calc(var(--_cutoff-width) * 2);
     
     background-color: var(--clr-primary-400);
     clip-path: polygon(0 0, 
-                       var(--_block-width) 0,
-                       var(--_block-width) calc(100% - var(--_border-cutoff)),
+                       var(--_block-cutoff-width) 0,
+                       var(--_block-cutoff-width) calc(100% - var(--_cutoff-width)),
                        calc(100% - calc(3 * var(--_border-width))) 100%, /* the x3 multiplier is a magic number found by trial and error */
                        0 100%);
+  }
+  
+  & .options-carousel {
+    margin: 0;
+    padding: 0;
+  }
+  
+  & .options-carousel button {
+    position: absolute;
+    border: none;
+    
+    background-color: var(--clr-primary-400);
+    color: white;
+    
+    top: var(--_border-margin-top);
+    bottom: 0;
+    
+    --_button-width: calc((2 * var(--_arrow-cutoff-width)) + var(--_cutoff-width));
+    width: var(--_button-width);
+  }
+  
+  & .options-carousel button.back {
+    left: calc((-1 * var(--_button-width)) - var(--_cutoff-gap) + var(--_cutoff-width));
+    
+    clip-path: polygon(
+      0 50%,
+      var(--_arrow-cutoff-width) 0,
+      calc(var(--_arrow-cutoff-width) + var(--_cutoff-width)) 0,
+      calc(var(--_arrow-cutoff-width) + var(--_cutoff-width)) calc(100% - var(--_cutoff-width)),
+      calc(100% - calc(.5 * var(--_border-width))) 100%,
+      var(--_arrow-cutoff-width) 100%
+    );
+
+  }
+  
+  & .options-carousel button.forward {
+    right: calc((-1 * var(--_arrow-cutoff-width)) - var(--_cutoff-gap) - var(--_cutoff-width));
+    
+    clip-path: polygon(
+      0% 0%,
+      calc(var(--_arrow-cutoff-width) + var(--_cutoff-width)) 0%,
+      100% 50%,
+      calc(var(--_arrow-cutoff-width) + var(--_cutoff-width)) 100%,
+      var(--_cutoff-width) 100%,
+      var(--_cutoff-width) var(--_cutoff-width)
+    );
   }
 }
