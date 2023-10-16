@@ -100,7 +100,8 @@ legend {
   position: relative;
   isolation: isolate;
   
-  left: calc(var(--_border-width) + var(--_cutoff-gap) + var(--_arrow-cutoff-width)); /* leaving room for the largest cutoff possible */
+  --_cutoff-offset: calc(var(--_border-width) + var(--_cutoff-gap) + var(--_arrow-cutoff-width)); /* leaving room for the largest cutoff possible */
+  left: var(--_cutoff-offset);
   
   & label {
     display: block;
@@ -118,6 +119,7 @@ legend {
     font-family: var(--fs-cursive);
     
     margin: .25em .5em;
+    width: 25ch;
     
     border: none;
     
@@ -198,6 +200,8 @@ legend {
   & .options-carousel {
     margin: 0;
     padding: 0;
+    
+    display: contents;
   }
   
   & .options-carousel button {
@@ -212,6 +216,10 @@ legend {
     
     --_button-width: calc((2 * var(--_arrow-cutoff-width)) + var(--_cutoff-width));
     width: var(--_button-width);
+  }
+  
+  & .options-carousel button:active {
+    background-color: var(--clr-secondary-400);
   }
   
   & .options-carousel button.back {
