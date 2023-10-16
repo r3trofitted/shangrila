@@ -1,0 +1,119 @@
+:root {
+  --clr-neutral-100: white;
+  --clr-neutral-900: black;
+  --clr-primary-400: red;
+  --clr-secondary-400: orange;
+  
+  --fs-200: 0.8rem;
+  --fs-300: 0.9rem;
+  --fs-400: 1.1rem;
+  --fs-600: 1.35rem;
+  --fs-900: 2rem;
+}
+
+*,
+:after,
+:before {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  --_text-color: var(--clr-neutral-900);
+  --_text-font-size: var(--fs-400);
+  
+  color: var(--_text-color);
+  font-size: var(--_text-font-size);
+}
+
+legend {
+  color: var(--clr-primary-400);
+}
+
+.field {
+  font-size: var(--_text-font-size);
+  margin-block: 1em;
+  
+  & label {
+    display: block;
+    
+    color: var(--clr-neutral-100);
+  }
+  
+  & input {
+    --_text-font-size: var(--fs-600);
+    font-size: var(--_text-font-size);
+    
+    border: 1px solid var(--clr-primary-400);
+    padding: .5em;
+  }
+}
+
+.slanted-block {
+  position: relative;
+  display: inline-block;
+    
+  padding: 1em;
+  background-color: var(--clr-primary-400);
+  
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    
+    bottom: 0;
+    left: 0;
+    
+    width: 0;
+    height: 0;
+    
+    border-style: solid;
+    border-width: 0;
+    border-left-width: .75em;
+    border-top-width: .75em;
+    border-left-color: white;
+    border-top-color: var(--clr-primary-400);
+  }
+  
+  &::after {
+    position: absolute;
+    content: '';
+    display: block;
+    
+    top: 0;
+    right: 0;
+    
+    width: 0;
+    height: 0;
+    
+    border-style: solid;
+    border-width: 0;
+    border-right-width: .75em;
+    border-bottom-width: .75em;
+    border-right-color: white;
+    border-bottom-color: var(--clr-primary-400);
+  }
+}
+
+/* .slanted::after {
+  content: '';
+  display: block;
+  
+  top: 0;
+  right: 0;
+  
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-width: 1em;
+  border-top: green; 
+  border-right-color: pink;
+  border-bottom-color: blue;
+  border-left-color: yellow;
+}
+ */
