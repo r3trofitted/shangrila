@@ -42,78 +42,98 @@ legend {
   & label {
     display: block;
     
-    color: var(--clr-neutral-100);
+    color: var(--clr-primary-400);
   }
   
   & input {
     --_text-font-size: var(--fs-600);
     font-size: var(--_text-font-size);
-    
-    border: 1px solid var(--clr-primary-400);
-    padding: .5em;
   }
 }
 
-.slanted-block {
+.input-border {
   position: relative;
   display: inline-block;
-    
-  padding: 1em;
-  background-color: var(--clr-primary-400);
+  isolation: isolate;
+  z-index: 0;
+  height: 4em;
+  aspect-ratio: 5 / 1;
+  
+  --_border-width: 3px;
+  --_cutoff: 1em;
   
   &::before {
     position: absolute;
     content: '';
     display: block;
+    z-index: -1;
     
-    bottom: 0;
-    left: 0;
-    
-    width: 0;
-    height: 0;
-    
-    border-style: solid;
-    border-width: 0;
-    border-left-width: .75em;
-    border-top-width: .75em;
-    border-left-color: white;
-    border-top-color: var(--clr-primary-400);
+    inset: 0;
+    background: var(--clr-primary-400);
+    clip-path: polygon(0% 0%,
+                       calc(100% - var(--_cutoff)) 0%,
+                       100% var(--_cutoff),
+                       100% 100%,
+                       var(--_cutoff) 100%,
+                       0% calc(100% - var(--_cutoff)));;
   }
   
   &::after {
+    --_cutoff: calc(1em  - (var(--_border-width) / 2));
+    
     position: absolute;
     content: '';
     display: block;
+    z-index: -1;
     
+    inset: var(--_border-width);
+    background: var(--clr-neutral-100);
+    clip-path:  polygon(0% 0%,
+                        calc(100% - var(--_cutoff)) 0%,
+                        100% var(--_cutoff),
+                        100% 100%,
+                        var(--_cutoff) 100%,
+                        0% calc(100% - var(--_cutoff)));
+  }
+  
+  & :is(input, textarea) {
+    height: calc(100% - var(--_cutoff));
+    width: calc(100% - var(--_cutoff));
+    z-index: 2;
+    
+    border: none;
+    background: pink;
+    
+    margin: calc(var(--_cutoff) / 2);
+  }
+  
+  &:has(input[required]) .right-extra::after {
+    position: absolute;
+    content: '';
     top: 0;
     right: 0;
+    background-color: var(--clr-primary-400);
+    width: 1em;
+    aspect-ratio: 1;
     
-    width: 0;
-    height: 0;
+    --_gap: 2px;
     
-    border-style: solid;
-    border-width: 0;
-    border-right-width: .75em;
-    border-bottom-width: .75em;
-    border-right-color: white;
-    border-bottom-color: var(--clr-primary-400);
+    clip-path: polygon(var(--_gap) 0, 100% 0%, 100% calc(100% - var(--_gap)));
+  }
+  
+  &:has(input:focus-visible) .left-extra::after {
+  /* &:has(input[required]) .left-extra::after { */
+    position: absolute;
+    content: '';
+    top: 0;
+    bottom: 0;
+    left: calc(-1em - 2px);
+    width: 2em;
+    background-color: var(--clr-primary-400);
+    
+    --_gap: 2px;
+    
+    clip-path: polygon(0% 0%, 50% 0%, 50% 75%, 100% 100%, 0% 100%);
+    /* clip-path: circle(40%); */
   }
 }
-
-/* .slanted::after {
-  content: '';
-  display: block;
-  
-  top: 0;
-  right: 0;
-  
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-width: 1em;
-  border-top: green; 
-  border-right-color: pink;
-  border-bottom-color: blue;
-  border-left-color: yellow;
-}
- */
