@@ -36,50 +36,57 @@ legend {
 }
 
 .field {
+  --_label-height: 2em;
+  --_input-height: 4em;
+  
+  --_border-width: 3px;
+  --_border-cutoff: calc(var(--_label-height) / 2);
+  --_border-margin-top: var(--_label-height);
+  --_border-gap: 2px;
+  
   font-size: var(--_text-font-size);
   margin-block: 1em;
+  width: fit-content;
+  
+  display: grid;
+  grid-template-rows: var(--_label-height) var(--_input-height);
+  
+  position: relative;
+  isolation: isolate;
   
   & label {
     display: block;
-    
     color: var(--clr-primary-400);
+    background-color: transparent;
   }
   
   & input {
     --_text-font-size: var(--fs-600);
     font-size: var(--_text-font-size);
+    margin: .5em 1em;
+    border: none;
   }
-}
-
-.input-border {
-  position: relative;
-  display: inline-block;
-  isolation: isolate;
-  z-index: 0;
-  height: 4em;
-  aspect-ratio: 5 / 1;
   
-  --_border-width: 3px;
-  --_cutoff: 1em;
-  
+  /* outer slanted background (red) */
   &::before {
     position: absolute;
     content: '';
     display: block;
-    z-index: -1;
+    z-index: -2;
     
     inset: 0;
     background: var(--clr-primary-400);
-    clip-path: polygon(0% 0%,
-                       calc(100% - var(--_cutoff)) 0%,
-                       100% var(--_cutoff),
+    clip-path: polygon(0% var(--_border-margin-top),
+                       calc(100% - var(--_border-cutoff)) var(--_border-margin-top),
+                       100% calc(var(--_border-cutoff) + var(--_border-margin-top)),
                        100% 100%,
-                       var(--_cutoff) 100%,
-                       0% calc(100% - var(--_cutoff)));;
+                       var(--_border-cutoff) 100%,
+                       0 calc(100% - var(--_border-cutoff)));
   }
   
+  /* inner slanted background (white) */
   &::after {
-    --_cutoff: calc(1em  - (var(--_border-width) / 2));
+    --_border-cutoff: calc(1em - (var(--_border-width) / 2)); /* smaller cutoff to make up for the border width */
     
     position: absolute;
     content: '';
@@ -88,52 +95,43 @@ legend {
     
     inset: var(--_border-width);
     background: var(--clr-neutral-100);
-    clip-path:  polygon(0% 0%,
-                        calc(100% - var(--_cutoff)) 0%,
-                        100% var(--_cutoff),
+    clip-path:  polygon(0% var(--_border-margin-top),
+                        calc(100% - var(--_border-cutoff)) var(--_border-margin-top),
+                        100% calc(var(--_border-cutoff) + var(--_border-margin-top)),
                         100% 100%,
-                        var(--_cutoff) 100%,
-                        0% calc(100% - var(--_cutoff)));
+                        var(--_border-cutoff) 100%,
+                        0% calc(100% - var(--_border-cutoff)));
   }
   
-  & :is(input, textarea) {
-    height: calc(100% - var(--_cutoff));
-    width: calc(100% - var(--_cutoff));
-    z-index: 2;
-    
-    border: none;
-    background: pink;
-    
-    margin: calc(var(--_cutoff) / 2);
-  }
-  
-  &:has(input[required]) .right-extra::after {
+  &:has(input[required]) label::after {
     position: absolute;
     content: '';
-    top: 0;
+    
+    top: var(--_border-margin-top);
     right: 0;
-    background-color: var(--clr-primary-400);
-    width: 1em;
+    width: var(--_border-cutoff);
     aspect-ratio: 1;
     
-    --_gap: 2px;
-    
-    clip-path: polygon(var(--_gap) 0, 100% 0%, 100% calc(100% - var(--_gap)));
+    background-color: var(--clr-primary-400);
+    clip-path: polygon(var(--_border-gap) 0, 100% 0%, 100% calc(100% - var(--_border-gap)));
   }
   
-  &:has(input:focus-visible) .left-extra::after {
-  /* &:has(input[required]) .left-extra::after { */
+  &:has(input:focus-visible) label::before {
+    --_block-width: calc(0.5 * var(--_border-cutoff));
+
     position: absolute;
     content: '';
-    top: 0;
+    
+    top: var(--_border-margin-top);
     bottom: 0;
-    left: calc(-1em - 2px);
-    width: 2em;
+    left: calc(-1 * var(--_block-width) - var(--_border-gap));
+    width: calc(var(--_border-cutoff) * 2);
+    
     background-color: var(--clr-primary-400);
-    
-    --_gap: 2px;
-    
-    clip-path: polygon(0% 0%, 50% 0%, 50% 75%, 100% 100%, 0% 100%);
-    /* clip-path: circle(40%); */
+    clip-path: polygon(0 0, 
+                       var(--_block-width) 0,
+                       var(--_block-width) calc(100% - var(--_border-cutoff)),
+                       calc(100% - calc(3 * var(--_border-width))) 100%, /* the x3 multiplier is a magic number found by trial and error */
+                       0 100%);
   }
 }
