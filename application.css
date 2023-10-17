@@ -38,6 +38,7 @@ body {
   
   color: var(--_text-color);
   font-size: var(--_text-font-size);
+  font-family: var(--ff-body);
   
   counter-reset: section -1;
 }
@@ -110,8 +111,6 @@ legend {
     background-color: transparent;
     
     place-self: end left;
-    
-    font-family: var(--ff-body);
   }
   
   & input {
@@ -251,5 +250,55 @@ legend {
       var(--_cutoff-width) 100%,
       var(--_cutoff-width) var(--_cutoff-width)
     );
+  }
+}
+
+.field-choices {
+  --_label-height: calc(2 * var(--_text-font-size));
+  --_input-height: calc(4 * var(--_text-font-size));
+  
+  --_border-width: 3px;
+  --_border-margin-top: var(--_label-height);
+  --_cutoff-gap: 2px;
+  --_cutoff-width: calc(var(--_label-height) / 2);
+  --_block-cutoff-width: calc(var(--_cutoff-width) / 2);
+  --_arrow-cutoff-width: calc(2 * var(--_block-cutoff-width));
+  
+  --_cutoff-offset: calc(var(--_cutoff-gap) + var(--_block-cutoff-width)*2);
+  margin: 1em var(--_cutoff-offset);
+
+  width: calc(100% - var(--_cutoff-offset)*2);
+  border: 1px solid var(--clr-primary-400);
+  
+  display: grid;
+  grid-template-columns: minmax(4ch, 10%) 1fr;
+  grid-template-rows: var(--_label-height) auto;
+  
+  justify-items: center stretch;
+  
+  & :is(thead, tbody, tr) {
+    display: contents;
+  }
+  
+  & thead th {
+    background-color: var(--clr-primary-400);
+    color: var(--clr-neutral-100);
+  }
+  
+  & thead th:first-of-type {
+    border-right: 1px solid var(--clr-neutral-100);
+  }
+  
+  & tr:nth-of-type(even) * {
+    background-color: #eaeaea;
+  }
+  
+  & th {
+    border-right: 1px solid var(--clr-primary-400);
+  }
+  
+  & th, & td {
+    padding-block: .25em;
+    text-align: center;
   }
 }
