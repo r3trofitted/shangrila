@@ -291,6 +291,15 @@ legend {
     background-color: #eaeaea;
   }
   
+  & tr[data-options-table-target='option'] {
+    cursor: pointer;
+  }
+  
+  & tr[data-options-table-target='option']:is(.selected, :hover) {
+    outline: 3px solid var(--clr-secondary-400);
+    outline-left-width: 6px;
+  }
+  
   & th {
     border-inline: 1px solid var(--clr-primary-400);
   }

@@ -30,11 +30,11 @@
           </datalist>
         </div>
       </fieldset>
-      <fieldset>
+      <fieldset data-controller="options-table">
         <legend>Personals</legend>
         <div class="field">
           <label for="origins">Cultural origins</label>
-          <input type="text" name="origins" required />
+          <input type="text" name="origins" required data-options-table-target="field" />
         </div>
         <div class="options-table">
           <table>
@@ -45,49 +45,49 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>1</th>
                 <td>North American</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>2</th>
                 <td>South/Central American</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>3</th>
                 <td>Western Europe</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>4</th>
                 <td>Eastern Europe</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>5</th>
                 <td>Middle Eastern/North African</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>6</th>
                 <td>Sub-Saharan African</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>7</th>
                 <td>South Asian</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>8</th>
                 <td>South-East Asian</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>9</th>
                 <td>East Asian</td>
               </tr>
-              <tr>
+              <tr data-options-table-target="option" data-action="click->options-table#pick">
                 <th>10</th>
                 <td>Oceania/Pacific Islander</td>
               </tr>
             </tbody>
           </table>
-          <button type="button" class="btn-action">Random</button>
+          <button type="button" class="btn-action" data-action="options-table#pickAtRandom">Random</button>
         </div>
         <div class="field">
           <label for="personality">Personality</label>
