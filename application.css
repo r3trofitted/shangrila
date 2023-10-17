@@ -272,11 +272,11 @@ legend {
   
   display: grid;
   grid-template-columns: minmax(4ch, 10%) 1fr;
-  grid-template-rows: var(--_label-height) auto;
+  grid-template-rows: var(--_label-height) 1fr auto;
   
   justify-items: center stretch;
   
-  & :is(thead, tbody, tr) {
+  & :is(thead, tbody, tfooter, tr) {
     display: contents;
   }
   
@@ -301,4 +301,29 @@ legend {
     padding-block: .25em;
     text-align: center;
   }
+}
+
+button.btn-action {
+  --_border-margin-top: 0%;
+  --_cutoff-width: .75em;
+  
+  display: inline-block;
+  width: auto;
+  
+  background-color: var(--clr-primary-400);
+  color: var(--clr-neutral-100);
+  border: none;
+  padding: .5em 1em;
+  
+  font-size: var(--fs-400);
+  font-weight: 500;
+  
+  clip-path: polygon(
+    0% var(--_border-margin-top),
+    calc(100% - var(--_cutoff-width)) var(--_border-margin-top),
+    100% calc(var(--_cutoff-width) + var(--_border-margin-top)),
+    100% 100%,
+    var(--_cutoff-width) 100%,
+    var(--_border-margin-top) calc(100% - var(--_cutoff-width))
+ );
 }
