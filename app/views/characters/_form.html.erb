@@ -1,99 +1,66 @@
-<form>
+<%= form_with model: @character do |f| %>
   <fieldset>
-    <legend>Setup</legend>
+    <legend><%= t ".setup" %></legend>
     <div class="field">
-      <label for="player">Player</label>
-      <input type="text" name="player" required />
+      <%= f.label :player %>
+      <%= f.text_field :player, required: true %>
     </div>
     <div class="field">
-      <label for="name">Name</label>
-      <input type="text" name="name" />
+      <%= f.label :name %>
+      <%= f.text_field :name, required: true %>
     </div>
     <div class="field">
-      <label for="role">Role</label>
+      <%= f.label :role %>
       <div class="options-carousel" data-controller="options-carousel">
         <button class="back" data-action="options-carousel#prev" type="button"></button>
-        <input type="text" name="role" list="roles" readonly="readonly" data-options-carousel-target="field" />
+        <%= f.text_field :role, list: "roles", readonly: true, data: { options_carousel_target: "field" } %>
         <button class="forward" data-action="options-carousel#next" type="button"></button>
       </div>
       <datalist id="roles">
-        <option value="Fixer"></option>
-        <option value="Solo"></option>
-        <option value="Exec"></option>
+        <%= options_for_select Character::ROLES.map { |r| Character.human_attribute_name "role.#{r}" } %>
       </datalist>
     </div>
   </fieldset>
   <fieldset data-controller="options-table">
-    <legend>Personals</legend>
+    <legend><%= t ".personals" %></legend>
     <div class="field">
-      <label for="origins">Cultural origins</label>
-      <input type="text" name="origins" required data-options-table-target="field" />
+      <%= f.label :origins %>
+      <%= f.text_field :origins, data: { options_table_target: "field" } %>
     </div>
     <div class="options-table">
       <table>
         <thead>
           <tr>
-            <th>Roll</th>
-            <th>Origins</th>
+            <th><%= t ".roll" %></th>
+            <th><%= Character.human_attribute_name :origins %></th>
           </tr>
         </thead>
         <tbody>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>1</th>
-            <td>North American</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>2</th>
-            <td>South/Central American</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>3</th>
-            <td>Western Europe</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>4</th>
-            <td>Eastern Europe</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>5</th>
-            <td>Middle Eastern/North African</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>6</th>
-            <td>Sub-Saharan African</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>7</th>
-            <td>South Asian</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>8</th>
-            <td>South-East Asian</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>9</th>
-            <td>East Asian</td>
-          </tr>
-          <tr data-options-table-target="option" data-action="click->options-table#pick">
-            <th>10</th>
-            <td>Oceania/Pacific Islander</td>
-          </tr>
+          <% Character::ORIGINS.each_with_index do |o, i| %>
+            <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+              <%= tag.th i+1 %>
+              <%= tag.td Character.human_attribute_name "origins.#{o}" %>
+            <% end %>
+          <% end %>
         </tbody>
       </table>
-      <button type="button" class="btn-action" data-action="options-table#pickAtRandom">Random</button>
+      <button type="button" class="btn-action" data-action="options-table#pickAtRandom">
+        <%= t ".random" %>
+      </button>
     </div>
     <div class="field">
-      <label for="personality">Personality</label>
-      <input type="text" name="personality" required />
+      <%= f.label :personality %>
+      <%= f.text_field :personality %>
     </div>
   </fieldset>
   <fieldset>
-    <legend>Background</legend>
+    <legend><%= t ".background" %></legend>
   </fieldset>
   <fieldset>
-    <legend>Wrap-up</legend>
+    <legend><%= t ".wrap_up" %></legend>
   </fieldset>
   <fieldset>
-    <legend>Role lifepath</legend>
+    <legend><%= t ".role_lifepath" %></legend>
   </fieldset>
-</form>
+<% end %>
+

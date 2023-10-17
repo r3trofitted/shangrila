@@ -1,0 +1,42 @@
+fr:
+  activerecord:
+    models:
+      character: "Personnage"
+    attributes:
+      character:
+        player: "Joueur"
+        name: "Nom"
+        role: "Rôle"
+        origins: "Origine culturelle"
+        personality: "Personnalité"
+      character/role:
+        exec: "Corpo"
+        fixer: "Fixer"
+        lawman: "Justicier"
+        media: "Média"
+        medtech: "Medtech"
+        netrunner: "Netrunner"
+        nomad: "Nomade"
+        rockerboy: "Rockerboy"
+        solo: "Solo"
+        tech: "Techie"
+      character/origins:
+        north_american: "Amérique du Nord"
+        south/central_american: "Amérique du Sud et centrale"
+        western_europe: "Europe de l'Ouest"
+        eastern_europe: "Europe de l'Est"
+        middle_eastern/north_african: "Moyen-Orient et Afrique du Nord"
+        sub-saharan_african: "Afrique subsaharienne"
+        south_asian: "Asie du Sud"
+        south-east_asian: "Asie du Sud-Est"
+        east_asian: "Asie de l'Est"
+        oceania/pacific_islander: "Océanie et îles du Pacifique"
+  characters:
+    form:
+      setup: "Mise en place"
+      personals: "Parcours personnels"
+      background": "Histoire"
+      wrap_up: "Derniers détails"
+      role_lifepath: "Parcours de rôle"
+      roll: "Jet"
+      random: "Tirage aléatoire"
