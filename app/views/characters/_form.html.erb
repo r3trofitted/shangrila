@@ -1,5 +1,5 @@
 <%= form_with model: @character do |f| %>
-  <fieldset>
+  <fieldset id="setup">
     <legend><%= t ".setup" %></legend>
     <div class="field">
       <%= f.label :player %>
@@ -20,9 +20,9 @@
         <%= options_for_select Character::ROLES.map { |r| Character.human_attribute_name "role.#{r}" } %>
       </datalist>
     </div>
-    <%= f.submit t(".next"), class: "slanted-button" %>
+    <%= f.submit t(".next"), class: "slanted-button", data: { turbo: false } %>
   </fieldset>
-  <fieldset data-controller="options-table">
+  <fieldset data-controller="options-table" id="personals">
     <legend><%= t ".personals" %></legend>
     <div class="field">
       <%= f.label :origins %>
