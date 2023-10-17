@@ -253,7 +253,7 @@ legend {
   }
 }
 
-.field-choices {
+.options-table {
   --_label-height: calc(2 * var(--_text-font-size));
   --_input-height: calc(4 * var(--_text-font-size));
   
@@ -262,17 +262,22 @@ legend {
   --_cutoff-gap: 2px;
   --_cutoff-width: calc(var(--_label-height) / 2);
   --_block-cutoff-width: calc(var(--_cutoff-width) / 2);
-  --_arrow-cutoff-width: calc(2 * var(--_block-cutoff-width));
   
   --_cutoff-offset: calc(var(--_cutoff-gap) + var(--_block-cutoff-width)*2);
   margin: 1em var(--_cutoff-offset);
 
   width: calc(100% - var(--_cutoff-offset)*2);
-  border: 1px solid var(--clr-primary-400);
   
   display: grid;
-  grid-template-columns: minmax(4ch, 10%) 1fr;
-  grid-template-rows: var(--_label-height) 1fr auto;
+  grid-template-rows: auto auto;
+  
+  & table {
+    display: grid;
+    grid-template-columns: minmax(4ch, 10%) 1fr;
+    grid-template-rows: var(--_label-height) 1fr auto;
+    
+    border: 1px solid var(--clr-primary-400);
+  }
   
   justify-items: center stretch;
   
@@ -301,29 +306,35 @@ legend {
     padding-block: .25em;
     text-align: center;
   }
+  
+  & .btn-action {
+    --_border-margin-top: 0%;
+    --_cutoff-width: .75em;
+    
+    display: inline-block;
+    width: auto;
+    
+    justify-self: right;
+    
+    background-color: var(--clr-primary-400);
+    color: var(--clr-neutral-100);
+    border: none;
+    padding: .5em 1em;
+    
+    font-family: var(--ff-heading);
+    
+    margin-top: .5em;
+    font-size: var(--fs-400);
+    font-weight: 500;
+    
+    clip-path: polygon(
+      0% var(--_border-margin-top),
+      calc(100% - var(--_cutoff-width)) var(--_border-margin-top),
+      100% calc(var(--_cutoff-width) + var(--_border-margin-top)),
+      100% 100%,
+      var(--_cutoff-width) 100%,
+      var(--_border-margin-top) calc(100% - var(--_cutoff-width))
+   );
+  }
 }
 
-button.btn-action {
-  --_border-margin-top: 0%;
-  --_cutoff-width: .75em;
-  
-  display: inline-block;
-  width: auto;
-  
-  background-color: var(--clr-primary-400);
-  color: var(--clr-neutral-100);
-  border: none;
-  padding: .5em 1em;
-  
-  font-size: var(--fs-400);
-  font-weight: 500;
-  
-  clip-path: polygon(
-    0% var(--_border-margin-top),
-    calc(100% - var(--_cutoff-width)) var(--_border-margin-top),
-    100% calc(var(--_cutoff-width) + var(--_border-margin-top)),
-    100% 100%,
-    var(--_cutoff-width) 100%,
-    var(--_border-margin-top) calc(100% - var(--_cutoff-width))
- );
-}
