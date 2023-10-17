@@ -20,6 +20,7 @@
         <%= options_for_select Character::ROLES.map { |r| Character.human_attribute_name "role.#{r}" } %>
       </datalist>
     </div>
+    <%= f.submit t(".next"), class: "slanted-button" %>
   </fieldset>
   <fieldset data-controller="options-table">
     <legend><%= t ".personals" %></legend>
@@ -44,7 +45,7 @@
           <% end %>
         </tbody>
       </table>
-      <button type="button" class="btn-action" data-action="options-table#pickAtRandom">
+      <button type="button" class="slanted-button table-button" data-action="options-table#pickAtRandom">
         <%= t ".random" %>
       </button>
     </div>

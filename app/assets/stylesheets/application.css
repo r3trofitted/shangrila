@@ -1,5 +1,6 @@
 :root {
   --clr-neutral-100: white;
+  --clr-neutral-300: #eaeaea;
   --clr-neutral-900: black;
   --clr-primary-400: red;
   --clr-secondary-400: orange;
@@ -33,26 +34,34 @@ html {
 }
 
 body {
-  --_text-color: var(--clr-neutral-900);
-  --_text-font-size: var(--fs-400);
+  --text-color: var(--clr-neutral-900);
+  --text-font-size: var(--fs-400);
   
-  color: var(--_text-color);
-  font-size: var(--_text-font-size);
+  color: var(--text-color);
+  font-size: var(--text-font-size);
   font-family: var(--ff-body);
   
   counter-reset: section -1;
 }
 
 fieldset {
-  position: relative;
+  --cutoff-gap: 2px;
+  --cutoff-width: var(--text-font-size);
+  --block-cutoff-width: calc(var(--cutoff-width) / 2);
+  --gap: 1em;
   
   border: none;
   border-left: 50px solid var(--clr-primary-400);
   
-  min-height: 100vh;
-  padding: 0;
-  
   width: 40%; /* FIXME: not too fond of this way to limit the form's width (and it's doesn't work well on small devices) */
+  padding-block: 0;
+  padding-inline: calc(var(--cutoff-gap) + var(--block-cutoff-width)*2); /* inline padding to make room for the "block cutoff" */
+  min-height: 100vh;
+  
+  position: relative;
+  display: grid;
+  grid-auto-flow: row;
+  align-content: start;
   
   counter-increment: section;
 }
@@ -83,27 +92,57 @@ legend {
   }
 }
 
+.slanted-button {
+  --border-margin-top: 0%;
+  --cutoff-width: .75em;
+
+  background-color: var(--clr-primary-400);
+  color: var(--clr-neutral-100);
+  border: none;
+  
+  display: inline-block;
+  width: auto;
+  padding: .5em 1em;
+  
+  font-family: var(--ff-heading);
+  font-size: var(--fs-400);
+  font-weight: 500;
+  
+  /* slanted shape */
+  clip-path: polygon(
+    0% var(--border-margin-top),
+    calc(100% - var(--cutoff-width)) var(--border-margin-top),
+    100% calc(var(--cutoff-width) + var(--border-margin-top)),
+    100% 100%,
+    var(--cutoff-width) 100%,
+    0% calc(100% - var(--cutoff-width))
+  );
+}
+
+.table-button {
+  justify-self: right;
+  margin-top: calc(var(--gap) / 2);
+}
+
+input[type="submit"] {
+  margin-top: calc(var(--gap) * 4);
+  place-self: center stretch;
+}
+
 .field {
-  --_label-height: calc(2 * var(--_text-font-size));
-  --_input-height: calc(4 * var(--_text-font-size));
-  
-  --_border-width: 3px;
-  --_border-margin-top: var(--_label-height);
-  --_cutoff-gap: 2px;
-  --_cutoff-width: calc(var(--_label-height) / 2);
-  --_block-cutoff-width: calc(var(--_cutoff-width) / 2);
-  --_arrow-cutoff-width: calc(2 * var(--_block-cutoff-width));
-  
-  --_cutoff-offset: calc(var(--_cutoff-gap) + var(--_block-cutoff-width)*2);
-  margin: 1em var(--_cutoff-offset);
+  --label-height: calc(2 * var(--text-font-size));
+  --border-width: 3px;
+  --border-margin-top: var(--label-height);
   
   display: grid;
-  grid-template-rows: var(--_label-height) var(--_input-height);
+  grid-template-rows: var(--label-height) calc(2 * var(--label-height));
+  
+  margin-top: var(--gap);
   
   position: relative;
   isolation: isolate;
   
-  font-size: var(--_text-font-size);
+  font-size: var(--text-font-size);
   
   & label {
     display: block;
@@ -114,11 +153,11 @@ legend {
   }
   
   & input {
-    --_text-font-size: var(--fs-600);
-    font-size: var(--_text-font-size);
+    --text-font-size: var(--fs-600);
+    font-size: var(--text-font-size);
     font-family: var(--fs-cursive);
     
-    margin: .25em .5em;
+    margin: calc(var(--gap) / 4) calc(var(--gap) / 2);
     
     border: none;
     
@@ -139,65 +178,75 @@ legend {
     
     inset: 0;
     background: var(--clr-primary-400);
-    clip-path: polygon(0% var(--_border-margin-top),
-                       calc(100% - var(--_cutoff-width)) var(--_border-margin-top),
-                       100% calc(var(--_cutoff-width) + var(--_border-margin-top)),
-                       100% 100%,
-                       var(--_cutoff-width) 100%,
-                       0 calc(100% - var(--_cutoff-width)));
+    
+    /* slanted shape */
+    clip-path: polygon(
+      0% var(--border-margin-top),
+      calc(100% - var(--cutoff-width)) var(--border-margin-top),
+      100% calc(var(--cutoff-width) + var(--border-margin-top)),
+      100% 100%,
+      var(--cutoff-width) 100%,
+      0% calc(100% - var(--cutoff-width))
+    );
   }
   
   /* inner slanted background (white) */
   &::after {
-    --_cutoff-width: calc(1em - (var(--_border-width) / 2)); /* smaller cutoff to make up for the border width */
+    --cutoff-width: calc(var(--text-font-size) - (var(--border-width) / 2)); /* smaller cutoff to make up for the border width */
     
     position: absolute;
     content: '';
     display: block;
     z-index: -1;
     
-    inset: var(--_border-width);
+    inset: var(--border-width);
     background: var(--clr-neutral-100);
-    clip-path:  polygon(0% var(--_border-margin-top),
-                        calc(100% - var(--_cutoff-width)) var(--_border-margin-top),
-                        100% calc(var(--_cutoff-width) + var(--_border-margin-top)),
-                        100% 100%,
-                        var(--_cutoff-width) 100%,
-                        0% calc(100% - var(--_cutoff-width)));
+    
+    /* slanted shape */
+    clip-path: polygon(
+      0% var(--border-margin-top),
+      calc(100% - var(--cutoff-width)) var(--border-margin-top),
+      100% calc(var(--cutoff-width) + var(--border-margin-top)),
+      100% 100%,
+      var(--cutoff-width) 100%,
+      0% calc(100% - var(--cutoff-width))
+    );
   }
   
   &:has(input[required]) label::after {
     position: absolute;
     content: '';
     
-    top: var(--_border-margin-top);
+    top: var(--border-margin-top);
     right: 0;
-    width: var(--_cutoff-width);
+    width: var(--cutoff-width);
     aspect-ratio: 1;
     
     background-color: var(--clr-primary-400);
-    clip-path: polygon(var(--_cutoff-gap) 0, 100% 0%, 100% calc(100% - var(--_cutoff-gap)));
+    clip-path: polygon(var(--cutoff-gap) 0, 100% 0%, 100% calc(100% - var(--cutoff-gap)));
   }
   
   &:has(input:focus-visible) label::before {
     position: absolute;
     content: '';
     
-    top: var(--_border-margin-top);
+    top: var(--border-margin-top);
     bottom: 0;
-    left: calc(-1 * var(--_block-cutoff-width) - var(--_cutoff-gap));
-    width: calc(var(--_cutoff-width) * 2);
+    left: calc(-1 * var(--block-cutoff-width) - var(--cutoff-gap));
+    width: calc(var(--cutoff-width) * 2);
     
     background-color: var(--clr-primary-400);
     clip-path: polygon(0 0, 
-                       var(--_block-cutoff-width) 0,
-                       var(--_block-cutoff-width) calc(100% - var(--_cutoff-width)),
-                       calc(100% - calc(3 * var(--_border-width))) 100%, /* the x3 multiplier is a magic number found by trial and error */
+                       var(--block-cutoff-width) 0,
+                       var(--block-cutoff-width) calc(100% - var(--cutoff-width)),
+                       calc(100% - calc(3 * var(--border-width))) 100%, /* the x3 multiplier is a magic number found by trial and error */
                        0 100%);
   }
   
   &:has(.options-carousel) {
-    --_cutoff-offset: calc(var(--_cutoff-gap) + var(--_arrow-cutoff-width) + var(--_block-cutoff-width)*3);
+    --arrow-cutoff-width: calc(2 * var(--block-cutoff-width));
+
+    margin-inline: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
   }
   
   & .options-carousel {
@@ -207,18 +256,20 @@ legend {
     display: contents;
   }
   
+  /* TODO: grey out the buttons and color them when the field is focused or hovered */
+  /* TODO: allow keyboard navigation through the options */
+  
   & .options-carousel button {
     position: absolute;
     border: none;
     
     background-color: var(--clr-primary-400);
-    color: white;
     
-    top: var(--_border-margin-top);
+    top: var(--border-margin-top);
     bottom: 0;
     
-    --_button-width: calc((2 * var(--_arrow-cutoff-width)) + var(--_cutoff-width));
-    width: var(--_button-width);
+    --button-width: calc((2 * var(--arrow-cutoff-width)) + var(--cutoff-width));
+    width: var(--button-width);
   }
   
   & .options-carousel button:active {
@@ -226,50 +277,37 @@ legend {
   }
   
   & .options-carousel button.back {
-    left: calc((-1 * var(--_button-width)) - var(--_cutoff-gap) + var(--_cutoff-width));
+    left: calc((-1 * var(--button-width)) - var(--cutoff-gap) + var(--cutoff-width));
     
     clip-path: polygon(
       0 50%,
-      var(--_arrow-cutoff-width) 0,
-      calc(var(--_arrow-cutoff-width) + var(--_cutoff-width)) 0,
-      calc(var(--_arrow-cutoff-width) + var(--_cutoff-width)) calc(100% - var(--_cutoff-width)),
-      calc(100% - calc(.5 * var(--_border-width))) 100%,
-      var(--_arrow-cutoff-width) 100%
+      var(--arrow-cutoff-width) 0,
+      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 0,
+      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) calc(100% - var(--cutoff-width)),
+      calc(100% - calc(.5 * var(--border-width))) 100%,
+      var(--arrow-cutoff-width) 100%
     );
 
   }
   
   & .options-carousel button.forward {
-    right: calc((-1 * var(--_arrow-cutoff-width)) - var(--_cutoff-gap) - var(--_cutoff-width));
+    right: calc((-1 * var(--arrow-cutoff-width)) - var(--cutoff-gap) - var(--cutoff-width));
     
     clip-path: polygon(
       0% 0%,
-      calc(var(--_arrow-cutoff-width) + var(--_cutoff-width)) 0%,
+      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 0%,
       100% 50%,
-      calc(var(--_arrow-cutoff-width) + var(--_cutoff-width)) 100%,
-      var(--_cutoff-width) 100%,
-      var(--_cutoff-width) var(--_cutoff-width)
+      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 100%,
+      var(--cutoff-width) 100%,
+      var(--cutoff-width) var(--cutoff-width)
     );
   }
 }
 
 .options-table {
-  --_label-height: calc(2 * var(--_text-font-size));
-  
-  /* --_border-width: 3px; */
-  /* --_border-margin-top: var(--_label-height); */
-  
-  --_cutoff-gap: 2px;
-  --_cutoff-width: calc(var(--_label-height) / 2);
-  --_block-cutoff-width: calc(var(--_cutoff-width) / 2);
-  
-  --_cutoff-offset: calc(var(--_cutoff-gap) + var(--_block-cutoff-width)*2);
-  
-  margin: 1em var(--_cutoff-offset);
-  width: calc(100% - var(--_cutoff-offset)*2);
-  
   display: grid;
-  grid-template-rows: auto auto;
+  
+  margin-top: calc(var(--gap) / 2);
   
   & table {
     border: 1px solid var(--clr-primary-400);
@@ -278,7 +316,6 @@ legend {
   }
   
   & thead {
-    /* height: var(--_label-height); */
     background-color: var(--clr-primary-400);
     color: var(--clr-neutral-100);
   }
@@ -288,7 +325,7 @@ legend {
   }
   
   & tr:nth-of-type(even) * {
-    background-color: #eaeaea;
+    background-color: var(--clr-neutral-300);
   }
   
   & tr[data-options-table-target='option'] {
@@ -306,36 +343,6 @@ legend {
   
   & :is(th, td) {
     padding-block: .35em;
-  }
-  
-  & .btn-action {
-    --_border-margin-top: 0%;
-    --_cutoff-width: .75em;
-    
-    display: inline-block;
-    width: auto;
-    
-    justify-self: right;
-    
-    background-color: var(--clr-primary-400);
-    color: var(--clr-neutral-100);
-    border: none;
-    padding: .5em 1em;
-    
-    font-family: var(--ff-heading);
-    
-    margin-top: .5em;
-    font-size: var(--fs-400);
-    font-weight: 500;
-    
-    clip-path: polygon(
-      0% var(--_border-margin-top),
-      calc(100% - var(--_cutoff-width)) var(--_border-margin-top),
-      100% calc(var(--_cutoff-width) + var(--_border-margin-top)),
-      100% 100%,
-      var(--_cutoff-width) 100%,
-      var(--_border-margin-top) calc(100% - var(--_cutoff-width))
-   );
   }
 }
 
