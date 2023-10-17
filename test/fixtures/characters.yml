@@ -1,0 +1,23 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  finalized: false
+  player: MyString
+  name: MyString
+  role: MyString
+  origins: MyString
+  personality: MyString
+  clothing: MyString
+  hairstyle: MyString
+  affectation: MyString
+
+two:
+  finalized: false
+  player: MyString
+  name: MyString
+  role: MyString
+  origins: MyString
+  personality: MyString
+  clothing: MyString
+  hairstyle: MyString
+  affectation: MyString
