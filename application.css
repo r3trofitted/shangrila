@@ -47,8 +47,11 @@ fieldset {
   
   border: none;
   border-left: 50px solid var(--clr-primary-400);
+  
   min-height: 100vh;
-  padding-left: 2rem;
+  padding: 0;
+  
+  width: 40%; /* FIXME: not too fond of this way to limit the form's width (and it's doesn't work well on small devices) */
   
   counter-increment: section;
 }
@@ -90,9 +93,8 @@ legend {
   --_block-cutoff-width: calc(var(--_cutoff-width) / 2);
   --_arrow-cutoff-width: calc(2 * var(--_block-cutoff-width));
   
-  font-size: var(--_text-font-size);
-  margin-block: 1em;
-  width: fit-content;
+  --_cutoff-offset: calc(var(--_cutoff-gap) + var(--_block-cutoff-width)*2);
+  margin: 1em var(--_cutoff-offset);
   
   display: grid;
   grid-template-rows: var(--_label-height) var(--_input-height);
@@ -100,8 +102,7 @@ legend {
   position: relative;
   isolation: isolate;
   
-  --_cutoff-offset: calc(var(--_border-width) + var(--_cutoff-gap) + var(--_arrow-cutoff-width)); /* leaving room for the largest cutoff possible */
-  left: var(--_cutoff-offset);
+  font-size: var(--_text-font-size);
   
   & label {
     display: block;
@@ -119,7 +120,6 @@ legend {
     font-family: var(--fs-cursive);
     
     margin: .25em .5em;
-    width: 25ch;
     
     border: none;
     
@@ -195,6 +195,10 @@ legend {
                        var(--_block-cutoff-width) calc(100% - var(--_cutoff-width)),
                        calc(100% - calc(3 * var(--_border-width))) 100%, /* the x3 multiplier is a magic number found by trial and error */
                        0 100%);
+  }
+  
+  &:has(.options-carousel) {
+    --_cutoff-offset: calc(var(--_cutoff-gap) + var(--_arrow-cutoff-width) + var(--_block-cutoff-width)*3);
   }
   
   & .options-carousel {
