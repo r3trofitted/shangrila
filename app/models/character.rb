@@ -37,4 +37,94 @@ class Character < ApplicationRecord
     intellectual_and_detached
     friendly_and_outgoing
   ]
+  
+  CLOTHINGS = %i[
+    generic_chic
+    urban_flash
+    high_fashion
+    bag_lady_chic
+    nomad_leathers
+    gang_colors
+    businesswear
+    leisurewear
+    bohemian
+    asia_pop
+  ]
+  
+  HAIRSTYLES = %i[
+    mohawk
+    long_and_ratty
+    short_and_spiked
+    wild_and_all_over
+    bald
+    striped
+    wild_colors
+    neat_and_short
+    short_and
+    long_and_straight
+  ]
+  
+  AFFECTATIONS = %i[
+    tattoos
+    mirrorshades
+    ritual_scars
+    spiked_gloves
+    nose_rings
+    tongue_or_other_piercings
+    strange_fingernail_implants
+    spiked_boots_or_heels
+    fingerless_gloves
+    strange_contacts
+  ]
+  
+  VALUED_THINGS = %i[
+    money
+    honor
+    your_word
+    honesty
+    knowledge
+    vengeance
+    love
+    power
+    family
+    friendship
+  ]
+  
+  OPINIONS_ON_PEOPLE = %i[
+    neutral
+    like
+    hate
+    tools
+    valuable_individuals
+    obstacles
+    untrustworthy
+    wipe_em_all_out
+    wonderful
+  ]
+  
+  VALUED_PEOPLE = %i[
+    parent
+    sibling
+    lover
+    friend
+    oneself
+    pet
+    mentor
+    public_figure
+    personal_hero
+    no_one
+  ]
+  
+  VALUED_POSSESSIONS = %i[
+    weapon
+    tool
+    piece_of_clothing
+    photograph
+    book
+    recording
+    musical_instrument
+    piece_of_jewelry
+    toy
+    letter
+  ]
 end

@@ -37,6 +37,6 @@ export default class extends Controller {
   
   doPick(n) {
     const pick = this.optionTargets[n];
-    this.fieldTarget.value = pick.querySelector("td").innerText;
+    this.fieldTarget.value = pick.querySelector("td").firstChild.nodeValue.trim(); // ignore extra elements in the cell, such as <i>
   }
 }
