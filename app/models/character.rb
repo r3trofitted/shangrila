@@ -24,4 +24,17 @@ class Character < ApplicationRecord
     east_asian
     oceania/pacific_islander
   ]
+  
+  PERSONALITIES = %i[
+    shy_and_secretive
+    rebellious_antisocial_and_violent
+    arrogant_proud_and_aloof
+    moody_rash_and_headstrong
+    picky_fussy_and_nervous
+    stable_and_serious
+    silly_and_fluff-headed
+    sneaky_and_deceptive
+    intellectual_and_detached
+    friendly_and_outgoing
+  ]
 end

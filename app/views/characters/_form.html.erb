@@ -22,36 +22,61 @@
     </div>
     <%= f.submit t(".next"), class: "slanted-button", data: { turbo: false } %>
   </fieldset>
-  <fieldset data-controller="options-table" id="personals">
+  <fieldset id="personals">
     <legend><%= t ".personals" %></legend>
-    <div class="field">
-      <%= f.label :origins %>
-      <%= f.text_field :origins, data: { options_table_target: "field" } %>
-    </div>
-    <div class="options-table">
-      <table>
-        <thead>
-          <tr>
-            <th><%= t ".roll" %></th>
-            <th><%= Character.human_attribute_name :origins %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% Character::ORIGINS.each_with_index do |o, i| %>
-            <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
-              <%= tag.th i+1 %>
-              <%= tag.td Character.human_attribute_name "origins.#{o}" %>
+    <div data-controller="options-table">
+      <div class="field">
+        <%= f.label :origins %>
+        <%= f.text_field :origins, data: { options_table_target: "field" } %>
+      </div>
+      <div class="options-table">
+        <table>
+          <thead>
+            <tr>
+              <th><%= t ".roll" %></th>
+              <th><%= Character.human_attribute_name :origins %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% Character::ORIGINS.each_with_index do |o, i| %>
+              <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                <%= tag.th i+1 %>
+                <%= tag.td Character.human_attribute_name "origins.#{o}" %>
+              <% end %>
             <% end %>
-          <% end %>
-        </tbody>
-      </table>
-      <button type="button" class="slanted-button table-button" data-action="options-table#pickAtRandom">
-        <%= t ".random" %>
-      </button>
+          </tbody>
+        </table>
+        <button type="button" class="slanted-button table-button" data-action="options-table#pickAtRandom">
+          <%= t ".random" %>
+        </button>
+      </div>
     </div>
-    <div class="field">
-      <%= f.label :personality %>
-      <%= f.text_field :personality %>
+    <div data-controller="options-table">
+      <div class="field">
+        <%= f.label :personality %>
+        <%= f.text_field :personality, data: { options_table_target: "field" } %>
+      </div>
+      <div class="options-table">
+        <table>
+          <thead>
+            <tr>
+              <th><%= t ".roll" %></th>
+              <th><%= Character.human_attribute_name :personality %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% Character::PERSONALITIES.each_with_index do |o, i| %>
+              <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                <%= tag.th i+1 %>
+                <%= tag.td Character.human_attribute_name "personality.#{o}" %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <button type="button" class="slanted-button table-button" data-action="options-table#pickAtRandom">
+          <%= t ".random" %>
+        </button>
+      </div>
     </div>
   </fieldset>
   <fieldset>

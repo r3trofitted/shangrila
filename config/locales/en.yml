@@ -31,6 +31,17 @@ en:
         south-east_asian: "South-East Asian"
         east_asian: "East Asian"
         oceania/pacific_islander: "Oceania/Pacific Islander"
+      character/personality:
+        shy_and_secretive: "Shy and secretive"
+        rebellious_antisocial_and_violent: "Rebellious, antisocial, and violent"
+        arrogant_proud_and_aloof: "Arrogant, proud, and aloof"
+        moody_rash_and_headstrong: "Moody, rash, and headstrong"
+        picky_fussy_and_nervous: "Picky, fussy, and nervous"
+        stable_and_serious: "Stable and serious"
+        silly_and_fluff-headed: "Silly and fluff-headed"
+        sneaky_and_deceptive: "Sneaky and deceptive"
+        intellectual_and_detached: "Intellectual and detached"
+        friendly_and_outgoing: "Friendly and outgoing"
   characters:
     form:
       setup: "Setup"

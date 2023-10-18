@@ -42,19 +42,26 @@ body {
   font-family: var(--ff-body);
   
   counter-reset: section -1;
+  
+  margin: 0 .5rem;
 }
 
 fieldset {
+  --banner-font-size: var(--fs-700);
+  --banner-width: calc(var(--banner-font-size) * 1.25);
+  
   --cutoff-gap: 2px;
   --cutoff-width: var(--text-font-size);
   --block-cutoff-width: calc(var(--cutoff-width) / 2);
-  --gap: 1em;
+  
+  --gap: 2rem;
   
   border: none;
-  border-left: 50px solid var(--clr-primary-400);
   
   width: 40%; /* FIXME: not too fond of this way to limit the form's width (and it's doesn't work well on small devices) */
-  padding-block: 0;
+  margin-left: var(--banner-width);
+  
+  padding-block: var(--gap) 0;
   padding-inline: calc(var(--cutoff-gap) + var(--block-cutoff-width)*2); /* inline padding to make room for the "block cutoff" */
   min-height: 100vh;
   
@@ -67,28 +74,32 @@ fieldset {
 }
 
 legend {
-  color: var(--clr-primary-400);
-  
-  font-family: var(--ff-heading);
   position: absolute;
+  display: grid;
+  grid-auto-flow: column;
+  place-content: center right;
   
-  font-size: var(--fs-800);
-  text-transform: lowercase;
-  left: 1rem;
-  bottom: 1rem;
+  color: var(--clr-neutral-100);
+  font-family: var(--ff-heading);
+  font-size: var(--banner-font-size);
+  text-transform: uppercase;
+  
+  padding-inline-end: var(--gap);
+  background: var(--clr-primary-400);
+
+  writing-mode: vertical-lr;
+  text-align: end;
+  text-orientation: mixed;
+  transform: rotateZ(180deg);
+  
+  left: calc(-1 * var(--banner-width));
+  top: 0;
+  bottom: 0;
+  
+  width: var(--banner-width);
   
   &::before {
-    content: counter(section); 
-    display: block;
-    position: absolute;
-    text-align: center;
-    vertical-align: bottom;
-    font-size: var(--fs-900);
-    line-height: 100%;
-    color: var(--clr-neutral-100);
-    left: calc(-1rem - 50px);
-    bottom: 0;
-    width: 50px;
+    content: counter(section) "_";
   }
 }
 
@@ -121,23 +132,23 @@ legend {
 
 .table-button {
   justify-self: right;
-  margin-top: calc(var(--gap) / 2);
+  margin-top: calc(var(--gap) / 4);
 }
 
 input[type="submit"] {
-  margin-top: calc(var(--gap) * 4);
+  margin-top: calc(var(--gap) * 2);
   place-self: center stretch;
 }
 
 .field {
-  --label-height: calc(2 * var(--text-font-size));
+  --label-height: calc(1.5 * var(--text-font-size));
   --border-width: 3px;
   --border-margin-top: var(--label-height);
   
   display: grid;
-  grid-template-rows: var(--label-height) calc(2 * var(--label-height));
+  grid-template-rows: var(--label-height) calc(2.5 * var(--label-height));
   
-  margin-top: var(--gap);
+  margin-bottom: var(--gap);
   
   position: relative;
   isolation: isolate;
@@ -149,7 +160,7 @@ input[type="submit"] {
     color: var(--clr-primary-400);
     background-color: transparent;
     
-    place-self: end left;
+    place-self: start left;
   }
   
   & input {
@@ -157,7 +168,8 @@ input[type="submit"] {
     font-size: var(--text-font-size);
     font-family: var(--fs-cursive);
     
-    margin: calc(var(--gap) / 4) calc(var(--gap) / 2);
+    width: calc(100% - var(--cutoff-width)*2);
+    margin: calc(var(--cutoff-width) / 2) var(--cutoff-width);
     
     border: none;
     
@@ -243,10 +255,15 @@ input[type="submit"] {
                        0 100%);
   }
   
+  /* reducing the width to make up for the controls of a carousel, if any */
   &:has(.options-carousel) {
     --arrow-cutoff-width: calc(2 * var(--block-cutoff-width));
-
     margin-inline: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
+  }
+  
+  /* reducing the negative space with the table that follows, if any */
+  &:has( + .options-table) {
+    margin-bottom: calc(var(--gap) / 4);
   }
   
   & .options-carousel {
@@ -306,8 +323,6 @@ input[type="submit"] {
 
 .options-table {
   display: grid;
-  
-  margin-top: calc(var(--gap) / 2);
   
   & table {
     border: 1px solid var(--clr-primary-400);
