@@ -24,7 +24,7 @@ ActiveRecord::Schema[7.2].define(version: 2023_10_17_155439) do
     t.string "opinion_on_people"
     t.string "most_valued_thing"
     t.string "most_valued_person"
-    t.string "most_values_possession"
+    t.string "most_valued_possession"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

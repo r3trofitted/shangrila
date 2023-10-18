@@ -13,7 +13,7 @@ class CreateCharacters < ActiveRecord::Migration[7.2]
       t.string :opinion_on_people
       t.string :most_valued_thing
       t.string :most_valued_person
-      t.string :most_values_possession
+      t.string :most_valued_possession
 
       t.timestamps
     end
