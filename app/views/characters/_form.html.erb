@@ -20,7 +20,8 @@
         <%= options_for_select Character::ROLES.map { |r| Character.human_attribute_name "role.#{r}" } %>
       </datalist>
     </div>
-    <%= f.submit t(".next"), class: "slanted-button", data: { turbo: false } %>
+    <%#= f.submit t(".next"), class: "slanted-button", data: { turbo: false } %>
+    <%= f.button(:next, value: "personals", class: "slanted-button", data: { turbo: false }) { t(".next") } %>
   </fieldset>
   <fieldset id="personals">
     <legend><%= t ".personals" %></legend>
@@ -281,8 +282,9 @@
         </button>
       </div>
     </div>
+    <%= f.button(:next, value: "background", class: "slanted-button", data: { turbo: false }) { t(".next") } %>
   </fieldset>
-  <fieldset>
+  <fieldset id="background">
     <legend><%= t ".background" %></legend>
   </fieldset>
   <fieldset>
