@@ -46,6 +46,14 @@ body {
   margin: 0 .5rem;
 }
 
+div.contents { /* OPTIMIZE: better name for this utility-like class? */
+  display: contents;
+}
+
+form {
+  container-type: inline-size;
+}
+
 fieldset {
   --banner-font-size: var(--fs-700);
   --banner-width: calc(var(--banner-font-size) * 1.25);
@@ -55,22 +63,28 @@ fieldset {
   --block-cutoff-width: calc(var(--cutoff-width) / 2);
   
   --gap: 2rem;
+  --label-height: calc(1.5 * var(--text-font-size));
   
   border: none;
   
-  width: 40%; /* FIXME: not too fond of this way to limit the form's width (and it's doesn't work well on small devices) */
-  margin-left: var(--banner-width);
   
+  min-height: 100vh;
   padding-block: var(--gap) 0;
   padding-inline: calc(var(--cutoff-gap) + var(--block-cutoff-width)*2); /* inline padding to make room for the "block cutoff" */
-  min-height: 100vh;
+  margin-left: var(--banner-width);
   
   position: relative;
   display: grid;
   grid-auto-flow: row;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--gap);
   align-content: start;
   
   counter-increment: section;
+  
+  @container (width < 70ch) {
+    grid-template-columns: 1fr;
+  }
 }
 
 i {
@@ -140,22 +154,23 @@ legend {
 }
 
 input[type="submit"] {
+  grid-column: 1 / 2;
+  
   margin-top: calc(var(--gap) * 2);
   place-self: center stretch;
 }
 
 .field {
-  --label-height: calc(1.5 * var(--text-font-size));
   --border-width: 3px;
   --border-margin-top: var(--label-height);
   
   display: grid;
   grid-template-rows: var(--label-height) calc(2.5 * var(--label-height));
   
-  margin-bottom: var(--gap);
-  
+  grid-column: 1 / 2;
   position: relative;
   isolation: isolate;
+  place-self: start stretch;
   
   font-size: var(--text-font-size);
   
@@ -326,7 +341,10 @@ input[type="submit"] {
 }
 
 .options-table {
+  grid-column: -1 / -2;
   display: grid;
+  
+  margin-top: var(--label-height);
   
   & table {
     border: 1px solid var(--clr-primary-400);

@@ -24,7 +24,7 @@
   </fieldset>
   <fieldset id="personals">
     <legend><%= t ".personals" %></legend>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :origins %>
         <%= f.text_field :origins, data: { options_table_target: "field" } %>
@@ -51,7 +51,7 @@
         </button>
       </div>
     </div>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :personality %>
         <%= f.text_field :personality, data: { options_table_target: "field" } %>
@@ -78,7 +78,7 @@
         </button>
       </div>
     </div>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :clothing %>
         <%= f.text_field :clothing, data: { options_table_target: "field" } %>
@@ -108,7 +108,7 @@
         </button>
       </div>
     </div>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :hairstyle %>
         <%= f.text_field :hairstyle, data: { options_table_target: "field" } %>
@@ -137,7 +137,7 @@
         </button>
       </div>
     </div>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :affectation %>
         <%= f.text_field :affectation, data: { options_table_target: "field" } %>
@@ -166,7 +166,7 @@
         </button>
       </div>
     </div>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :most_valued_thing %>
         <%= f.text_field :most_valued_thing, data: { options_table_target: "field" } %>
@@ -194,7 +194,7 @@
           <%= t ".random" %>
         </button>
       </div>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :opinion_on_people %>
         <%= f.text_field :opinion_on_people, data: { options_table_target: "field" } %>
@@ -223,7 +223,7 @@
         </button>
       </div>
     </div>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :most_valued_person %>
         <%= f.text_field :most_valued_person, data: { options_table_target: "field" } %>
@@ -252,7 +252,7 @@
         </button>
       </div>
     </div>
-    <div data-controller="options-table">
+    <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :most_valued_possession %>
         <%= f.text_field :most_valued_possession, data: { options_table_target: "field" } %>
