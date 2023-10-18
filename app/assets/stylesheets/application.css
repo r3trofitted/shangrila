@@ -73,6 +73,10 @@ fieldset {
   counter-increment: section;
 }
 
+i {
+  font-size: var(--fs-300);
+}
+
 legend {
   position: absolute;
   display: grid;
