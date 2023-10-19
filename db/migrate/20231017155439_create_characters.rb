@@ -15,6 +15,8 @@ class CreateCharacters < ActiveRecord::Migration[7.2]
       t.string :most_valued_person
       t.string :most_valued_possession
       t.string :original_background
+      t.string :childhood_environment
+      t.string :family_crisis
 
       t.timestamps
     end

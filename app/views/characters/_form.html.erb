@@ -20,7 +20,6 @@
         <%= options_for_select Character::ROLES.map { |r| Character.human_attribute_name "role.#{r}" } %>
       </datalist>
     </div>
-    <%#= f.submit t(".next"), class: "slanted-button", data: { turbo: false } %>
     <%= f.button(:next, value: "personals", class: "slanted-button", data: { turbo: false }) { t(".next") } %>
   </fieldset>
   <fieldset id="personals">
@@ -286,6 +285,96 @@
   </fieldset>
   <fieldset id="background">
     <legend><%= t ".background" %></legend>
+    <div data-controller="options-table" class="contents">
+      <div class="field">
+        <%= f.label :original_background %>
+        <%= f.text_field :original_background, data: { options_table_target: "field" } %>
+      </div>
+      <div class="options-table">
+        <table>
+          <thead>
+            <tr>
+              <th><%= t ".roll" %></th>
+              <th><%= Character.human_attribute_name :original_background %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% Character::ORIGINAL_BACKGROUNDS.each_with_index do |o, i| %>
+              <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                <%= tag.th i+1 %>
+                <%= tag.td do %>
+                  <%= Character.human_attribute_name "original_background.#{o}" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <button type="button" class="slanted-button table-button" data-action="options-table#pickAtRandom">
+          <%= t ".random" %>
+        </button>
+      </div>
+    </div>
+
+    <div data-controller="options-table" class="contents">
+      <div class="field">
+        <%= f.label :childhood_environment %>
+        <%= f.text_field :childhood_environment, data: { options_table_target: "field" } %>
+      </div>
+      <div class="options-table">
+        <table>
+          <thead>
+            <tr>
+              <th><%= t ".roll" %></th>
+              <th><%= Character.human_attribute_name :childhood_environment %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% Character::CHILDHOOD_ENVIRONMENTS.each_with_index do |o, i| %>
+              <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                <%= tag.th i+1 %>
+                <%= tag.td do %>
+                  <%= Character.human_attribute_name "childhood_environment.#{o}" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <button type="button" class="slanted-button table-button" data-action="options-table#pickAtRandom">
+          <%= t ".random" %>
+        </button>
+      </div>
+    </div>
+
+    <div data-controller="options-table" class="contents">
+      <div class="field">
+        <%= f.label :family_crisis %>
+        <%= f.text_field :family_crisis, data: { options_table_target: "field" } %>
+      </div>
+      <div class="options-table">
+        <table>
+          <thead>
+            <tr>
+              <th><%= t ".roll" %></th>
+              <th><%= Character.human_attribute_name :family_crisis %></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% Character::FAMILIY_CRISES.each_with_index do |o, i| %>
+              <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                <%= tag.th i+1 %>
+                <%= tag.td do %>
+                  <%= Character.human_attribute_name "family_crisis.#{o}" %>
+                <% end %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <button type="button" class="slanted-button table-button" data-action="options-table#pickAtRandom">
+          <%= t ".random" %>
+        </button>
+      </div>
+    </div>
+
   </fieldset>
   <fieldset>
     <legend><%= t ".wrap_up" %></legend>

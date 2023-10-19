@@ -140,4 +140,30 @@ class Character < ApplicationRecord
     reclaimers
     edgerunners
   ]
+  
+  CHILDHOOD_ENVIRONMENTS = %i[
+    ran_on_the_street
+    safe_corp_zone
+    nomad_pack
+    nomad_pack_with_roots_in_transport
+    decaying_neighborhood
+    the_combat_zone
+    megastructure
+    city_taken_over_by_reclaimers
+    drift_nation
+    corporate_starscraper
+  ]
+  
+  FAMILIY_CRISES = %i[
+    lost_everything_through_betrayal
+    lost_everything_through_bad_management
+    exiled
+    imprisoned
+    vanished
+    killed
+    involved_in_a_conspiracy
+    scattered_due_to_misfortune
+    cursed_with_a_hereditary_feud
+    inheritor_of_a_family_debt
+  ]
 end
