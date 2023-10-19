@@ -127,4 +127,17 @@ class Character < ApplicationRecord
     toy
     letter
   ]
+  
+  ORIGINAL_BACKGROUNDS = %i[
+    corporate_execs
+    corporate_managers
+    corporate_technicians
+    nomad_pack
+    ganger_family
+    combat_zoners
+    urban_homeless
+    megastructure_warren_rats
+    reclaimers
+    edgerunners
+  ]
 end
