@@ -1,4 +1,4 @@
-<%= form_with model: @character do |f| %>
+<%= form_with model: @character, builder: CharacterFormBuilder do |f| %>
   <fieldset id="setup" class="lifepath_entry">
     <legend><%= t ".setup" %></legend>
     <div class="field">
@@ -27,7 +27,11 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :origins %>
-        <%= f.text_field :origins, data: { options_table_target: "field" } %>
+        <div class="field-indicators">
+          <div class="field_border">
+            <%= f.text_field :origins, data: { options_table_target: "field" } %>
+          </div>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -54,7 +58,11 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :personality %>
-        <%= f.text_field :personality, data: { options_table_target: "field" } %>
+        <div class="field-indicators">
+          <div class="field_border">
+            <%= f.text_field :personality, data: { options_table_target: "field" } %>
+          </div>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -81,7 +89,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :clothing %>
-        <%= f.text_field :clothing, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :clothing, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -111,7 +121,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :hairstyle %>
-        <%= f.text_field :hairstyle, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :hairstyle, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -140,7 +152,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :affectation %>
-        <%= f.text_field :affectation, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :affectation, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -169,7 +183,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :most_valued_thing %>
-        <%= f.text_field :most_valued_thing, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :most_valued_thing, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -197,7 +213,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :opinion_on_people %>
-        <%= f.text_field :opinion_on_people, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :opinion_on_people, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -226,7 +244,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :most_valued_person %>
-        <%= f.text_field :most_valued_person, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :most_valued_person, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -255,7 +275,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :most_valued_possession %>
-        <%= f.text_field :most_valued_possession, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :most_valued_possession, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -289,7 +311,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :original_background %>
-        <%= f.text_field :original_background, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :original_background, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -319,7 +343,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :childhood_environment %>
-        <%= f.text_field :childhood_environment, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :childhood_environment, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>
@@ -349,7 +375,9 @@
     <div data-controller="options-table" class="contents">
       <div class="field">
         <%= f.label :family_crisis %>
-        <%= f.text_field :family_crisis, data: { options_table_target: "field" } %>
+        <div class="field_border">
+          <%= f.text_field :family_crisis, data: { options_table_target: "field" } %>
+        </div>
       </div>
       <div class="options-table">
         <table>

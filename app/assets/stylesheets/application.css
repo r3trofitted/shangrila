@@ -67,7 +67,6 @@ fieldset.lifepath_entry {
   
   border: none;
   
-  
   min-height: 100vh;
   padding-block: var(--gap) 0;
   padding-inline: calc(var(--cutoff-gap) + var(--block-cutoff-width)*2); /* inline padding to make room for the "block cutoff" */
@@ -177,11 +176,9 @@ legend {
   & label {
     display: block;
     color: var(--clr-primary-400);
-    background-color: transparent;
     
-    place-self: start left;
+    place-self: center left;
   }
-  
   
   /* form-sizing: normal; */
   & input {
@@ -200,80 +197,6 @@ legend {
       border: none;
       outline: none;
     }
-  }
-  
-  /* outer slanted background (red) */
-  &::before {
-    position: absolute;
-    content: '';
-    display: block;
-    z-index: -2;
-    
-    inset: 0;
-    background: var(--clr-primary-400);
-    
-    /* slanted shape */
-    clip-path: polygon(
-      0% var(--border-margin-top),
-      calc(100% - var(--cutoff-width)) var(--border-margin-top),
-      100% calc(var(--cutoff-width) + var(--border-margin-top)),
-      100% 100%,
-      var(--cutoff-width) 100%,
-      0% calc(100% - var(--cutoff-width))
-    );
-  }
-  
-  /* inner slanted background (white) */
-  &::after {
-    --cutoff-width: calc(var(--text-font-size) - (var(--border-width) / 2)); /* smaller cutoff to make up for the border width */
-    
-    position: absolute;
-    content: '';
-    display: block;
-    z-index: -1;
-    
-    inset: var(--border-width);
-    background: var(--clr-neutral-100);
-    
-    /* slanted shape */
-    clip-path: polygon(
-      0% var(--border-margin-top),
-      calc(100% - var(--cutoff-width)) var(--border-margin-top),
-      100% calc(var(--cutoff-width) + var(--border-margin-top)),
-      100% 100%,
-      var(--cutoff-width) 100%,
-      0% calc(100% - var(--cutoff-width))
-    );
-  }
-  
-  &:has(input[required]) label::after {
-    position: absolute;
-    content: '';
-    
-    top: var(--border-margin-top);
-    right: 0;
-    width: var(--cutoff-width);
-    aspect-ratio: 1;
-    
-    background-color: var(--clr-primary-400);
-    clip-path: polygon(var(--cutoff-gap) 0, 100% 0%, 100% calc(100% - var(--cutoff-gap)));
-  }
-  
-  &:has(input:focus-visible) label::before {
-    position: absolute;
-    content: '';
-    
-    top: var(--border-margin-top);
-    bottom: 0;
-    left: calc(-1 * var(--block-cutoff-width) - var(--cutoff-gap));
-    width: calc(var(--cutoff-width) * 2);
-    
-    background-color: var(--clr-primary-400);
-    clip-path: polygon(0 0, 
-                       var(--block-cutoff-width) 0,
-                       var(--block-cutoff-width) calc(100% - var(--cutoff-width)),
-                       calc(100% - calc(3 * var(--border-width))) 100%, /* the x3 multiplier is a magic number found by trial and error */
-                       0 100%);
   }
   
   /* reducing the width to make up for the controls of a carousel, if any */
@@ -344,6 +267,97 @@ legend {
       calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 100%,
       var(--cutoff-width) 100%,
       var(--cutoff-width) var(--cutoff-width)
+    );
+  }
+}
+
+.field-indicators {
+  position: relative;
+  z-index: 1;
+  
+  &:has(input:focus-visible)::before {
+    position: absolute;
+    content: '';
+    
+    top: 0;
+    bottom: 0;
+    left: calc(-1 * var(--block-cutoff-width) - var(--cutoff-gap));
+    width: calc(var(--cutoff-width) + var(--block-cutoff-width));
+    
+    background-color: var(--clr-primary-400);
+    clip-path: polygon(
+      0 0, 
+      var(--block-cutoff-width) 0,
+      var(--block-cutoff-width) calc(100% - var(--cutoff-width)),
+      calc(100% - var(--cutoff-gap)*0.414) 100%,
+      0 100%
+     );
+  }
+  
+  &:has(input[required])::after {
+    position: absolute;
+    content: '';
+    
+    top: 0;
+    right: 0;
+    width: var(--cutoff-width);
+    aspect-ratio: 1;
+    
+    background-color: var(--clr-primary-400);
+    clip-path: polygon(
+      var(--cutoff-gap) 0,
+      100% 0%,
+      100% calc(100% - var(--cutoff-gap))
+    );
+  }
+}
+
+.field-border {
+  position: relative;
+  height: 100%;
+
+  /* outer slanted background (red) */
+  &::before {
+    position: absolute;
+    content: '';
+    display: block;
+    z-index: -2;
+    
+    inset: 0;
+    background: var(--clr-primary-400);
+    
+    /* slanted shape */
+    clip-path: polygon(
+      0% 0%,
+      calc(100% - var(--cutoff-width)) 0%,
+      100% var(--cutoff-width),
+      100% 100%,
+      var(--cutoff-width) 100%,
+      0% calc(100% - var(--cutoff-width))
+    );
+  }
+  
+  /* inner slanted background (white) */
+  &::after {
+    /* 0.4142 */
+    --cutoff-width: calc(var(--text-font-size) - (var(--border-width) / 2)); /* smaller cutoff to make up for the border width */
+    
+    position: absolute;
+    content: '';
+    display: block;
+    z-index: -1;
+    
+    inset: var(--border-width);
+    background: var(--clr-neutral-100);
+    
+    /* slanted shape */
+    clip-path: polygon(
+      0% 0%,
+      calc(100% - var(--cutoff-width)) 0%,
+      100% var(--cutoff-width),
+      100% 100%,
+      var(--cutoff-width) 100%,
+      0% calc(100% - var(--cutoff-width))
     );
   }
 }
