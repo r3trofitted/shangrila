@@ -19,6 +19,8 @@ en:
         original_background: "Original background"
         childhood_environment: "Childhood environment"
         family_crisis: "Family crisis"
+        friends: "Friends"
+        enemies: "Enemies"
       character/role:
         exec: "Exec"
         fixer: "Fixer"

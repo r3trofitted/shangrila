@@ -1,4 +1,12 @@
 class Character < ApplicationRecord
+  serialize :friends, coder: Relationships.coder_for(Friend)
+  serialize :enemies, coder: Relationships.coder_for(Enemy)
+  
+  after_initialize do
+    self.friends = Relationships.of(Friend) if self.friends.blank?
+    self.enemies = Relationships.of(Enemy) if self.enemies.blank?
+  end
+  
   ROLES = %i[
     exec
     fixer

@@ -17,6 +17,8 @@ class CreateCharacters < ActiveRecord::Migration[7.2]
       t.string :original_background
       t.string :childhood_environment
       t.string :family_crisis
+      t.json :friends
+      t.json :enemies
 
       t.timestamps
     end
