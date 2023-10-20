@@ -25,6 +25,9 @@ ActiveRecord::Schema[7.2].define(version: 2023_10_17_155439) do
     t.string "most_valued_thing"
     t.string "most_valued_person"
     t.string "most_valued_possession"
+    t.string "original_background"
+    t.string "childhood_environment"
+    t.string "family_crisis"
     t.json "friends"
     t.json "enemies"
     t.datetime "created_at", null: false
