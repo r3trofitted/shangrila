@@ -163,6 +163,17 @@ en:
         scattered_due_to_misfortune.: "Your family was scattered to the winds due to misfortune."
         cursed_with_a_hereditary_feud: "Your family is cursed with a hereditary feud that has lasted for generations."
         inheritor_of_a_family_debt: "You are the inheritor of a family debt; you must honor this debt before moving on with your life."
+      character/friend_relationship:
+        like_an_older_sibling: "Like an older sibling to you."
+        teacher_or_mentor: "A teacher or mentor."
+        former_lover: "A former lover."
+        like_a_parent: "Like a parent to you."
+        like_a_younger_sibling: "Like a younger sibling to you."
+        partner_or_coworker: "A partner or coworker."
+        old_enemy: "An old enemy."
+        old_childhood_friend: "An old childhood friend."
+        someone_from_the_street: "Someone you know from The Street."
+        someone_with_a_common_interest: "Someone with a common interest or goal."
   characters:
     form:
       setup: "Setup"
@@ -174,6 +185,13 @@ en:
       random: "Random"
       next: "Next"
       description: "Description"
+      friends: 
+        zero: "Friends"
+        one: "Friends (1)"
+        other: "Friends (%{count})"
+      enemies: 
+        zero: "Enemies"
+        other: "Enemies (%{count})"
       clothings:
         generic_chic: "(Standard, Colorful, Modular)"
         urban_flash: "(Flashy, Technological, Streetwear)"

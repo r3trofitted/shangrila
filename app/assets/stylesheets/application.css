@@ -54,7 +54,7 @@ form {
   container-type: inline-size;
 }
 
-fieldset {
+fieldset.lifepath_entry {
   --banner-font-size: var(--fs-700);
   --banner-width: calc(var(--banner-font-size) * 1.25);
   
@@ -285,6 +285,12 @@ legend {
   /* reducing the negative space with the table that follows, if any */
   &:has( + .options-table) {
     margin-bottom: calc(var(--gap) / 4);
+  }
+  
+  /* "secondary" are indented and placed closer to their primary relative */
+  &.secondary {
+    margin-top: calc(-.75 * var(--gap));
+    margin-left: calc(3 * var(--block-cutoff-width));
   }
   
   & .options-carousel {
