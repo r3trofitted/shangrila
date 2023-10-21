@@ -418,10 +418,9 @@
       </table>
     </div>
       
-    <%= f.button(:next, value: "friends", class: "slanted-button", data: { turbo: false }) { t(".next") } %>
+    <%= f.button(:next, value: "friends", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
   </fieldset>
 
-<!--
   <fieldset id="friends" class="lifepath_entry">
     <legend><%= t ".friends", count: f.object.friends.count %></legend>
     
@@ -432,40 +431,44 @@
           <%= friend_fields.text_field :name, index: i, required: true %>
         </div>
         
-        <div data-controller="options-table" class="contents">
-          <div class="field secondary">
-            <%= friend_fields.label :connection, "Connection", index: i %>
-            <%= friend_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
-          </div>
-          <div class="options-table">
-            <table>
-              <thead>
-                <tr>
-                  <th><%= t ".roll" %></th>
-                  <th><%= "Friend's relationship to you" %></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% Character::FRIEND_RELATIONSHIPS.each_with_index do |o, i| %>
-                  <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
-                    <%= tag.th i+1 %>
-                    <%= tag.td do %>
-                      <%= Character.human_attribute_name "friend_relationship.#{o}" %>
-                    <% end %>
+        <div class="field secondary" data-controller="options-table">
+          <%= friend_fields.label :connection, "Connection", index: i %>
+          <%= friend_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
+          <table>
+            <thead>
+              <tr>
+                <th><%= t ".roll" %></th>
+                <th><%= "Friend's relationship to you" %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% Character::FRIEND_RELATIONSHIPS.each_with_index do |o, i| %>
+                <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                  <%= tag.th i+1 %>
+                  <%= tag.td do %>
+                    <%= Character.human_attribute_name "friend_relationship.#{o}" %>
                   <% end %>
                 <% end %>
-              </tbody>
-            </table>
-            <button type="button" class="slanted-button table-button" data-action="options-table#pickAtRandom">
-              <%= t ".random" %>
-            </button>
-          </div>
+              <% end %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">
+                  <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+                    <%= t ".random" %>
+                  </button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
         </div>
       <% end %>
     <% end %>
-    <%= f.button(:next, value: "enemies", class: "slanted-button", data: { turbo: false }) { t(".next") } %>
+    
+    <%= f.button(:next, value: "enemies", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
   </fieldset>
-  
+
+<!--
   <fieldset id="enemies" class="lifepath_entry">
     <legend><%= t ".enemies", count: f.object.enemies.count %></legend>
   </fieldset>

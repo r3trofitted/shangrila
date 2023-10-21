@@ -191,6 +191,10 @@ legend {
   &.secondary {
     margin-top: calc(-.75 * var(--gap));
     margin-left: calc(3 * var(--block-cutoff-width));
+    
+    & label::before {
+      content: "↳ ";
+    }
   }
 }
 
