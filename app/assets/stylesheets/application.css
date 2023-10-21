@@ -46,10 +46,6 @@ body {
   margin: 0 .5rem;
 }
 
-div.contents { /* OPTIMIZE: better name for this utility-like class? */
-  display: contents;
-}
-
 form {
   container-type: inline-size;
 }
@@ -65,24 +61,25 @@ fieldset.lifepath_entry {
   --gap: 2rem;
   --label-height: calc(1.5 * var(--text-font-size));
   
+  position: relative;
+  
   border: none;
+  padding: var(--gap) 0 0 0;
   
   min-height: 100vh;
-  padding-block: var(--gap) 0;
-  padding-inline: calc(var(--cutoff-gap) + var(--block-cutoff-width)*2); /* inline padding to make room for the "block cutoff" */
-  margin-left: var(--banner-width);
   
-  position: relative;
   display: grid;
   grid-auto-flow: row;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--gap);
+  grid-template-columns: [banner] var(--banner-width) [main] 1fr [aside] 1fr [end];
+  row-gap: var(--gap); /* TODO: 0 when on 2 column? */
+  column-gap: calc(var(--gap) / 2);
   align-content: start;
+  align-items: start;
   
   counter-increment: section;
   
   @container (width < 70ch) {
-    grid-template-columns: 1fr;
+    grid-template-columns: [banner] var(--banner-width) [main] 1fr [aside end];
   }
 }
 
@@ -92,6 +89,9 @@ i {
 
 legend {
   position: absolute;
+  grid-column: banner / main;
+  inset: 0; /* relative to the containing grid cell, which is pretty cool */
+  
   display: grid;
   grid-auto-flow: column;
   place-content: center right;
@@ -101,19 +101,13 @@ legend {
   font-size: var(--banner-font-size);
   text-transform: uppercase;
   
-  padding-inline-end: var(--gap);
+  padding-inline-end: var(--gap); /* making up for the fieldset's top padding */
   background: var(--clr-primary-400);
 
   writing-mode: vertical-lr;
   text-align: end;
   text-orientation: mixed;
   transform: rotateZ(180deg);
-  
-  left: calc(-1 * var(--banner-width));
-  top: 0;
-  bottom: 0;
-  
-  width: var(--banner-width);
   
   &::before {
     content: counter(section) "_";
@@ -147,34 +141,28 @@ legend {
   );
 }
 
-.table-button {
-  justify-self: right;
-  margin-top: calc(var(--gap) / 4);
+.next {
+  margin-top: calc(var(--label-height)*2);
+  margin-bottom: calc(var(--label-height)*4);
+  
+  grid-column: main / aside;
 }
 
-:is(input,button)[type="submit"] {
-  grid-column: 1 / 2;
-  
-  margin-top: calc(var(--gap) * 2);
-  place-self: center stretch;
-}
 
 .field {
   --border-width: 3px;
   --border-margin-top: var(--label-height);
   
-  display: grid;
-  grid-template-rows: var(--label-height) calc(2.5 * var(--label-height));
+  grid-column: main / aside;
   
-  grid-column: 1 / 2;
   position: relative;
   isolation: isolate;
-  place-self: start stretch;
   
   font-size: var(--text-font-size);
   
   & label {
     display: block;
+    min-height: var(--label-height);
     color: var(--clr-primary-400);
     
     place-self: center left;
@@ -199,81 +187,17 @@ legend {
     }
   }
   
-  /* reducing the width to make up for the controls of a carousel, if any */
-  &:has(.options-carousel) {
-    --arrow-cutoff-width: calc(2 * var(--block-cutoff-width));
-    margin-inline: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
-  }
-  
-  /* reducing the negative space with the table that follows, if any */
-  &:has( + .options-table) {
-    margin-bottom: calc(var(--gap) / 4);
-  }
-  
   /* "secondary" are indented and placed closer to their primary relative */
   &.secondary {
     margin-top: calc(-.75 * var(--gap));
     margin-left: calc(3 * var(--block-cutoff-width));
-  }
-  
-  & .options-carousel {
-    margin: 0;
-    padding: 0;
-    
-    display: contents;
-  }
-  
-  /* TODO: grey out the buttons and color them when the field is focused or hovered */
-  /* TODO: allow keyboard navigation through the options */
-  
-  & .options-carousel button {
-    position: absolute;
-    border: none;
-    
-    background-color: var(--clr-primary-400);
-    
-    top: var(--border-margin-top);
-    bottom: 0;
-    
-    --button-width: calc((2 * var(--arrow-cutoff-width)) + var(--cutoff-width));
-    width: var(--button-width);
-  }
-  
-  & .options-carousel button:active {
-    background-color: var(--clr-secondary-400);
-  }
-  
-  & .options-carousel button.back {
-    left: calc((-1 * var(--button-width)) - var(--cutoff-gap) + var(--cutoff-width));
-    
-    clip-path: polygon(
-      0 50%,
-      var(--arrow-cutoff-width) 0,
-      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 0,
-      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) calc(100% - var(--cutoff-width)),
-      calc(100% - calc(.5 * var(--border-width))) 100%,
-      var(--arrow-cutoff-width) 100%
-    );
-
-  }
-  
-  & .options-carousel button.forward {
-    right: calc((-1 * var(--arrow-cutoff-width)) - var(--cutoff-gap) - var(--cutoff-width));
-    
-    clip-path: polygon(
-      0% 0%,
-      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 0%,
-      100% 50%,
-      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 100%,
-      var(--cutoff-width) 100%,
-      var(--cutoff-width) var(--cutoff-width)
-    );
   }
 }
 
 .field-indicators {
   position: relative;
   z-index: 1;
+  align-self: start;
   
   &:has(input:focus-visible)::before {
     position: absolute;
@@ -362,25 +286,97 @@ legend {
   }
 }
 
-.options-table {
-  grid-column: -1 / -2;
-  display: grid;
+.field[data-controller="options-carousel"] {
+  /* making room on both ends for the buttons so that their tip aligns with the focus indicator */
+  --arrow-cutoff-width: calc(2 * var(--block-cutoff-width));
+  margin-inline: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
+
+  & button {
+    position: absolute;
+    border: none;
+    
+    background-color: var(--clr-primary-400);
+    
+    top: var(--border-margin-top);
+    bottom: 0;
+    
+    --button-width: calc((2 * var(--arrow-cutoff-width)) + var(--cutoff-width));
+    width: var(--button-width);
+    
+    &:active {
+      background-color: var(--clr-secondary-400);
+    }
+  }
   
-  margin-top: var(--label-height);
+  & button.back {
+    left: calc((-1 * var(--button-width)) - var(--cutoff-gap) + var(--cutoff-width));
+    
+    clip-path: polygon(
+      0 50%,
+      var(--arrow-cutoff-width) 0,
+      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 0,
+      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) calc(100% - var(--cutoff-width)),
+      calc(100% - calc(.5 * var(--border-width))) 100%,
+      var(--arrow-cutoff-width) 100%
+    );
+  }
+  
+  & button.forward {
+    right: calc((-1 * var(--arrow-cutoff-width)) - var(--cutoff-gap) - var(--cutoff-width));
+    
+    clip-path: polygon(
+      0% 0%,
+      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 0%,
+      100% 50%,
+      calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 100%,
+      var(--cutoff-width) 100%,
+      var(--cutoff-width) var(--cutoff-width)
+    );
+  }
+}
+
+.field[data-controller="options-table"] {
+  grid-column: main / end;
+  
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: subgrid;
+  column-gap: var(--gap);
+  
+  & :not(table) {
+    grid-column: main;
+  }
   
   & table {
-    border: 1px solid var(--clr-primary-400);
+    --border: 1px solid var(--clr-primary-400);
+    
+    grid-column: aside;
+    table-layout: fixed;
+    
+    width: 100%;
     border-collapse: collapse;
     text-align: center;
   }
   
   & thead {
+    border: var(--border);
     background-color: var(--clr-primary-400);
     color: var(--clr-neutral-100);
   }
   
-  & thead th {
+  & thead th:first-of-type {
+    width: 8ch;
     border-right-color: var(--clr-neutral-100);
+  }
+  
+  & tbody {
+    border: var(--border);
+  }
+  
+  & tfoot {
+    border: none;
+    border-top: var(--border);
+    text-align: right;
   }
   
   & tr:nth-of-type(even) * {
@@ -403,5 +399,8 @@ legend {
   & :is(th, td) {
     padding-block: .35em;
   }
+  
+  & tfoot td {
+    padding-bottom: 0;
+  }
 }
-
