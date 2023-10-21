@@ -33,13 +33,22 @@ class Enemy < Friend
   MEANS_OF_RETALIATION = %i[
     wont_go_out_of_their_way
     themselves
-    themselves_and_a_friend
-    themselves_and_few_friends
-    themselves_and_many_friends
+    single_friend
+    few_friends
+    many_friends
     entire_gang
     local_cops
     small_corporation
     powerful_corporation
     entire_city
+  ]
+  
+  INTENSITIES = %i[
+    avoid
+    murderous_rage
+    backstab
+    verbal_attack
+    setup
+    murder
   ]
 end

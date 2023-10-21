@@ -427,27 +427,27 @@
     <% f.object.friends.each_with_index do |friend, i| %>
       <%= f.fields_for :friends, friend do |friend_fields| %>
         <div class="field">
-          <%= friend_fields.label :name, "Name", index: i %>
+          <%= friend_fields.label :name, index: i %>
           <%= friend_fields.text_field :name, index: i, required: true %>
         </div>
         
         <fieldset class="secondary-fields">
           <div class="field" data-controller="options-table">
-            <%= friend_fields.label :connection, "Connection", index: i %>
+            <%= friend_fields.label :connection, index: i %>
             <%= friend_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
             <table>
               <thead>
                 <tr>
                   <th><%= t ".roll" %></th>
-                  <th><%= "Friend's relationship to you" %></th>
+                  <th><%= t ".friend_connection" %></th>
                 </tr>
               </thead>
               <tbody>
-                <% Character::FRIEND_RELATIONSHIPS.each_with_index do |o, i| %>
+                <% Friend::CONNECTIONS.each_with_index do |o, i| %>
                   <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
                     <%= tag.th i+1 %>
                     <%= tag.td do %>
-                      <%= Character.human_attribute_name "friend_relationship.#{o}" %>
+                      <%= Friend.human_attribute_name "connection.#{o}" %>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -476,19 +476,19 @@
     <% f.object.enemies.each_with_index do |enemy, i| %>
       <%= f.fields_for :enemies, enemy do |enemy_fields| %>
         <div class="field">
-          <%= enemy_fields.label :name, "Name", index: i %>
+          <%= enemy_fields.label :name, index: i %>
           <%= enemy_fields.text_field :name, index: i, required: true %>
         </div>
         
         <fieldset class="secondary-fields">
           <div class="field" data-controller="options-table">
-            <%= enemy_fields.label :connection, "Connection", index: i %>
+            <%= enemy_fields.label :connection, index: i %>
             <%= enemy_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
             <table>
               <thead>
                 <tr>
                   <th><%= t ".roll" %></th>
-                  <th><%= "Enemy" %></th>
+                  <th><%= t ".enemy_connection" %></th>
                 </tr>
               </thead>
               <tbody>
@@ -514,13 +514,13 @@
           </div>
   
           <div class="field" data-controller="options-table">
-            <%= enemy_fields.label :cause, "Cause", index: i %>
+            <%= enemy_fields.label :cause, index: i %>
             <%= enemy_fields.text_field :cause, index: i, required: true, data: { options_table_target: "field" } %>
             <table>
               <thead>
                 <tr>
                   <th><%= t ".roll" %></th>
-                  <th><%= "What caused it?" %></th>
+                  <th><%= t ".enemy_cause" %></th>
                 </tr>
               </thead>
               <tbody>
@@ -546,24 +546,25 @@
           </div>
           
           <div class="field" data-controller="options-carousel">
-            <%= f.label :role %>
+            <%= enemy_fields.label :wronged_party %>
+            
             <button class="back" data-action="options-carousel#prev" type="button"></button>
-            <%= f.text_field :role, list: "wronged_party_#{i}", readonly: true, data: { options_carousel_target: "field" } %>
+            <%= enemy_fields.text_field :wronged_party, list: "wronged_party_#{i}", readonly: true, data: { options_carousel_target: "field" } %>
             <button class="forward" data-action="options-carousel#next" type="button"></button>
+            
             <datalist id="wronged_party_<%= i %>">
-              <option>You</option>
-              <option>Them</option>
+              <%= options_for_select %w[character enemy].map { |r| Enemy.human_attribute_name "wronged_party.#{r}" } %>
             </datalist>
           </div>
           
           <div class="field" data-controller="options-table">
-            <%= enemy_fields.label :means_of_retaliation, "means_of_retaliation", index: i %>
+            <%= enemy_fields.label :means_of_retaliation, index: i %>
             <%= enemy_fields.text_field :means_of_retaliation, index: i, required: true, data: { options_table_target: "field" } %>
             <table>
               <thead>
                 <tr>
                   <th><%= t ".roll" %></th>
-                  <th><%= "What means_of_retaliationd it?" %></th>
+                  <th><%= t ".enemy_means_of_retaliation" %></th>
                 </tr>
               </thead>
               <tbody>
@@ -587,6 +588,39 @@
               </tfoot>
             </table>
           </div>
+        
+        <div class="field" data-controller="options-table">
+          <%= enemy_fields.label :intensity, index: i %>
+          <%= enemy_fields.text_field :intensity, index: i, required: true, data: { options_table_target: "field" } %>
+          <table>
+            <thead>
+              <tr>
+                <th><%= t ".roll" %></th>
+                <th><%= t ".enemy_intensity" %></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% Enemy::INTENSITIES.each_with_index do |o, i| %>
+                <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                  <%= tag.th i+1 %>
+                  <%= tag.td do %>
+                    <%= Enemy.human_attribute_name "intensity.#{o}" %>
+                  <% end %>
+                <% end %>
+              <% end %>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="2">
+                  <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+                    <%= t ".random" %>
+                  </button>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        
         </fieldset>
       <% end %>
     <% end %>
