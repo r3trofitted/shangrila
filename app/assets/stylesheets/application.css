@@ -189,8 +189,10 @@ legend {
   
   /* "secondary" are indented and placed closer to their primary relative */
   &.secondary {
+    --secondary-indent: calc(var(--block-cutoff-width)*3);
+    
     margin-top: calc(-.75 * var(--gap));
-    margin-left: calc(3 * var(--block-cutoff-width));
+    margin-left: var(--secondary-indent);
     
     & label::before {
       content: "↳ ";
@@ -293,7 +295,10 @@ legend {
 .field[data-controller="options-carousel"] {
   /* making room on both ends for the buttons so that their tip aligns with the focus indicator */
   --arrow-cutoff-width: calc(2 * var(--block-cutoff-width));
-  margin-inline: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
+  --button-extra-margin: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
+  
+  margin-left: calc(var(--button-extra-margin) + var(--secondary-indent, 0));
+  margin-right: var(--button-extra-margin);
 
   & button {
     position: absolute;
@@ -360,6 +365,17 @@ legend {
     width: 100%;
     border-collapse: collapse;
     text-align: center;
+  }
+  
+  &:where(.secondary) table {
+    position: absolute;
+    grid-row: 2 / 3;
+    
+    display: none;
+  }
+  
+  &:where(.secondary):has(input:focus) table {
+    display: revert;
   }
   
   & thead {
