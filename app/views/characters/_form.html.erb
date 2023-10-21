@@ -431,37 +431,39 @@
           <%= friend_fields.text_field :name, index: i, required: true %>
         </div>
         
-        <div class="field secondary" data-controller="options-table">
-          <%= friend_fields.label :connection, "Connection", index: i %>
-          <%= friend_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
-          <table>
-            <thead>
-              <tr>
-                <th><%= t ".roll" %></th>
-                <th><%= "Friend's relationship to you" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% Character::FRIEND_RELATIONSHIPS.each_with_index do |o, i| %>
-                <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
-                  <%= tag.th i+1 %>
-                  <%= tag.td do %>
-                    <%= Character.human_attribute_name "friend_relationship.#{o}" %>
+        <fieldset class="secondary-fields">
+          <div class="field" data-controller="options-table">
+            <%= friend_fields.label :connection, "Connection", index: i %>
+            <%= friend_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
+            <table>
+              <thead>
+                <tr>
+                  <th><%= t ".roll" %></th>
+                  <th><%= "Friend's relationship to you" %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% Character::FRIEND_RELATIONSHIPS.each_with_index do |o, i| %>
+                  <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                    <%= tag.th i+1 %>
+                    <%= tag.td do %>
+                      <%= Character.human_attribute_name "friend_relationship.#{o}" %>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="2">
-                  <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
-                    <%= t ".random" %>
-                  </button>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">
+                    <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+                      <%= t ".random" %>
+                    </button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </fieldset>
       <% end %>
     <% end %>
     
@@ -478,112 +480,114 @@
           <%= enemy_fields.text_field :name, index: i, required: true %>
         </div>
         
-        <div class="field secondary" data-controller="options-table">
-          <%= enemy_fields.label :connection, "Connection", index: i %>
-          <%= enemy_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
-          <table>
-            <thead>
-              <tr>
-                <th><%= t ".roll" %></th>
-                <th><%= "Enemy" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% Enemy::CONNECTIONS.each_with_index do |o, i| %>
-                <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
-                  <%= tag.th i+1 %>
-                  <%= tag.td do %>
-                    <%= Enemy.human_attribute_name "connection.#{o}" %>
+        <fieldset class="secondary-fields">
+          <div class="field" data-controller="options-table">
+            <%= enemy_fields.label :connection, "Connection", index: i %>
+            <%= enemy_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
+            <table>
+              <thead>
+                <tr>
+                  <th><%= t ".roll" %></th>
+                  <th><%= "Enemy" %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% Enemy::CONNECTIONS.each_with_index do |o, i| %>
+                  <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                    <%= tag.th i+1 %>
+                    <%= tag.td do %>
+                      <%= Enemy.human_attribute_name "connection.#{o}" %>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="2">
-                  <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
-                    <%= t ".random" %>
-                  </button>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-
-        <div class="field secondary" data-controller="options-table">
-          <%= enemy_fields.label :cause, "Cause", index: i %>
-          <%= enemy_fields.text_field :cause, index: i, required: true, data: { options_table_target: "field" } %>
-          <table>
-            <thead>
-              <tr>
-                <th><%= t ".roll" %></th>
-                <th><%= "What caused it?" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% Enemy::CAUSES.each_with_index do |o, i| %>
-                <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
-                  <%= tag.th i+1 %>
-                  <%= tag.td do %>
-                    <%= Enemy.human_attribute_name "cause.#{o}" %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">
+                    <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+                      <%= t ".random" %>
+                    </button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+  
+          <div class="field" data-controller="options-table">
+            <%= enemy_fields.label :cause, "Cause", index: i %>
+            <%= enemy_fields.text_field :cause, index: i, required: true, data: { options_table_target: "field" } %>
+            <table>
+              <thead>
+                <tr>
+                  <th><%= t ".roll" %></th>
+                  <th><%= "What caused it?" %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% Enemy::CAUSES.each_with_index do |o, i| %>
+                  <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                    <%= tag.th i+1 %>
+                    <%= tag.td do %>
+                      <%= Enemy.human_attribute_name "cause.#{o}" %>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="2">
-                  <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
-                    <%= t ".random" %>
-                  </button>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-        
-        <div class="field secondary" data-controller="options-carousel">
-          <%= f.label :role %>
-          <button class="back" data-action="options-carousel#prev" type="button"></button>
-          <%= f.text_field :role, list: "wronged_party_#{i}", readonly: true, data: { options_carousel_target: "field" } %>
-          <button class="forward" data-action="options-carousel#next" type="button"></button>
-          <datalist id="wronged_party_<%= i %>">
-            <option>You</option>
-            <option>Them</option>
-          </datalist>
-        </div>
-        
-        <div class="field secondary" data-controller="options-table">
-          <%= enemy_fields.label :means_of_retaliation, "means_of_retaliation", index: i %>
-          <%= enemy_fields.text_field :means_of_retaliation, index: i, required: true, data: { options_table_target: "field" } %>
-          <table>
-            <thead>
-              <tr>
-                <th><%= t ".roll" %></th>
-                <th><%= "What means_of_retaliationd it?" %></th>
-              </tr>
-            </thead>
-            <tbody>
-              <% Enemy::MEANS_OF_RETALIATION.each_with_index do |o, i| %>
-                <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
-                  <%= tag.th i+1 %>
-                  <%= tag.td do %>
-                    <%= Enemy.human_attribute_name "means_of_retaliation.#{o}" %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">
+                    <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+                      <%= t ".random" %>
+                    </button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+          
+          <div class="field" data-controller="options-carousel">
+            <%= f.label :role %>
+            <button class="back" data-action="options-carousel#prev" type="button"></button>
+            <%= f.text_field :role, list: "wronged_party_#{i}", readonly: true, data: { options_carousel_target: "field" } %>
+            <button class="forward" data-action="options-carousel#next" type="button"></button>
+            <datalist id="wronged_party_<%= i %>">
+              <option>You</option>
+              <option>Them</option>
+            </datalist>
+          </div>
+          
+          <div class="field" data-controller="options-table">
+            <%= enemy_fields.label :means_of_retaliation, "means_of_retaliation", index: i %>
+            <%= enemy_fields.text_field :means_of_retaliation, index: i, required: true, data: { options_table_target: "field" } %>
+            <table>
+              <thead>
+                <tr>
+                  <th><%= t ".roll" %></th>
+                  <th><%= "What means_of_retaliationd it?" %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% Enemy::MEANS_OF_RETALIATION.each_with_index do |o, i| %>
+                  <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                    <%= tag.th i+1 %>
+                    <%= tag.td do %>
+                      <%= Enemy.human_attribute_name "means_of_retaliation.#{o}" %>
+                    <% end %>
                   <% end %>
                 <% end %>
-              <% end %>
-            </tbody>
-            <tfoot>
-              <tr>
-                <td colspan="2">
-                  <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
-                    <%= t ".random" %>
-                  </button>
-                </td>
-              </tr>
-            </tfoot>
-          </table>
-        </div>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">
+                    <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+                      <%= t ".random" %>
+                    </button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </fieldset>
       <% end %>
     <% end %>
     

@@ -2,7 +2,9 @@
   --clr-neutral-100: white;
   --clr-neutral-300: #eaeaea;
   --clr-neutral-900: black;
+  --clr-primary-200: orangered;
   --clr-primary-400: red;
+  --clr-secondary-200: yellow;
   --clr-secondary-400: orange;
   
   --fs-100: 0.354rem;
@@ -43,7 +45,7 @@ body {
   
   counter-reset: section -1;
   
-  margin: 0 .5rem;
+  margin: 0;
 }
 
 form {
@@ -51,6 +53,11 @@ form {
 }
 
 fieldset.lifepath_entry {
+  --margin-inline: .5rem;
+  
+  --main-color: var(--clr-primary-400);
+  --secondary-color: var(--clr-secondary-400);
+  
   --banner-font-size: var(--fs-700);
   --banner-width: calc(var(--banner-font-size) * 1.25);
   
@@ -65,21 +72,24 @@ fieldset.lifepath_entry {
   
   border: none;
   padding: var(--gap) 0 0 0;
+  margin-inline: var(--margin-inline);
   
   min-height: 100vh;
   
   display: grid;
   grid-auto-flow: row;
-  grid-template-columns: [banner] var(--banner-width) [main] 1fr [aside] 1fr [end];
+  grid-template-columns: [banner] var(--banner-width) [main] 1fr [aside] 1fr [end] min-content [gutter];
   row-gap: var(--gap); /* TODO: 0 when on 2 column? */
-  column-gap: calc(var(--gap) / 2);
+  column-gap: var(--gap);
   align-content: start;
   align-items: start;
   
   counter-increment: section;
   
   @container (width < 70ch) {
-    grid-template-columns: [banner] var(--banner-width) [main] 1fr [aside end];
+    margin-inline: 0;
+    column-gap: calc(var(--gap) / 2);
+    grid-template-columns: [banner] var(--banner-width) [main] 1fr [aside end] min-content [gutter];
   }
 }
 
@@ -102,7 +112,7 @@ legend {
   text-transform: uppercase;
   
   padding-inline-end: var(--gap); /* making up for the fieldset's top padding */
-  background: var(--clr-primary-400);
+  background: var(--main-color);
 
   writing-mode: vertical-lr;
   text-align: end;
@@ -118,7 +128,7 @@ legend {
   --border-margin-top: 0%;
   --cutoff-width: .75em;
 
-  background-color: var(--clr-primary-400);
+  background-color: var(--main-color);
   color: var(--clr-neutral-100);
   border: none;
   
@@ -163,7 +173,7 @@ legend {
   & label {
     display: block;
     min-height: var(--label-height);
-    color: var(--clr-primary-400);
+    color: var(--main-color);
     
     place-self: center left;
   }
@@ -186,17 +196,36 @@ legend {
       outline: none;
     }
   }
+}
+
+/* secondary fieldsets are indented and their table, if any, isn't shown until their field is focused */
+fieldset.secondary-fields {
+  --main-color: var(--clr-primary-200);
+  --secondary-color: var(--clr-secondary-200);
+
   
-  /* "secondary" are indented and placed closer to their primary relative */
-  &.secondary {
-    --secondary-indent: calc(var(--block-cutoff-width)*3);
-    
-    margin-top: calc(-.75 * var(--gap));
-    margin-left: var(--secondary-indent);
-    
-    & label::before {
-      content: "↳ ";
-    }
+  border: none;
+  padding: 0;
+  margin-left: calc(var(--gap)*2);
+  margin-right: 0;
+  margin-bottom: 0;
+  
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: main / end;
+  row-gap: calc(var(--gap) / 8);
+  
+  & label::before {
+    content: "↳ ";
+  }
+  
+  & .field[data-controller="options-table"] table {
+    position: absolute;
+    display: none;
+  }
+  
+  & .field[data-controller="options-table"]:focus-within table {
+    display: revert;
   }
 }
 
@@ -214,7 +243,7 @@ legend {
     left: calc(-1 * var(--block-cutoff-width) - var(--cutoff-gap));
     width: calc(var(--cutoff-width) + var(--block-cutoff-width));
     
-    background-color: var(--clr-primary-400);
+    background-color: var(--main-color);
     clip-path: polygon(
       0 0, 
       var(--block-cutoff-width) 0,
@@ -233,7 +262,7 @@ legend {
     width: var(--cutoff-width);
     aspect-ratio: 1;
     
-    background-color: var(--clr-primary-400);
+    background-color: var(--main-color);
     clip-path: polygon(
       var(--cutoff-gap) 0,
       100% 0%,
@@ -254,7 +283,7 @@ legend {
     z-index: -2;
     
     inset: 0;
-    background: var(--clr-primary-400);
+    background: var(--main-color);
     
     /* slanted shape */
     clip-path: polygon(
@@ -296,15 +325,17 @@ legend {
   /* making room on both ends for the buttons so that their tip aligns with the focus indicator */
   --arrow-cutoff-width: calc(2 * var(--block-cutoff-width));
   --button-extra-margin: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
+  --button-offset: calc(-1 * (var(--block-cutoff-width) + var(--cutoff-gap)));
   
-  margin-left: calc(var(--button-extra-margin) + var(--secondary-indent, 0));
-  margin-right: var(--button-extra-margin);
+  & > .field-indicators {
+    margin-inline: var(--button-extra-margin);
+  }
 
   & button {
     position: absolute;
     border: none;
     
-    background-color: var(--clr-primary-400);
+    background-color: var(--main-color);
     
     top: var(--border-margin-top);
     bottom: 0;
@@ -313,12 +344,12 @@ legend {
     width: var(--button-width);
     
     &:active {
-      background-color: var(--clr-secondary-400);
+      background-color: var(--secondary-color);
     }
   }
   
   & button.back {
-    left: calc((-1 * var(--button-width)) - var(--cutoff-gap) + var(--cutoff-width));
+    left: var(--button-offset);
     
     clip-path: polygon(
       0 50%,
@@ -331,7 +362,7 @@ legend {
   }
   
   & button.forward {
-    right: calc((-1 * var(--arrow-cutoff-width)) - var(--cutoff-gap) - var(--cutoff-width));
+    right: var(--button-offset);
     
     clip-path: polygon(
       0% 0%,
@@ -350,16 +381,16 @@ legend {
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: subgrid;
-  column-gap: var(--gap);
   
   & :not(table) {
     grid-column: main;
   }
   
   & table {
-    --border: 1px solid var(--clr-primary-400);
+    --border: 1px solid var(--main-color);
     
     grid-column: aside;
+    grid-row-start: 2;
     table-layout: fixed;
     
     width: 100%;
@@ -367,20 +398,13 @@ legend {
     text-align: center;
   }
   
-  &:where(.secondary) table {
-    position: absolute;
-    grid-row: 2 / 3;
-    
-    display: none;
-  }
-  
-  &:where(.secondary):has(input:focus) table {
-    display: revert;
+  & table:hover {
+    display: revert !important;
   }
   
   & thead {
     border: var(--border);
-    background-color: var(--clr-primary-400);
+    background-color: var(--main-color);
     color: var(--clr-neutral-100);
   }
   
@@ -408,12 +432,12 @@ legend {
   }
   
   & tr[data-options-table-target='option']:is(.selected, :hover) {
-    outline: 3px solid var(--clr-secondary-400);
+    outline: 3px solid var(--secondary-color);
     outline-left-width: 6px;
   }
   
   & th {
-    border-inline: 1px solid var(--clr-primary-400);
+    border-inline: 1px solid var(--main-color);
   }
   
   & :is(th, td) {
