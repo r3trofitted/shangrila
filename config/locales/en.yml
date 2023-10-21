@@ -191,6 +191,7 @@ en:
         other: "Friends (%{count})"
       enemies: 
         zero: "Enemies"
+        one: "Enemies (1)"
         other: "Enemies (%{count})"
       clothings:
         generic_chic: "(Standard, Colorful, Modular)"
