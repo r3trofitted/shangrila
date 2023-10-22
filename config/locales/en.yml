@@ -102,6 +102,8 @@ en:
         family_crisis: "Family crisis"
         friends: "Friends"
         enemies: "Enemies"
+        tragic_love_affairs: "Tragic love affairs"
+        life_goal: "Life goals"
       character/role:
         exec: "Exec"
         fixer: "Fixer"
@@ -244,6 +246,17 @@ en:
         scattered_due_to_misfortune.: "Your family was scattered to the winds due to misfortune."
         cursed_with_a_hereditary_feud: "Your family is cursed with a hereditary feud that has lasted for generations."
         inheritor_of_a_family_debt: "You are the inheritor of a family debt; you must honor this debt before moving on with your life."
+      character/life_goal:
+        get_rid_of_bad_rep: "Get rid of a bad reputation."
+        gain power and control: "Gain power and control."
+        get_off_the_street: "Get off The Street no matter what it takes."
+        cause_pain: "Cause pain and suffering to anyone who crosses you."
+        forget_the_past: "Live down your past life and try to forget it."
+        make_them_pay: "Hunt down those responsible for your miserable life and make them pay."
+        get_whats_mine: "Get what's rightfully yours."
+        save_someone: "Save, if possible, anyone else involved in your background, like a lover, or family member."
+        gain_fame: "Gain fame and recognition."
+        become_respected: "Become feared and respected."
   characters:
     options_table:
       roll: "Roll"

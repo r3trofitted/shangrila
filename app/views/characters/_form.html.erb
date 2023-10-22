@@ -157,6 +157,9 @@
   
   <fieldset id="wrap-up" class="lifepath_entry">
     <legend><%= t ".wrap_up" %></legend>
+    <%= render "options_table", f: f, attr: :life_goal, collection: Character::LIFE_GOALS %>
+    
+    <%= f.button(:next, value: "role-lifepath", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
   </fieldset>
   
   <fieldset id="role-lifepath" class="lifepath_entry">

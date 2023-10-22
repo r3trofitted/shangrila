@@ -178,5 +178,18 @@ class Character < ApplicationRecord
        9 => :cursed_with_a_hereditary_feud,
       10 => :inheritor_of_a_family_debt
     }
+    
+    LIFE_GOALS = {
+       1 => :get_rid_of_bad_rep,
+       2 => :power,
+       3 => :get_off_the_street,
+       4 => :cause_pain,
+       5 => :forget_the_past,
+       6 => :make_them_pay,
+       7 => :get_whats_mine,
+       8 => :save_someone,
+       9 => :gain_fame,
+      10 => :become_respected
+    }
   end
 end

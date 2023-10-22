@@ -20,6 +20,7 @@ class CreateCharacters < ActiveRecord::Migration[7.2]
       t.json :friends
       t.json :enemies
       t.json :tragic_love_affairs
+      t.string :life_goal
 
       t.timestamps
     end
