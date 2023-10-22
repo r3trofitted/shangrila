@@ -11,7 +11,11 @@ export default class extends Controller {
   }
   
   prev() {
-    this.selectedIndex = (this.selectedIndex - 1) % this.options.length;
+    if (this.selectedIndex < 1) {
+      this.selectedIndex = this.options.length;
+    }
+    this.selectedIndex = this.selectedIndex - 1;
+    
     this.updateSelection();
   }
   
