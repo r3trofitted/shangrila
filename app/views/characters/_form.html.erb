@@ -9,10 +9,10 @@
       <%= f.label :name %>
       <%= f.text_field :name, required: true %>
     </div>
-    <div class="field" data-controller="options-carousel">
+    <div class="field" data-controller="options-carousel" data-action="keydown.left->options-carousel#prev:prevent keydown.right->options-carousel#next:prevent">
       <%= f.label :role %>
       <button class="back" data-action="options-carousel#prev" type="button"></button>
-      <%= f.text_field :role, list: "roles", readonly: true, data: { options_carousel_target: "field" } %>
+      <%= f.text_field :role, list: "roles", data: { options_carousel_target: "field" } %>
       <button class="forward" data-action="options-carousel#next" type="button"></button>
       <datalist id="roles">
         <%= options_for_select Character::ROLES.map { |r| Character.human_attribute_name "role.#{r}" } %>
@@ -114,11 +114,11 @@
           <%= render "options_table", f: enemy_fields, attr: :origin, collection: Enemy::ORIGINS %>
           <%= render "options_table", f: enemy_fields, attr: :cause, collection: Enemy::CAUSES %>
           
-          <div class="field" data-controller="options-carousel">
+          <div class="field" data-controller="options-carousel" data-action="keydown.left->options-carousel#prev:prevent keydown.right->options-carousel#next:prevent">
             <%= enemy_fields.label :wronged_party %>
             
             <button class="back" data-action="options-carousel#prev" type="button"></button>
-            <%= enemy_fields.text_field :wronged_party, list: "wronged_party_#{i}", readonly: true, data: { options_carousel_target: "field" } %>
+            <%= enemy_fields.text_field :wronged_party, list: "wronged_party_#{i}", data: { options_carousel_target: "field" } %>
             <button class="forward" data-action="options-carousel#next" type="button"></button>
             
             <datalist id="wronged_party_<%= i %>">
