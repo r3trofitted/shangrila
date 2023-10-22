@@ -26,41 +26,7 @@
     <legend><%= t ".personals" %></legend>
     <%= f.options_table :origins %>
     <%= f.options_table :personality %>
-
-    <%# TODO: handle the extra description %>
-    <div class="field" data-controller="options-table">
-      <%= f.label :clothing %>
-      <%= f.text_field :clothing, data: { options_table_target: "field" } %>
-      <table class="options-table">
-        <thead>
-          <tr>
-            <th><%= t ".roll" %></th>
-            <th><%= Character.human_attribute_name :clothing %></th>
-          </tr>
-        </thead>
-        <tbody>
-          <% Character::CLOTHINGS.each do |roll, o| %>
-            <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
-              <%= tag.th Array(roll).join("&nthinsp;-&nthinsp;") %>
-              <%= tag.td do %>
-                <%= Character.human_attribute_name "clothing.#{o}" %>
-                <i><%= t ".clothings.#{o}" %></i>
-              <% end %>
-            <% end %>
-          <% end %>
-        </tbody>
-        <tfoot>
-          <tr>
-            <td colspan="2">
-              <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
-                <%= t ".random" %>
-              </button>
-            </td>
-          </tr>
-        </tfoot>
-      </table>
-    </div>
-    
+    <%= f.options_table :clothing %>
     <%= f.options_table :hairstyle %>
     <%= f.options_table :affectation %>
     <%= f.options_table :most_valued_thing, Character::VALUED_THINGS %>

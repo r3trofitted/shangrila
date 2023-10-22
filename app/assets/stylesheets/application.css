@@ -93,10 +93,6 @@ fieldset.lifepath_entry {
   }
 }
 
-i {
-  font-size: var(--fs-300);
-}
-
 legend {
   position: absolute;
   grid-column: banner / main;
@@ -446,7 +442,17 @@ fieldset.secondary-fields {
     padding-block: .35em;
   }
   
+  & :is(th, td)[data-role="description"] {
+    display: none;
+    
+  }
+  
   & tfoot td {
     padding-bottom: 0;
+  }
+  
+  & p[data-options-table-target="description"] {
+    margin-left: calc(var(--cutoff-width) + var(--border-width));
+    font-style: italic;
   }
 }

@@ -5,7 +5,7 @@ export default class extends Controller {
   MIN_ROLL = 1;
   MAX_ROLL = 10;
   
-  static targets = [ "field", "option" ];
+  static targets = [ "field", "option", "description" ];
   
   pick(e) {
     const n = this.optionTargets.indexOf(e.currentTarget);
@@ -44,5 +44,6 @@ export default class extends Controller {
   doPick(n) {
     const pick = this.optionTargets[n];
     this.fieldTarget.value = pick.querySelector("td").textContent.split(/[\.\($]/)[0].trim(); // take only the first sentence/part
+    this.descriptionTarget.textContent = pick.querySelector("td[data-role='description']").textContent;
   }
 }
