@@ -3,12 +3,12 @@ en:
     attributes:
       enemy:
         name: "Name"
-        connection: "Connection"
+        origin: "Origin"
         cause: "Cause"
         wronged_party: "Wronged party"
         means_of_retaliation: "Means of retaliation"
         intensity: "Intensity"
-      enemy/connection:
+      enemy/origin:
         ex_friend: "Ex-friend"
         ex_lover: "Ex-lover"
         estranged_relative: "Estranged relative"
@@ -53,8 +53,8 @@ en:
         enemy: "Them"
       friend:
         name: "Name"
-        connection: "Connection"
-      friend/connection:
+        origin: "Origin"
+      friend/origin:
         like_an_older_sibling: "Like an older sibling to you."
         teacher_or_mentor: "A teacher or mentor."
         former_lover: "A former lover."
@@ -258,6 +258,8 @@ en:
         zero: "Enemies"
         one: "Enemies&emsp14;(1)"
         other: "Enemies&emsp14;(%{count})"
+      friend_origin: "Friend's relationship to you"
+      enemy_origin: "Enemy"
       enemy_cause: "What caused it?"
       enemy_means_of_retaliation: "What can they throw at you?"
       enemy_intensity: "What are you/they gonna do about it?"

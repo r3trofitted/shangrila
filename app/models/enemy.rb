@@ -4,7 +4,7 @@ class Enemy < Friend
   validates_presence_of :cause, :wronged_party, :means_of_retaliation, :intensity
   validates_inclusion_of :wronged_party, in: %w[character enemy]
   
-  CONNECTIONS = %i[
+  ORIGINS = %i[
     ex_friend
     ex_lover
     estranged_relative

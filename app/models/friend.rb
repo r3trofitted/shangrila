@@ -1,12 +1,12 @@
 class Friend
   include ActiveModel::API
   
-  attr_accessor :name, :connection
+  attr_accessor :name, :origin
   
-  validates_presence_of :name, :connection
+  validates_presence_of :origin, :nature
   
     
-  CONNECTIONS = %i[
+  ORIGINS = %i[
     like_an_older_sibling
     teacher_or_mentor
     former_lover

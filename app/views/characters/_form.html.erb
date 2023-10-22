@@ -433,21 +433,21 @@
         
         <fieldset class="secondary-fields">
           <div class="field" data-controller="options-table">
-            <%= friend_fields.label :connection, index: i %>
-            <%= friend_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
+            <%= friend_fields.label :origin, index: i %>
+            <%= friend_fields.text_field :origin, index: i, required: true, data: { options_table_target: "field" } %>
             <table>
               <thead>
                 <tr>
                   <th><%= t ".roll" %></th>
-                  <th><%= t ".friend_connection" %></th>
+                  <th><%= t ".friend_origin" %></th>
                 </tr>
               </thead>
               <tbody>
-                <% Friend::CONNECTIONS.each_with_index do |o, i| %>
+                <% Friend::ORIGINS.each_with_index do |o, i| %>
                   <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
                     <%= tag.th i+1 %>
                     <%= tag.td do %>
-                      <%= Friend.human_attribute_name "connection.#{o}" %>
+                      <%= Friend.human_attribute_name "origin.#{o}" %>
                     <% end %>
                   <% end %>
                 <% end %>
@@ -482,21 +482,21 @@
         
         <fieldset class="secondary-fields">
           <div class="field" data-controller="options-table">
-            <%= enemy_fields.label :connection, index: i %>
-            <%= enemy_fields.text_field :connection, index: i, required: true, data: { options_table_target: "field" } %>
+            <%= enemy_fields.label :origin, index: i %>
+            <%= enemy_fields.text_field :origin, index: i, required: true, data: { options_table_target: "field" } %>
             <table>
               <thead>
                 <tr>
                   <th><%= t ".roll" %></th>
-                  <th><%= t ".enemy_connection" %></th>
+                  <th><%= t ".enemy_origin" %></th>
                 </tr>
               </thead>
               <tbody>
-                <% Enemy::CONNECTIONS.each_with_index do |o, i| %>
+                <% Enemy::ORIGINS.each_with_index do |o, i| %>
                   <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
                     <%= tag.th i+1 %>
                     <%= tag.td do %>
-                      <%= Enemy.human_attribute_name "connection.#{o}" %>
+                      <%= Enemy.human_attribute_name "origin.#{o}" %>
                     <% end %>
                   <% end %>
                 <% end %>
