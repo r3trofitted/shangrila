@@ -206,6 +206,7 @@ fieldset.secondary-fields {
   
   border: none;
   padding: 0;
+  margin-top: calc(-7/8 * var(--gap)); /* reducing the first outer row gap to the same size as the inner row gap*/
   margin-left: calc(var(--gap)*2);
   margin-right: 0;
   margin-bottom: 0;
