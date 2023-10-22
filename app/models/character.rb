@@ -1,10 +1,13 @@
 class Character < ApplicationRecord
   serialize :friends, coder: Relationships.coder_for(Friend)
   serialize :enemies, coder: Relationships.coder_for(Enemy)
+  serialize :tragic_love_affairs, coder: Relationships.coder_for(TragicLoveAffair)
   
+  # SMELL: repetitions
   after_initialize do
     self.friends = Relationships.of(Friend) if self.friends.blank?
     self.enemies = Relationships.of(Enemy) if self.enemies.blank?
+    self.tragic_love_affairs = Relationships.of(TragicLoveAffair) if self.tragic_love_affairs.blank?
   end
   
   ROLES = %i[

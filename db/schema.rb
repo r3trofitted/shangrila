@@ -30,6 +30,7 @@ ActiveRecord::Schema[7.2].define(version: 2023_10_17_155439) do
     t.string "family_crisis"
     t.json "friends"
     t.json "enemies"
+    t.json "tragic_love_affairs"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

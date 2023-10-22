@@ -65,6 +65,20 @@ en:
         old_childhood_friend: "An old childhood friend."
         someone_from_the_street: "Someone you know from The Street."
         someone_with_a_common_interest: "Someone with a common interest or goal."
+      tragic_love_affair:
+        name: "Name"
+        origin: "Origin"
+      tragic_love_affair/origin:
+        accident: "Your lover died in an accident."
+        vanished: "Your lover mysteriously vanished."
+        didnt_work_out: "It just didn't work out."
+        goal_or_vendetta: "A personal goal or vendetta came between you and your lover."
+        kidnapped: "Your lover was kidnapped."
+        insane_or_cyberpsycho: "Your lover went insane or cyberpsycho."
+        suicide: "Your lover committed suicide."
+        rival: "A rival cut you out of the action."
+        imprisoned_or_exiled: "Your lover is imprisoned or exiled."
+
   activerecord:
     models:
       character: "Character"
@@ -229,16 +243,6 @@ en:
         scattered_due_to_misfortune.: "Your family was scattered to the winds due to misfortune."
         cursed_with_a_hereditary_feud: "Your family is cursed with a hereditary feud that has lasted for generations."
         inheritor_of_a_family_debt: "You are the inheritor of a family debt; you must honor this debt before moving on with your life."
-      love_affair/ending:
-        accident: "Your lover died in an accident."
-        vanished: "Your lover mysteriously vanished."
-        didnt_work_out: "It just didn't work out."
-        goal_or_vendetta: "A personal goal or vendetta came between you and your lover."
-        kidnapped: "Your lover was kidnapped."
-        insane_or_cyberpsycho: "Your lover went insane or cyberpsycho."
-        suicide: "Your lover committed suicide."
-        rival: "A rival cut you out of the action."
-        imprisoned_or_exiled: "Your lover is imprisoned or exiled."
   characters:
     form:
       setup: "Setup"
@@ -258,12 +262,16 @@ en:
         zero: "Enemies"
         one: "Enemies&emsp14;(1)"
         other: "Enemies&emsp14;(%{count})"
+      tragic_love_affairs_html:
+        zero: "Tragic love affairs"
+        one:  "Tragic love affairs&emsp14;(1)"
+        other:  "Tragic love affairs&emsp14;(%{count})"
       friend_origin: "Friend's relationship to you"
       enemy_origin: "Enemy"
       enemy_cause: "What caused it?"
       enemy_means_of_retaliation: "What can they throw at you?"
       enemy_intensity: "What are you/they gonna do about it?"
-      love_affair_ending: "What happened?"
+      love_affair_origin: "What happened?"
       clothings:
         generic_chic: "(Standard, Colorful, Modular)"
         urban_flash: "(Flashy, Technological, Streetwear)"

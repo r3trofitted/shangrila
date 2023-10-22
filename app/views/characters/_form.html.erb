@@ -625,9 +625,57 @@
       <% end %>
     <% end %>
     
-    <%= f.button(:next, value: "wrap-up", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
+    <%= f.button(:next, value: "tragic_love_affairs", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
   </fieldset>
 
+  <fieldset id="tragic-love-affairs" class="lifepath_entry">
+    <legend><%= t ".tragic_love_affairs_html", count: f.object.tragic_love_affairs.count %></legend>
+    
+    <% f.object.tragic_love_affairs.each_with_index do |affair, i| %>
+      <%= f.fields_for :tragic_love_affairs, affair do |affair_fields| %>
+        <div class="field">
+          <%= affair_fields.label :name, index: i %>
+          <%= affair_fields.text_field :name, index: i, required: true %>
+        </div>
+        
+        <fieldset class="secondary-fields">
+          <div class="field" data-controller="options-table">
+            <%= affair_fields.label :origin, index: i %>
+            <%= affair_fields.text_field :origin, index: i, required: true, data: { options_table_target: "field" } %>
+            <table>
+              <thead>
+                <tr>
+                  <th><%= t ".roll" %></th>
+                  <th><%= t ".love_affair_origin" %></th>
+                </tr>
+              </thead>
+              <tbody>
+                <% TragicLoveAffair::ORIGINS.each_with_index do |o, i| %>
+                  <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+                    <%= tag.th i+1 %>
+                    <%= tag.td do %>
+                      <%= TragicLoveAffair.human_attribute_name "origin.#{o}" %>
+                    <% end %>
+                  <% end %>
+                <% end %>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td colspan="2">
+                    <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+                      <%= t ".random" %>
+                    </button>
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </fieldset>
+      <% end %>
+    <% end %>
+    
+    <%= f.button(:next, value: "wrap-up", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
+  </fieldset>
 
   
   <fieldset id="wrap-up" class="lifepath_entry">
