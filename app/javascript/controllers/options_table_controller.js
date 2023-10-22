@@ -2,6 +2,9 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="options-table"
 export default class extends Controller {
+  MIN_ROLL = 1;
+  MAX_ROLL = 10;
+  
   static targets = [ "field", "option" ];
   
   pick(e) {
@@ -12,20 +15,23 @@ export default class extends Controller {
   }
   
   pickAtRandom() {
-    const pickIndex = Math.floor(Math.random() * this.optionTargets.length);
+    const roll = Math.floor(Math.random() * this.MAX_ROLL) + this.MIN_ROLL;
     
-    let iterations = Math.floor(Math.random() * 10);
+    let minHighlights = Math.floor(Math.random() * 10);
     let highlightIndex = 0;
+    let highlightRolls;
 
     const interval = setInterval(() => {
-      if (iterations > 0 || highlightIndex != pickIndex) {
-        iterations--;
+      highlightRolls = [...this.optionTargets[highlightIndex].querySelector("th").textContent.matchAll(/\d+/g)].flat();
+      
+      if (minHighlights < 1 && highlightRolls.includes(roll.toString())) {
+        this.doPick(highlightIndex);
+        clearInterval(interval);
+      } else {
+        minHighlights--;
         
         highlightIndex = (highlightIndex + 1) % this.optionTargets.length;
         this.doHighlight(highlightIndex);
-      } else {
-        this.doPick(pickIndex);
-        clearInterval(interval);
       }
     }, 50);
   }
