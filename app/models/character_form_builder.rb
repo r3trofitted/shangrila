@@ -6,4 +6,20 @@ class CharacterFormBuilder < ActionView::Helpers::FormBuilder
       end
     end
   end
+  
+  def options_table(attribute, collection = options_collection_for_attribute(attribute))
+    @template.render "options_table", f: self, attr: attribute, collection: collection
+  end
+  
+  private
+  
+  def options_collection_for_attribute(attribute)
+    klass = object.class
+    
+    begin
+      klass.const_get(attribute.to_s.pluralize.upcase)
+    rescue NameError
+      raise ArgumentError, "count not find collection for attribute #{attribute} in #{klass}"
+    end
+  end
 end

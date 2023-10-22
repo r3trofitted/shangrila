@@ -166,7 +166,7 @@ class Character < ApplicationRecord
       10 => :corporate_starscraper,
     }
     
-    FAMILIY_CRISES = {
+    FAMILY_CRISES = {
        1 => :lost_everything_through_betrayal,
        2 => :lost_everything_through_bad_management,
        3 => :exiled,

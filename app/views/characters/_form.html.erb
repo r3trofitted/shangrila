@@ -24,8 +24,8 @@
   
   <fieldset id="personals" class="lifepath_entry">
     <legend><%= t ".personals" %></legend>
-    <%= render "options_table", f: f, attr: :origins, collection: Character::ORIGINS %>
-    <%= render "options_table", f: f, attr: :personality, collection: Character::PERSONALITIES %>
+    <%= f.options_table :origins %>
+    <%= f.options_table :personality %>
 
     <%# TODO: handle the extra description %>
     <div class="field" data-controller="options-table">
@@ -61,12 +61,12 @@
       </table>
     </div>
     
-    <%= render "options_table", f: f, attr: :hairstyle, collection: Character::HAIRSTYLES %>
-    <%= render "options_table", f: f, attr: :affectation, collection: Character::AFFECTATIONS %>
-    <%= render "options_table", f: f, attr: :most_valued_thing, collection: Character::VALUED_THINGS %>
-    <%= render "options_table", f: f, attr: :opinion_on_people, collection: Character::OPINIONS_ON_PEOPLE %>
-    <%= render "options_table", f: f, attr: :most_valued_person, collection: Character::VALUED_PEOPLE %>
-    <%= render "options_table", f: f, attr: :most_valued_possession, collection: Character::VALUED_POSSESSIONS %>
+    <%= f.options_table :hairstyle %>
+    <%= f.options_table :affectation %>
+    <%= f.options_table :most_valued_thing, Character::VALUED_THINGS %>
+    <%= f.options_table :opinion_on_people, Character::OPINIONS_ON_PEOPLE %>
+    <%= f.options_table :most_valued_person, Character::VALUED_PEOPLE %>
+    <%= f.options_table :most_valued_possession, Character::VALUED_POSSESSIONS %>
     
     <%= f.button(:next, value: "background", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
   </fieldset>
@@ -74,9 +74,9 @@
   <fieldset id="background" class="lifepath_entry">
     <legend><%= t ".background" %></legend>
     
-    <%= render "options_table", f: f, attr: :original_background, collection: Character::ORIGINAL_BACKGROUNDS %>
-    <%= render "options_table", f: f, attr: :childhood_environment, collection: Character::CHILDHOOD_ENVIRONMENTS %>
-    <%= render "options_table", f: f, attr: :family_crisis, collection: Character::FAMILIY_CRISES %>
+    <%= f.options_table :original_background %>
+    <%= f.options_table :childhood_environment %>
+    <%= f.options_table :family_crisis %>
 
     <%= f.button(:next, value: "friends", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
   </fieldset>
@@ -92,7 +92,7 @@
         </div>
         
         <fieldset class="secondary-fields">
-          <%= render "options_table", f: friend_fields, attr: :origin, collection: Friend::ORIGINS %>
+          <%= friend_fields.options_table :origin %>
         </fieldset>
       <% end %>
     <% end %>
@@ -111,8 +111,8 @@
         </div>
         
         <fieldset class="secondary-fields">
-          <%= render "options_table", f: enemy_fields, attr: :origin, collection: Enemy::ORIGINS %>
-          <%= render "options_table", f: enemy_fields, attr: :cause, collection: Enemy::CAUSES %>
+          <%= enemy_fields.options_table :origin %>
+          <%= enemy_fields.options_table :cause %>
           
           <div class="field" data-controller="options-carousel" data-action="keydown.left->options-carousel#prev:prevent keydown.right->options-carousel#next:prevent">
             <%= enemy_fields.label :wronged_party %>
@@ -126,8 +126,8 @@
             </datalist>
           </div>
           
-          <%= render "options_table", f: enemy_fields, attr: :means_of_retaliation, collection: Enemy::MEANS_OF_RETALIATION %>
-          <%= render "options_table", f: enemy_fields, attr: :intensity, collection: Enemy::INTENSITIES %>
+          <%= enemy_fields.options_table :means_of_retaliation, Enemy::MEANS_OF_RETALIATION %>
+          <%= enemy_fields.options_table :intensity %>
         </fieldset>
       <% end %>
     <% end %>
@@ -146,7 +146,7 @@
         </div>
         
         <fieldset class="secondary-fields">
-          <%= render "options_table", f: affair_fields, attr: :origin, collection: TragicLoveAffair::ORIGINS %>
+          <%= affair_fields.options_table :origin %>
         </fieldset>
       <% end %>
     <% end %>
@@ -157,7 +157,7 @@
   
   <fieldset id="wrap-up" class="lifepath_entry">
     <legend><%= t ".wrap_up" %></legend>
-    <%= render "options_table", f: f, attr: :life_goal, collection: Character::LIFE_GOALS %>
+    <%= f.options_table :life_goal %>
     
     <%= f.button(:next, value: "role-lifepath", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
   </fieldset>
