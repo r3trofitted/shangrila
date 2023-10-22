@@ -4,51 +4,51 @@ class Enemy < Friend
   validates_presence_of :cause, :wronged_party, :means_of_retaliation, :intensity
   validates_inclusion_of :wronged_party, in: %w[character enemy]
   
-  ORIGINS = %i[
-    ex_friend
-    ex_lover
-    estranged_relative
-    childhood_enemy
-    person_working_for_you
-    person_you_work_for
-    partner_or_coworker
-    corporate_exec
-    government_official
-    boosterganger
-  ]
+  ORIGINS = {
+     1 => :ex_friend,
+     2 => :ex_lover,
+     3 => :estranged_relative,
+     4 => :childhood_enemy,
+     5 => :person_working_for_you,
+     6 => :person_you_work_for,
+     7 => :partner_or_coworker,
+     8 => :corporate_exec,
+     9 => :government_official,
+    10 => :boosterganger
+  }
   
-  CAUSES = %i[
-    loss_face_or_status
-    loss_of_relative
-    major_humiliation
-    accused_of_personal_flaw
-    betrayed_the_other
-    turned_down_the_other
-    simple_enmity
-    former_romantic_rival
-    former_business_rival
-    setup
-  ]
+  CAUSES = {
+     1 => :loss_face_or_status,
+     2 => :loss_of_relative,
+     3 => :major_humiliation,
+     4 => :accused_of_personal_flaw,
+     5 => :betrayed_the_other,
+     6 => :turned_down_the_other,
+     7 => :simple_enmity,
+     8 => :former_romantic_rival,
+     9 => :former_business_rival,
+    10 => :setup
+  }
   
-  MEANS_OF_RETALIATION = %i[
-    wont_go_out_of_their_way
-    themselves
-    single_friend
-    few_friends
-    many_friends
-    entire_gang
-    local_cops
-    small_corporation
-    powerful_corporation
-    entire_city
-  ]
+  MEANS_OF_RETALIATION = {
+     1 => :wont_go_out_of_their_way,
+     2 => :themselves,
+     3 => :single_friend,
+     4 => :few_friends,
+     5 => :many_friends,
+     6 => :entire_gang,
+     7 => :local_cops,
+     8 => :small_corporation,
+     9 => :powerful_corporation,
+    10 => :entire_city
+  }
   
-  INTENSITIES = %i[
-    avoid
-    murderous_rage
-    backstab
-    verbal_attack
-    setup
-    murder
-  ]
+  INTENSITIES = {
+    [1,2] => :avoid,
+    [3,4] => :murderous_rage,
+    [5,6] => :backstab,
+    [7,8] => :verbal_attack,
+        9 => :setup,
+       10 => :murder
+  }
 end

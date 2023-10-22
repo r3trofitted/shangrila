@@ -1,0 +1,35 @@
+<div class="field" data-controller="options-table">
+  <%= f.label attr %>
+  <%= f.text_field attr, data: { options_table_target: "field" } %>
+  <table>
+    <thead>
+      <tr>
+        <th><%= t ".roll" %></th>
+        <th><%= t ".#{f.object.model_name.singular}.#{attr}", default: f.object.class.human_attribute_name(attr) %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% collection.each do |roll, o| %>
+        <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+          <%= tag.th Array(roll).join("&thinsp;-&thinsp;").html_safe %>
+          <%= tag.td f.object.class.human_attribute_name "#{attr}.#{o}" %>
+        <% end %>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="2">
+          <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+            <%= t ".random" %>
+          </button>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  <!-- 
+  ## WIP for the optional description/details below the field. Could be set by the Stimulus controller
+  <p style="position: absolute; left: calc(var(--cutoff-width) + var(--border-width)); margin-top: 20%;">
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus quam laborum officia minus magnam non enim deleniti corrupti esse fuga ratione voluptas culpa nam obcaecati, reiciendis quis cumque minima deserunt!
+  </p>
+  -->
+</div>

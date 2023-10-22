@@ -76,6 +76,7 @@ en:
         kidnapped: "Your lover was kidnapped."
         insane_or_cyberpsycho: "Your lover went insane or cyberpsycho."
         suicide: "Your lover committed suicide."
+        killed: "Your lover was killed in a fight."
         rival: "A rival cut you out of the action."
         imprisoned_or_exiled: "Your lover is imprisoned or exiled."
 
@@ -114,15 +115,15 @@ en:
         tech: "Tech"
       character/origins:
         north_american: "North American"
-        south/central_american: "South/Central American"
+        south_central_american: "South/Central American"
         western_europe: "Western Europe"
         eastern_europe: "Eastern Europe"
-        middle_eastern/north_african: "Middle Eastern/North African"
-        sub-saharan_african: "Sub-Saharan African"
+        middle_eastern_north_african: "Middle Eastern/North African"
+        sub_saharan_african: "Sub-Saharan African"
         south_asian: "South Asian"
         south-east_asian: "South-East Asian"
         east_asian: "East Asian"
-        oceania/pacific_islander: "Oceania/Pacific Islander"
+        oceania_pacific_islander: "Oceania/Pacific Islander"
       character/personality:
         shy_and_secretive: "Shy and secretive"
         rebellious_antisocial_and_violent: "Rebellious, antisocial, and violent"
@@ -130,7 +131,7 @@ en:
         moody_rash_and_headstrong: "Moody, rash, and headstrong"
         picky_fussy_and_nervous: "Picky, fussy, and nervous"
         stable_and_serious: "Stable and serious"
-        silly_and_fluff-headed: "Silly and fluff-headed"
+        silly_and_fluff_headed: "Silly and fluff-headed"
         sneaky_and_deceptive: "Sneaky and deceptive"
         intellectual_and_detached: "Intellectual and detached"
         friendly_and_outgoing: "Friendly and outgoing"
@@ -244,6 +245,19 @@ en:
         cursed_with_a_hereditary_feud: "Your family is cursed with a hereditary feud that has lasted for generations."
         inheritor_of_a_family_debt: "You are the inheritor of a family debt; you must honor this debt before moving on with your life."
   characters:
+    options_table:
+      roll: "Roll"
+      random: "Random"
+      friend:
+        origin: "Friend's relationship to you"
+      love_affair:
+        origin: "What happened?"
+      enemy:
+        origin: "Enemy"
+        cause: "What caused it?"
+        means_of_retaliation: "What can they throw at you?"
+        intensity: "What are you/they gonna do about it?"
+
     form:
       setup: "Setup"
       personals: "Personals"
@@ -266,12 +280,6 @@ en:
         zero: "Tragic love affairs"
         one:  "Tragic love affairs&emsp14;(1)"
         other:  "Tragic love affairs&emsp14;(%{count})"
-      friend_origin: "Friend's relationship to you"
-      enemy_origin: "Enemy"
-      enemy_cause: "What caused it?"
-      enemy_means_of_retaliation: "What can they throw at you?"
-      enemy_intensity: "What are you/they gonna do about it?"
-      love_affair_origin: "What happened?"
       clothings:
         generic_chic: "(Standard, Colorful, Modular)"
         urban_flash: "(Flashy, Technological, Streetwear)"
