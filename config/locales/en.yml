@@ -250,16 +250,14 @@ en:
       random: "Random"
       next: "Next"
       description: "Description"
-      friends: 
+      friends_html: 
         zero: "Friends"
-        one: "Friends (1)"
-        other: "Friends (%{count})"
-      enemies: 
+        one: "Friends&emsp14;(1)"
+        other: "Friends&emsp14;(%{count})"
+      enemies_html: 
         zero: "Enemies"
-        one: "Enemies (1)"
-        other: "Enemies (%{count})"
-      friend_connection: "Friend's relationship to you"
-      enemy_connection: "Enemy"
+        one: "Enemies&emsp14;(1)"
+        other: "Enemies&emsp14;(%{count})"
       enemy_cause: "What caused it?"
       enemy_means_of_retaliation: "What can they throw at you?"
       enemy_intensity: "What are you/they gonna do about it?"

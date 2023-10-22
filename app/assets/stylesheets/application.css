@@ -110,6 +110,7 @@ legend {
   font-family: var(--ff-heading);
   font-size: var(--banner-font-size);
   text-transform: uppercase;
+  word-spacing: .3em;
   
   padding-inline-end: var(--gap); /* making up for the fieldset's top padding */
   background: var(--main-color);

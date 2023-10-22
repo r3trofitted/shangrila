@@ -422,7 +422,7 @@
   </fieldset>
 
   <fieldset id="friends" class="lifepath_entry">
-    <legend><%= t ".friends", count: f.object.friends.count %></legend>
+    <legend><%= t ".friends_html", count: f.object.friends.count %></legend>
     
     <% f.object.friends.each_with_index do |friend, i| %>
       <%= f.fields_for :friends, friend do |friend_fields| %>
@@ -471,7 +471,7 @@
   </fieldset>
 
   <fieldset id="enemies" class="lifepath_entry">
-    <legend><%= t ".enemies", count: f.object.enemies.count %></legend>
+    <legend><%= t ".enemies_html", count: f.object.enemies.count %></legend>
     
     <% f.object.enemies.each_with_index do |enemy, i| %>
       <%= f.fields_for :enemies, enemy do |enemy_fields| %>
