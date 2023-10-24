@@ -2,10 +2,8 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="options-table"
 export default class extends Controller {
-  MIN_ROLL = 1;
-  MAX_ROLL = 10;
-  
   static targets = [ "field", "option", "description" ];
+  static values = { maxRoll: Number, default: 10 };
   
   pick(e) {
     const n = this.optionTargets.indexOf(e.currentTarget);
@@ -15,7 +13,7 @@ export default class extends Controller {
   }
   
   pickAtRandom() {
-    const roll = Math.floor(Math.random() * this.MAX_ROLL) + this.MIN_ROLL;
+    const roll = Math.floor(Math.random() * this.maxRollValue) + 1;
     
     let minHighlights = Math.floor(Math.random() * 10);
     let highlightIndex = 0;
