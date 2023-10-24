@@ -130,5 +130,13 @@
   
   <fieldset id="role-lifepath" class="lifepath_entry">
     <legend><%= t ".role_lifepath" %></legend>
+    
+    <%= render("#{f.object.role.downcase}_lifepath", form: f) if f.object.role? %>
+    
+    <%= f.button(:next, value: "stats", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
+  </fieldset>
+  
+  <fieldset id="stats" class="lifepath_entry">
+    <legend><%= t ".stats" %></legend>
   </fieldset>
 <% end %>

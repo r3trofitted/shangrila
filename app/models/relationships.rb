@@ -1,6 +1,7 @@
 module Relationships
   def self.of(klass, count = nil)
-    count ||= [Random.rand(1..10) - 7, 1].max
+    # count ||= [Random.rand(1..10) - 7, 0].max
+    count ||= 0
     
     Hash[Array.new(count) { |n| [n, klass.new] }]
   end

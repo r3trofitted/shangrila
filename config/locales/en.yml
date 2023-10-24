@@ -1,6 +1,29 @@
 en:
   activemodel:
     attributes:
+      role_lifepath/exec:
+        location: "Where"
+      role_lifepath/exec/location:
+        one_city: "One city"
+        several_cities: "Several cities"
+        statewide: "Statewide"
+        national: "National"
+        international_some_offices: "International, offices in a few major cities"
+        international_offices_everywhere: "International, offices everywhere"
+      role_lifepath/exec/rival:
+        rival_corp: "Rival Corp in the same industry."
+        law_enforcement: "Law enforcement is watching you."
+        local_media: "Local Media wants to bring you down."
+        internal_feuds: "Different divisions in your own company are feuding with each other."
+        local_government: "Local government doesn't like your Corp."
+        international_corporations: "International Corporations are eyeing you for a hostile takeover."
+      role_lifepath/exec/boss_relation:
+        mentor: "Your Boss mentors you but watch out for their enemies."
+        trusting: "Your Boss gives you a free hand and doesn't want to know what you're up to."
+        micromanager: "Your Boss is a micromanager who tries to meddle in your work."
+        psycho: "Your Boss is a psycho whose unpredicable outbursts are offset by quiet paranoia."
+        ally: "Your Boss is cool and watches your back against rivals."
+        rival: "Your Boss is threatened by your meteoric rise and is planning to knife you."
       enemy:
         name: "Name"
         origin: "Origin"
@@ -325,7 +348,6 @@ en:
             Your home was always changing based on your parents' current “job”. Could be a 
             luxury apartment, an urban conapt, or a dumpster if you were on the run. Food and 
             shelter ran the gamut from gourmet to kibble.
-
     form:
       setup: "Setup"
       personals: "Personals"
@@ -336,6 +358,7 @@ en:
       random: "Random"
       next: "Next"
       description: "Description"
+      stats: "Stats"
       friends_html: 
         zero: "Friends"
         one: "Friends&emsp14;(1)"
@@ -348,14 +371,3 @@ en:
         zero: "Tragic love affairs"
         one:  "Tragic love affairs&emsp14;(1)"
         other:  "Tragic love affairs&emsp14;(%{count})"
-      clothings:
-        generic_chic: "(Standard, Colorful, Modular)"
-        urban_flash: "(Flashy, Technological, Streetwear)"
-        high_fashion: "(Exclusive, Designer, Couture)"
-        bag_lady_chic: "(Homeless, Ragged, Vagrant)"
-        nomad_leathers: "(Western, Rugged, Tribal)"
-        gang_colors: "(Dangerous, Violent, Rebellious)"
-        businesswear: "(Leadership, Presence, Authority)"
-        leisurewear: "(Comfort, Agility, Athleticism)"
-        bohemian: "(Folksy, Retro, Free-spirited)"
-        asia_pop: "(Bright, Costume-like, Youthful)"
