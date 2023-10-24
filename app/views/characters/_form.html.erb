@@ -51,10 +51,10 @@
     <legend><%= t ".friends_html", count: f.object.friends.count %></legend>
     
     <% f.object.friends.each_with_index do |friend, i| %>
-      <%= f.fields_for :friends, friend do |friend_fields| %>
+      <%= f.fields_for :friends, friend, index: i do |friend_fields| %>
         <div class="field">
-          <%= friend_fields.label :name, index: i %>
-          <%= friend_fields.text_field :name, index: i, required: true %>
+          <%= friend_fields.label :name %>
+          <%= friend_fields.text_field :name, required: true %>
         </div>
         
         <fieldset class="secondary-fields">
@@ -70,10 +70,10 @@
     <legend><%= t ".enemies_html", count: f.object.enemies.count %></legend>
     
     <% f.object.enemies.each_with_index do |enemy, i| %>
-      <%= f.fields_for :enemies, enemy do |enemy_fields| %>
+      <%= f.fields_for :enemies, enemy, index: i do |enemy_fields| %>
         <div class="field">
-          <%= enemy_fields.label :name, index: i %>
-          <%= enemy_fields.text_field :name, index: i, required: true %>
+          <%= enemy_fields.label :name %>
+          <%= enemy_fields.text_field :name, required: true %>
         </div>
         
         <fieldset class="secondary-fields">
@@ -105,10 +105,10 @@
     <legend><%= t ".tragic_love_affairs_html", count: f.object.tragic_love_affairs.count %></legend>
     
     <% f.object.tragic_love_affairs.each_with_index do |affair, i| %>
-      <%= f.fields_for :tragic_love_affairs, affair do |affair_fields| %>
+      <%= f.fields_for :tragic_love_affairs, affair, index: i do |affair_fields| %>
         <div class="field">
-          <%= affair_fields.label :name, index: i %>
-          <%= affair_fields.text_field :name, index: i, required: true %>
+          <%= affair_fields.label :name %>
+          <%= affair_fields.text_field :name, required: true %>
         </div>
         
         <fieldset class="secondary-fields">
