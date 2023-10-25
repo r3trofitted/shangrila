@@ -2,12 +2,14 @@ class Character < ApplicationRecord
   serialize :friends, coder: Relationships.coder_for(Friend)
   serialize :enemies, coder: Relationships.coder_for(Enemy)
   serialize :tragic_love_affairs, coder: Relationships.coder_for(TragicLoveAffair)
+  serialize :role_lifepath, coder: RoleLifepath
   
   # SMELL: repetitions
   after_initialize do
-    self.friends = Relationships.of(Friend) if self.friends.blank?
-    self.enemies = Relationships.of(Enemy) if self.enemies.blank?
-    self.tragic_love_affairs = Relationships.of(TragicLoveAffair) if self.tragic_love_affairs.blank?
+    self.friends             = Relationships.of(Friend) if friends.blank?
+    self.enemies             = Relationships.of(Enemy) if enemies.blank?
+    self.tragic_love_affairs = Relationships.of(TragicLoveAffair) if tragic_love_affairs.blank?
+    self.role_lifepath       = RoleLifepath.for(role) if role_lifepath.blank?
   end
   
   concerning :CreationTables do

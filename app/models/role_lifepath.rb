@@ -1,6 +1,54 @@
 class RoleLifepath
-  def self.for(role)
-    Exec.new # SLIME
+  include ActiveModel::API
+  include ActiveModel::Attributes
+  
+  def self.load(payload)
+    return if payload.blank?
+    
+    ActiveSupport::JSON.load(payload).symbolize_keys => { role:, **attrs }
+    self.for role, **attrs
+  end
+  
+  def self.dump(payload)
+    ActiveSupport::JSON.dump(payload)
+  end
+
+  def self.for(role, **attrs, &block)
+    return if role.blank?
+    
+    begin 
+      klass = const_get(role.to_s.camelize)
+    rescue NameError
+      raise ArgumentError, "invalid role #{role}"
+    end
+    
+    klass.new(**attrs, &block)
+  end
+  
+  def self.use_relative_model_naming?
+    true
+  end
+  
+  def to_partial_path
+    "characters/#{role}_lifepath"
+  end
+  
+  # Needed because…
+  # ActiveSupport::JSON.dump will call as_json
+  # … which, is to_hash doesn't exist, will call instance_values.as_json
+  # … which will call instance_variables…
+  # … which will include the extra @attributes instance variable added by ActiveModel::Attributes
+  # … and we don't want this extra variable
+  # def to_hash # TODO: as_json instead? Or move to the .dump method ?
+  #   attributes.to_hash.merge(role: role)
+  # end
+  
+  def as_json(options = nil)
+    { role:, **attributes }.as_json(options)
+  end
+  
+  def role
+    model_name.element
   end
   
   class Exec
@@ -33,6 +81,16 @@ class RoleLifepath
       4 => :psycho,
       5 => :ally,
       6 => :rival
+    }
+  end
+
+  class Fixer < RoleLifepath
+    attribute :kind, :string
+    attribute :work_alone, :boolean
+    
+    KINDS = {
+      1 => :foo,
+      2 => :bar
     }
   end
 end

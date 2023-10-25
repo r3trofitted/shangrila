@@ -1,0 +1,8 @@
+<%= form.fields_for :role_lifepath, form.object.role_lifepath do |f| %>
+  <%= f.hidden_field :role %>
+  <%= f.options_table :kind %>
+  <div class="field">
+    <%= f.label :work_alone %>
+    <%= f.collection_radio_buttons :work_alone, [[true, t(".yes")], [false, t(".no")]], :first, :last %>
+  </div>
+<% end %>

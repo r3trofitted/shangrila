@@ -31,6 +31,8 @@ ActiveRecord::Schema[7.2].define(version: 2023_10_17_155439) do
     t.json "friends"
     t.json "enemies"
     t.json "tragic_love_affairs"
+    t.string "life_goal"
+    t.json "role_lifepath"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
