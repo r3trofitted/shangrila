@@ -3,14 +3,16 @@
   <%= f.options_table :kind %>
   <div class="field">
     <%= f.label :work_alone %>
-    <div class="field-boxes-list">
-      <%= f.collection_radio_buttons :work_alone, [[true, t(".yes")], [false, t(".no")]], :first, :last, include_hidden: false do |b| %>
-        <%= b.label do %>
-          <%= b.radio_button %>
-          <span class="field-border"><%= b.text %></span>
-        <% end %>
+    <%= tag.div class: "field-boxes-list", data: { controller: "options-unlocker", options_unlocker_options_table_outlet: "##{f.wrapper_field_id(:partner)}" } do %>
+      <%= f.label :work_alone, value: true do %>
+        <%= f.radio_button :work_alone, true, data: { action: "options-unlocker#lock" } %>
+        <span class="field-border"><%= t ".yes" %></span>
       <% end %>
-    </div>
+      <%= f.label :work_alone, value: false do %>
+        <%= f.radio_button :work_alone, false, data: { action: "options-unlocker#unlock" } %>
+        <span class="field-border"><%= t ".no" %></span>
+      <% end %>
+    <% end %>
   </div>
   <%= f.options_table :partner %>
   <%= f.options_table :office %>

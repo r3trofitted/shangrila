@@ -1,4 +1,4 @@
-<%= tag.div class: "field", data: { controller: "options-table", options_table_max_roll_value: collection.length } do %>
+<%= tag.div class: "field", id: f.wrapper_field_id(attr), data: { controller: "options-table", options_table_max_roll_value: collection.length } do %>
   <%= f.label attr %>
   <div>
     <%= f.text_field attr, data: { options_table_target: "field" } %>
