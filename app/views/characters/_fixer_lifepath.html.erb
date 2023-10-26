@@ -5,4 +5,6 @@
     <%= f.label :work_alone %>
     <%= f.collection_radio_buttons :work_alone, [[true, t(".yes")], [false, t(".no")]], :first, :last %>
   </div>
+  <%= f.options_table :partner %>
+  <%= f.options_table :office %>
 <% end %>

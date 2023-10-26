@@ -24,6 +24,32 @@ en:
         psycho: "Your Boss is a psycho whose unpredicable outbursts are offset by quiet paranoia."
         ally: "Your Boss is cool and watches your back against rivals."
         rival: "Your Boss is threatened by your meteoric rise and is planning to knife you."
+      role_lifepath/fixer/kind:
+        gangs_deal_broker: "Broker deals between rival gangs."
+        purveyor_of_rarities: "Procure rare or atypical resources for exclusive clientele."
+        purveyor_of_solo_services: "Specialize in brokering Solo or Tech services as an agent."
+        night_market_provider: "Supply a regular resource for the Night Markets, like food, medicines, or drugs."
+        purveyor_of_illegal_resources: "Procure highly illegal resources, like street drugs or milspec weapons."
+        purveyor_of_med_resources: "Supply resources for Techs and Medtechs, like parts and medical supplies."
+        night_markets_operator: "Operate several successful Night Markets, although not as owner."
+        broker_of_heavy_machinery: "Broker use contracts for heavy machinery, military vehicles, and aircraft."
+        combat_zone_broker: "Broker deals as a fence for scavengers raiding Corps or Combat Zones."
+        agent: "Act as an exclusive agent for a Media, Rockerboy, or a Nomad Pack."
+      role_lifepath/fixer/partner:
+        family_member: "Family member"
+        old_friend: "Old friend"
+        romantic_partner: "Possible romantic partner as well"
+        mentor: "Mentor"
+        secret_with_mobconnections: "Secret partner with mob/gang connections"
+        secret_with_corp_connections: "Secret partner with Corporate connections"
+      role_lifepath/fixer/office:
+        none: "You don't have one. You like to keep it mobile."
+        booth: "A booth in a local bar."
+        data_pool_messages: "All Data Pool messages and anonymous dead drops."
+        warehouse: "Spare room in a warehouse, shop or clinic."
+        abandoned_building: "An otherwise abandoned building."
+        cube_hotel_lobby: "The lobby of a cube hotel."
+
       enemy:
         name: "Name"
         origin: "Origin"
