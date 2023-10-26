@@ -3,7 +3,14 @@
   <%= f.options_table :kind %>
   <div class="field">
     <%= f.label :work_alone %>
-    <%= f.collection_radio_buttons :work_alone, [[true, t(".yes")], [false, t(".no")]], :first, :last %>
+    <div class="field-boxes-list">
+      <%= f.collection_radio_buttons :work_alone, [[true, t(".yes")], [false, t(".no")]], :first, :last, include_hidden: false do |b| %>
+        <%= b.label do %>
+          <%= b.radio_button %>
+          <span class="field-border"><%= b.text %></span>
+        <% end %>
+      <% end %>
+    </div>
   </div>
   <%= f.options_table :partner %>
   <%= f.options_table :office %>

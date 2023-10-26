@@ -227,6 +227,45 @@ fieldset.secondary-fields {
   }
 }
 
+.field-boxes-list {
+  display: grid;
+  grid-auto-flow: column;
+  column-gap: var(--gap);
+  
+  & label {
+    place-self: stretch;
+    color: var(--main-color);
+  }
+  
+  & label:has(input:checked) .field-border {
+    color: var(--clr-neutral-100);
+  }
+  
+  & label:has(input:checked) .field-border::after {
+    background: var(--main-color);
+  }
+  
+  & span {
+    display: inline-block;
+    
+    width: 100%;
+    padding: .5em 1em;
+    
+    text-align: center;
+  }
+  
+  & input {
+    /* aka the sr-only properties */
+    clip: rect(0 0 0 0);
+    clip-path: inset(100%);
+    height: 1px;
+    overflow: hidden;
+    position: absolute;
+    white-space: nowrap; 
+    width: 1px;
+  }
+}
+
 .field-indicators {
   position: relative;
   z-index: 1;

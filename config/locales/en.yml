@@ -374,6 +374,9 @@ en:
             Your home was always changing based on your parents' current “job”. Could be a 
             luxury apartment, an urban conapt, or a dumpster if you were on the run. Food and 
             shelter ran the gamut from gourmet to kibble.
+    fixer_lifepath:
+      "yes": "Yes"
+      "no": "No"
     form:
       setup: "Setup"
       personals: "Personals"
