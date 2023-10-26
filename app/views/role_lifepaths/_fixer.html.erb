@@ -3,7 +3,7 @@
   <%= f.options_table :kind %>
   <div class="field">
     <%= f.label :work_alone %>
-    <%= tag.div class: "field-boxes-list", data: { controller: "options-unlocker", options_unlocker_options_table_outlet: "##{f.wrapper_field_id(:partner)}" } do %>
+    <%= tag.div class: "field-boxes-list", data: { controller: "options-unlocker", options_unlocker_locked_value: f.object.work_alone, options_unlocker_options_table_outlet: "##{f.wrapper_field_id(:partner)}" } do %>
       <%= f.label :work_alone, value: true do %>
         <%= f.radio_button :work_alone, true, data: { action: "options-unlocker#lock" } %>
         <span class="field-border"><%= t ".yes" %></span>
