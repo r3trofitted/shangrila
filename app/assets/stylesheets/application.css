@@ -165,6 +165,7 @@ legend {
   position: relative;
   isolation: isolate;
   
+  color: var(--text-color);
   font-size: var(--text-font-size);
   
   & label {
@@ -199,7 +200,6 @@ legend {
 fieldset.secondary-fields {
   --main-color: var(--clr-primary-200);
   --secondary-color: var(--clr-secondary-200);
-
   
   border: none;
   padding: 0;
@@ -356,6 +356,12 @@ fieldset.secondary-fields {
       0% calc(100% - var(--cutoff-width))
     );
   }
+}
+
+.field.disabled {
+  --main-color: var(--clr-neutral-300);
+  --secondary-color: var(--clr-neutral-300);
+  --text-color: var(--clr-neutral-300);
 }
 
 .field[data-controller="options-carousel"] {
