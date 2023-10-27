@@ -1,8 +1,8 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="options-unlocker"
+// Connects to data-controller="unlocker"
 export default class extends Controller {
-  static outlets = [ "options-table" ];
+  static outlets = [ "lockable" ];
   static values = { "locked": Boolean };
   
   lock() {
@@ -14,6 +14,6 @@ export default class extends Controller {
   }
   
   lockedValueChanged() {
-    this.optionsTableOutlet.disabledValue = this.lockedValue;
+    this.lockableOutlets.forEach(o => o.lockedValue = this.lockedValue);
   }
 }

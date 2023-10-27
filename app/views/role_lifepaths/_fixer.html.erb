@@ -1,19 +1,20 @@
-<%= form.fields_for :role_lifepath, form.object.role_lifepath do |f| %>
-  <%= f.hidden_field :role %>
-  <%= f.options_table :kind %>
-  <div class="field">
-    <%= f.label :work_alone %>
-    <%= tag.div class: "field-boxes-list", data: { controller: "options-unlocker", options_unlocker_locked_value: f.object.work_alone, options_unlocker_options_table_outlet: "##{f.wrapper_field_id(:partner)}" } do %>
-      <%= f.label :work_alone, value: true do %>
-        <%= f.radio_button :work_alone, true, data: { action: "options-unlocker#lock" } %>
-        <span class="field-border"><%= t ".yes" %></span>
-      <% end %>
-      <%= f.label :work_alone, value: false do %>
-        <%= f.radio_button :work_alone, false, data: { action: "options-unlocker#unlock" } %>
-        <span class="field-border"><%= t ".no" %></span>
-      <% end %>
+<%= form.options_table :kind %>
+
+<div class="field">
+  <%= form.label :work_alone %>
+  <%= tag.div class: "field-boxes-list", data: { controller: "unlocker", unlocker_locked_value: form.object.work_alone, unlocker_lockable_outlet: "##{form.wrapper_field_id(:partner)}" } do %>
+    <%= form.label :work_alone, value: true do %>
+      <%= form.radio_button :work_alone, true, data: { action: "unlocker#lock" } %>
+      <span class="field-border"><%= t ".yes" %></span>
     <% end %>
-  </div>
-  <%= f.options_table :partner %>
-  <%= f.options_table :office %>
-<% end %>
+    <%= form.label :work_alone, value: false do %>
+      <%= form.radio_button :work_alone, false, data: { action: "unlocker#unlock" } %>
+      <span class="field-border"><%= t ".no" %></span>
+    <% end %>
+  <% end %>
+</div>
+
+<%= form.options_table :partner %>
+<%= form.options_table :office %>
+<%= form.options_table :clients %>
+<%= form.options_table :enemy %>

@@ -364,7 +364,7 @@ fieldset.secondary-fields {
   --text-color: var(--clr-neutral-300);
 }
 
-.field[data-controller="options-carousel"] {
+.field[data-controller~="options-carousel"] {
   /* making room on both ends for the buttons so that their tip aligns with the focus indicator */
   --arrow-cutoff-width: calc(2 * var(--block-cutoff-width));
   --button-extra-margin: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
@@ -418,7 +418,7 @@ fieldset.secondary-fields {
   }
 }
 
-.field[data-controller="options-table"] {
+.field[data-controller~="options-table"] {
   grid-column: main / end;
   
   display: grid;

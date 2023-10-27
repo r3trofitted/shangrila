@@ -4,29 +4,24 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = [ "field", "table", "option", "description" ];
   static values = {
-    maxRoll: { type: Number, default: 10 },
-    disabled: { type: Boolean }
+    maxRoll: { type: Number, default: 10 }
   }
   
-  connect() {
-    this.disabledValue = this.fieldTarget.disabled; /* the input field has precedence over the value */
-  }
-  
-  disabledValueChanged() {
-    this.disabledValue ? this.disable() : this.enable();
-  }
+  #disabled;
   
   disable() {
-    this.fieldTarget.disabled = true;
-    this.element.classList.add("disabled");
+    this.#disabled = true;
   }
   
   enable() {
-    this.fieldTarget.disabled = false;
-    this.element.classList.remove("disabled");
+    this.#disabled = false;
   }
   
   pick(e) {
+    if (this.#disabled) {
+      return;
+    }
+
     const n = this.optionTargets.indexOf(e.currentTarget);
     
     this.doHighlight(n);
@@ -34,7 +29,7 @@ export default class extends Controller {
   }
   
   pickAtRandom() {
-    if (this.disabledValue) {
+    if (this.#disabled) {
       return;
     }
     

@@ -1,7 +1,9 @@
-<%= tag.div class: "field", id: f.wrapper_field_id(attr), data: { controller: "options-table", options_table_max_roll_value: collection.length } do %>
+<%= tag.div class: "field", id: f.wrapper_field_id(attr), data: { controller: "lockable options-table",
+                                                                  options_table_max_roll_value: collection.length,
+                                                                  action: "lockable:locked->options-table#disable lockable:unlocked->options-table#enable" } do %>
   <%= f.label attr %>
   <div>
-    <%= f.text_field attr, data: { options_table_target: "field" } %>
+    <%= f.text_field attr, data: { options_table_target: "field", lockable_target: "field" } %>
     <p data-options-table-target="description"></p>
   </div>
   <table>
