@@ -131,7 +131,10 @@
   <fieldset id="role-lifepath" class="lifepath_entry">
     <legend><%= t ".role_lifepath" %></legend>
     
-    <%= render(f.object.role_lifepath, form: f) if f.object.role_lifepath? %>
+    <%= f.fields_for :role_lifepath, f.object.role_lifepath do |role_lp| %>
+      <%= role_lp.hidden_field :role %>
+      <%= render role_lp.object, form: role_lp %>
+    <% end if f.object.role_lifepath? %>
     
     <%= f.button(:next, value: "stats", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
   </fieldset>

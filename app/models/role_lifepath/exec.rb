@@ -2,7 +2,42 @@ module RoleLifepath
     class Exec
     include ActiveModel::API
     
-    attr_accessor :location, :rival, :boss_relation
+    attribute :sector, :string
+    attribute :division, :string
+    attribute :morality, :string
+    attribute :rival, :string
+    attribute :boss_relation, :string
+    
+    SECTORS = {
+       1 => :financial,
+       2 => :media,
+       3 => :cybertech,
+       4 => :biotech,
+       5 => :consumables,
+       6 => :energy,
+       7 => :robotics,
+       8 => :corporate_services,
+       9 => :consumer_services,
+      10 => :real_estate
+    }
+    
+    DIVISIONS = {
+      1 => :procurement,
+      2 => :manufacturing,
+      3 => :r_and_d,
+      4 => :hr,
+      5 => :pr,
+      6 => :m_and_a
+    }
+    
+    MORALITIES = {
+      1 => :good,
+      2 => :mostly_fair,
+      3 => :rarely_unethical,
+      4 => :occasionally_unethical,
+      5 => :ruthless,
+      6 => :evil
+    }
     
     LOCATIONS = {
       1 => :one_city,

@@ -1,5 +1,6 @@
-<%= form.fields_for :role_lifepath, RoleLifepath.for(form.object.role) do |f| %>
-  <%= f.options_table :location %>
-  <%= f.options_table :rival %>
-  <%= f.options_table :boss_relation %>
-<% end %>
+<%= form.options_table :sector %>
+<%= form.options_table :division %>
+<%= form.options_table :morality %>
+<%= form.options_table :location %>
+<%= form.options_table :rival %>
+<%= form.options_table :boss_relation %>

@@ -1,0 +1,39 @@
+<%= form.options_table :kind %>
+
+<%= tag.div class: "field", data: { controller: "unlocker",
+                                    unlocker_locked_value: form.object.currently_in_a_band,
+                                    unlocker_lockable_outlet: ":is(##{form.wrapper_field_id(:formerly_in_a_band)}, ##{form.wrapper_field_id(:reason_for_leaving)})" } do %>
+  <%= form.label :currently_in_a_band %>
+  <div class="field-boxes-list">
+    <%= form.label :currently_in_a_band, value: true do %>
+      <%= form.radio_button :currently_in_a_band, true, data: { action: "unlocker#lock" } %>
+      <span class="field-border"><%= t ".yes" %></span>
+    <% end %>
+    <%= form.label :currently_in_a_band, value: false do %>
+      <%= form.radio_button :currently_in_a_band, false, data: { action: "unlocker#unlock" } %>
+      <span class="field-border"><%= t ".no" %></span>
+    <% end %>
+  </div>
+<% end %>
+
+<%= tag.div id: form.wrapper_field_id(:formerly_in_a_band),
+            class: "field",
+            data: { controller: "lockable unlocker",
+                    unlocker_locked_value: form.object.formerly_in_a_band,
+                    unlocker_lockable_outlet: "##{form.wrapper_field_id(:reason_for_leaving)}" } do %>
+  <%= form.label :formerly_in_a_band %>
+  <div class="field-boxes-list">
+    <%= form.label :formerly_in_a_band, value: true do %>
+      <%= form.radio_button :formerly_in_a_band, true, data: { lockable_target: "field", action: "unlocker#unlock" } %>
+      <span class="field-border"><%= t ".yes" %></span>
+    <% end %>
+    <%= form.label :formerly_in_a_band, value: false do %>
+      <%= form.radio_button :formerly_in_a_band, false, data: { lockable_target: "field", action: "unlocker#lock" } %>
+      <span class="field-border"><%= t ".no" %></span>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form.options_table :reason_for_leaving, RoleLifepath::Rockerboy::REASONS_FOR_LEAVING %>
+<%= form.options_table :venues %>
+<%= form.options_table :enemy %>
