@@ -1,7 +1,7 @@
-<%= tag.div class: "field with-table", id: f.wrapper_field_id(attr), data: { controller: "lockable swappable field" } do %>
+<%= tag.div class: "field with-table", id: f.wrapper_field_id(attr), data: { controller: "lock swappable field" } do %>
   <%= f.label attr %>
   <div>
-    <%= f.text_field attr, data: { field_target: "input", lockable_target: "field" } %>
+    <%= f.text_field attr, data: { field_target: "input", lock_target: "input" } %>
     <p data-field-target="description"></p>
   </div>
   <table
@@ -9,8 +9,8 @@
     data-swapper-target="swap"
     data-controller="table-picker"
     data-table-picker-max-roll-value="<%= collection.length %>"
-    data-table-picker-lockable-outlet="#<%= f.wrapper_field_id(attr) %>"
-    data-table-picker-field-outlet="#<%= f.wrapper_field_id(attr) %>"
+    data-table-picker-lock-outlet="#<%= f.wrapper_field_id(attribute) %>"
+    data-table-picker-field-outlet="#<%= f.wrapper_field_id(attribute) %>"
     >
     <thead>
       <tr>

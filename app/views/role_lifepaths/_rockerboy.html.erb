@@ -2,7 +2,7 @@
 
 <%= tag.div class: "field", data: { controller: "unlocker",
                                     unlocker_locked_value: form.object.currently_in_a_band,
-                                    unlocker_lockable_outlet: ":is(##{form.wrapper_field_id(:formerly_in_a_band)}, ##{form.wrapper_field_id(:reason_for_leaving)})" } do %>
+                                    unlocker_lock_outlet: ":is(##{form.wrapper_field_id(:formerly_in_a_band)}, ##{form.wrapper_field_id(:reason_for_leaving)})" } do %>
   <%= form.label :currently_in_a_band %>
   <div class="field-boxes-list">
     <%= form.label :currently_in_a_band, value: true do %>
@@ -20,7 +20,7 @@
             class: "field",
             data: { controller: "lockable unlocker",
                     unlocker_locked_value: form.object.formerly_in_a_band,
-                    unlocker_lockable_outlet: "##{form.wrapper_field_id(:reason_for_leaving)}" } do %>
+                    unlocker_lock_outlet: "##{form.wrapper_field_id(:reason_for_leaving)}" } do %>
   <%= form.label :formerly_in_a_band %>
   <div class="field-boxes-list">
     <%= form.label :formerly_in_a_band, value: true do %>

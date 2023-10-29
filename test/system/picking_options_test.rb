@@ -27,7 +27,7 @@ class PickingOptionsTest < ApplicationSystemTestCase
     end
   end
   
-  test "lockabe tables" do
+  test "lockable tables" do
     visit edit_character_url characters(:tengri)
     
     within_fieldset "role-lifepath" do
@@ -42,7 +42,7 @@ class PickingOptionsTest < ApplicationSystemTestCase
       within("label[for='character_role_lifepath_work_alone'] + div.field-boxes-list") do
         choose "Yes", allow_label_click: true
       end
-      assert lockable[:class].include? "disabled"
+      assert lockable[:class].include? "locked"
       
       lockable.find("tr", text: /Mentor/).click
       assert field.value.blank?
@@ -51,7 +51,7 @@ class PickingOptionsTest < ApplicationSystemTestCase
       within("label[for='character_role_lifepath_work_alone'] + div.field-boxes-list") do
         choose "No", allow_label_click: true
       end
-      refute lockable[:class].include? "disabled"
+      refute lockable[:class].include? "locked"
       
       lockable.find("tr", text: /Mentor/).click
       assert_equal "Mentor", field.value

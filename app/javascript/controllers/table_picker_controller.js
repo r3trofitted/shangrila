@@ -2,14 +2,14 @@ import { Controller } from "@hotwired/stimulus"
 
 // Connects to data-controller="table-picker"
 export default class extends Controller {
-  static outlets = [ "lockable", "field" ];
+  static outlets = [ "lock", "field" ];
   static targets = [ "option" ];
   static values = {
     maxRoll: { type: Number, default: 10 }
   };
 
   get isDisabled() {
-    return this.hasLockableOutlet && this.lockableOutlet.lockedValue;
+    return this.hasLockOutlet && this.lockOutlet.lockedValue;
   }
   
   pick(e) {
@@ -59,13 +59,6 @@ export default class extends Controller {
     
     let value = pick.querySelector("td").textContent.split(/[\.\($]/)[0].trim(); // take only the first sentence/part
     let description = pick.querySelector("td[data-role='description']").textContent;
-    
-    // this.dispatch("picked", {
-    //   detail: {
-    //     value: value,
-    //     description: description
-    //   }
-    // });
     
     this.fieldOutlet.fill({ value, description });
   }

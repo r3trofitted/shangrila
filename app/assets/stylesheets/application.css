@@ -358,7 +358,7 @@ fieldset.secondary-fields {
   }
 }
 
-.field.disabled {
+.field.locked {
   --main-color: var(--clr-neutral-300);
   --secondary-color: var(--clr-neutral-300);
   --text-color: var(--clr-neutral-300);
@@ -470,11 +470,11 @@ fieldset.secondary-fields {
     background-color: var(--clr-neutral-300);
   }
   
-  & tr[data-table-picker-target='option'] {
+  &:not(.locked) tr[data-table-picker-target='option'] {
     cursor: pointer;
   }
   
-  & tr[data-table-picker-target='option']:is(.selected, :hover) {
+  &:not(.locked) tr[data-table-picker-target='option']:is(.selected, :hover) {
     outline: 3px solid var(--secondary-color);
     outline-left-width: 6px;
   }

@@ -2,7 +2,7 @@
 
 <div class="field">
   <%= form.label :work_alone %>
-  <%= tag.div class: "field-boxes-list", data: { controller: "unlocker", unlocker_locked_value: form.object.work_alone, unlocker_lockable_outlet: "##{form.wrapper_field_id(:partner)}" } do %>
+  <%= tag.div class: "field-boxes-list", data: { controller: "unlocker", unlocker_locked_value: form.object.work_alone, unlocker_lock_outlet: "##{form.wrapper_field_id(:partner)}" } do %>
     <%= form.label :work_alone, value: true do %>
       <%= form.radio_button :work_alone, true, data: { action: "unlocker#lock" } %>
       <span class="field-border"><%= t ".yes" %></span>
