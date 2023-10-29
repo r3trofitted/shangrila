@@ -1,12 +1,17 @@
-<%= tag.div class: "field", id: f.wrapper_field_id(attr), data: { controller: "lockable options-table",
-                                                                  options_table_max_roll_value: collection.length,
-                                                                  action: "lockable:locked->options-table#disable lockable:unlocked->options-table#enable" } do %>
+<%= tag.div class: "field with-table", id: f.wrapper_field_id(attr), data: { controller: "lockable swappable field" } do %>
   <%= f.label attr %>
   <div>
-    <%= f.text_field attr, data: { options_table_target: "field", lockable_target: "field" } %>
-    <p data-options-table-target="description"></p>
+    <%= f.text_field attr, data: { field_target: "input", lockable_target: "field" } %>
+    <p data-field-target="description"></p>
   </div>
-  <table>
+  <table
+    class="options-table"
+    data-swapper-target="swap"
+    data-controller="table-picker"
+    data-table-picker-max-roll-value="<%= collection.length %>"
+    data-table-picker-lockable-outlet="#<%= f.wrapper_field_id(attr) %>"
+    data-table-picker-field-outlet="#<%= f.wrapper_field_id(attr) %>"
+    >
     <thead>
       <tr>
         <th><%= t ".roll" %></th>
@@ -16,7 +21,7 @@
     </thead>
     <tbody>
       <% collection.each do |roll, o| %>
-        <%= tag.tr data: { options_table_target: "option", action: "click->options-table#pick" } do %>
+        <%= tag.tr data: { table_picker_target: "option", action: "click->table-picker#pick" } do %>
           <%= tag.th Array(roll).join("&thinsp;-&thinsp;").html_safe, data: { role: "roll" } %>
           <%= tag.td f.object.class.human_attribute_name "#{attr}.#{o}", data: { role: "value" } %>
           <%= tag.td t(".descriptions.#{attr}.#{o}", default: ""), data: { role: "description" } %>
@@ -26,7 +31,7 @@
     <tfoot>
       <tr>
         <td colspan="2">
-          <button type="button" class="slanted-button" data-action="options-table#pickAtRandom">
+          <button type="button" class="slanted-button" data-action="table-picker#pickAtRandom">
             <%= t ".random" %>
           </button>
         </td>

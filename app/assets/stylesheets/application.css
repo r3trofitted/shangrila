@@ -217,12 +217,12 @@ fieldset.secondary-fields {
     content: "↳ ";
   }
   
-  & .field[data-controller="options-table"] table {
+  & table.options-table {
     position: absolute;
     display: none;
   }
   
-  & .field[data-controller="options-table"]:focus-within table {
+  & .field:focus-within table.options-table {
     display: revert;
   }
 }
@@ -418,7 +418,7 @@ fieldset.secondary-fields {
   }
 }
 
-.field[data-controller~="options-table"] {
+.field:has(.options-table) {
   grid-column: main / end;
   
   display: grid;
@@ -470,11 +470,11 @@ fieldset.secondary-fields {
     background-color: var(--clr-neutral-300);
   }
   
-  & tr[data-options-table-target='option'] {
+  & tr[data-table-picker-target='option'] {
     cursor: pointer;
   }
   
-  & tr[data-options-table-target='option']:is(.selected, :hover) {
+  & tr[data-table-picker-target='option']:is(.selected, :hover) {
     outline: 3px solid var(--secondary-color);
     outline-left-width: 6px;
   }
@@ -496,7 +496,7 @@ fieldset.secondary-fields {
     padding-bottom: 0;
   }
   
-  & p[data-options-table-target="description"] {
+  & p[data-field-target="description"] {
     margin-left: calc(var(--cutoff-width) + var(--border-width));
     font-style: italic;
   }
