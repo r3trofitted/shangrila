@@ -25,6 +25,9 @@ export default class extends Controller {
   }
   
   updateSelection() {
-    this.fieldTarget.value = this.options[this.selectedIndex].value;
+    const selection = this.options[this.selectedIndex];
+    
+    this.fieldTarget.value = selection.text;
+    this.dispatch("updated", { detail: { value: selection.value } });
   }
 }
