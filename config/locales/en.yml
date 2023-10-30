@@ -651,9 +651,15 @@ en:
         save_someone: "Save, if possible, anyone else involved in your background, like a lover, or family member."
         gain_fame: "Gain fame and recognition."
         become_respected: "Become feared and respected."
+  role_lifepaths:
+    nomad:
+      roll: "Roll"
+      description: "Description"
+      random: "Random"
   characters:
     options_table:
       roll: "Roll"
+      description: "Description"
       random: "Random"
       friend:
         origin: "Friend's relationship to you"
@@ -725,7 +731,7 @@ en:
     form:
       setup: "Setup"
       personals: "Personals"
-      background": "Background"
+      background: "Background"
       wrap_up: "Wrap-up"
       role_lifepath: "Role lifepath"
       roll: "Roll"

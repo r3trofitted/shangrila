@@ -1,0 +1,66 @@
+<%= form.options_table :pack_size %>
+
+<div class="field"
+     data-controller="options-carousel swapper"
+     data-swapper-swappable-outlet="#<%= form.wrapper_field_id(:pack_trade) %>"
+     data-action="keydown.left->options-carousel#prev:prevent
+                  keydown.right->options-carousel#next:prevent
+                  options-carousel:updated->swapper#trigger"
+     >
+  <%= form.label :kinds %>
+  <button class="back" data-action="options-carousel#prev" type="button"></button>
+  <%= form.text_field :kind, list: "kinds", data: { options_carousel_target: "field" } %>
+  <button class="forward" data-action="options-carousel#next" type="button"></button>
+  <datalist id="kinds">
+    <%= options_for_select RoleLifepath::Nomad::KINDS.map { |k| [RoleLifepath::Nomad.human_attribute_name("kind.#{k}"), k] } %>
+  </datalist>
+</div>
+
+<%= tag.div class: "field", id: form.wrapper_field_id(:pack_trade), data: { controller: "lockable field swappable", swappable_active_value: form.object.kind } do %>
+  <%= form.label :pack_trade %>
+  <div>
+    <%= form.text_field :pack_trade, data: { field_target: "input", lock_target: "input" } %>
+    <p data-field-target="description"></p>
+  </div>
+  
+  <% { "air" => RoleLifepath::Nomad::AIR_TRADES, "sea" => RoleLifepath::Nomad::SEA_TRADES, "land" => RoleLifepath::Nomad::LAND_TRADES }.each do |id, collection| %>
+    <table
+      class="options-table"
+      data-controller="table-picker"
+      data-table-picker-max-roll-value="<%= collection.length %>"
+      data-table-picker-lockable-outlet="#<%= form.wrapper_field_id(:pack_trade) %>"
+      data-table-picker-field-outlet="#<%= form.wrapper_field_id(:pack_trade) %>"
+      data-swap-id="<%= id %>"
+      data-swappable-target="swap"
+      >
+      <thead>
+        <tr>
+          <th><%= t ".roll" %></th>
+          <th><%= t ".#{form.object.model_name.singular}.#{:pack_trade}", default: form.object.class.human_attribute_name(:pack_trade) %></th>
+          <th data-role="description"><%= t ".description" %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% collection.each do |roll, o| %>
+          <%= tag.tr data: { table_picker_target: "option", action: "click->table-picker#pick" } do %>
+            <%= tag.th Array(roll).join("&thinsp;-&thinsp;").html_safe, data: { role: "roll" } %>
+            <%= tag.td form.object.class.human_attribute_name "#{:pack_trade}.#{o}", data: { role: "value" } %>
+            <%= tag.td t(".descriptions.#{:pack_trade}.#{o}", default: ""), data: { role: "description" } %>
+          <% end %>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">
+            <button type="button" class="slanted-button" data-action="table-picker#pickAtRandom">
+              <%= t ".random" %>
+            </button>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  <% end %>
+<% end %>
+
+<%= form.options_table :position %>
+<%= form.options_table :pack_enemy %>
