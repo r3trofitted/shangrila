@@ -8,7 +8,7 @@ class CharacterFormBuilder < ActionView::Helpers::FormBuilder
   end
   
   def options_table(attribute, collection = options_collection_for_attribute(attribute))
-    @template.render "options_table", f: self, attr: attribute, collection: collection
+    @template.render "options_table", f: self, attribute:, collection:
   end
   
   def wrapper_field_id(attr)

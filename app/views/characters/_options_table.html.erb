@@ -1,12 +1,11 @@
-<%= tag.div class: "field with-table", id: f.wrapper_field_id(attr), data: { controller: "lock swappable field" } do %>
-  <%= f.label attr %>
+<%= tag.div class: "field", id: f.wrapper_field_id(attribute), data: { controller: "lock field" } do %>
+  <%= f.label attribute %>
   <div>
-    <%= f.text_field attr, data: { field_target: "input", lock_target: "input" } %>
+    <%= f.text_field attribute, data: { field_target: "input", lock_target: "input" } %>
     <p data-field-target="description"></p>
   </div>
   <table
     class="options-table"
-    data-swapper-target="swap"
     data-controller="table-picker"
     data-table-picker-max-roll-value="<%= collection.length %>"
     data-table-picker-lock-outlet="#<%= f.wrapper_field_id(attribute) %>"
@@ -15,7 +14,7 @@
     <thead>
       <tr>
         <th><%= t ".roll" %></th>
-        <th><%= t ".#{f.object.model_name.singular}.#{attr}", default: f.object.class.human_attribute_name(attr) %></th>
+        <th><%= t ".#{f.object.model_name.singular}.#{attribute}", default: f.object.class.human_attribute_name(attribute) %></th>
         <th data-role="description"><%= t ".description" %></th>
       </tr>
     </thead>
@@ -23,8 +22,8 @@
       <% collection.each do |roll, o| %>
         <%= tag.tr data: { table_picker_target: "option", action: "click->table-picker#pick" } do %>
           <%= tag.th Array(roll).join("&thinsp;-&thinsp;").html_safe, data: { role: "roll" } %>
-          <%= tag.td f.object.class.human_attribute_name "#{attr}.#{o}", data: { role: "value" } %>
-          <%= tag.td t(".descriptions.#{attr}.#{o}", default: ""), data: { role: "description" } %>
+          <%= tag.td f.object.class.human_attribute_name "#{attribute}.#{o}", data: { role: "value" } %>
+          <%= tag.td t(".descriptions.#{attribute}.#{o}", default: ""), data: { role: "description" } %>
         <% end %>
       <% end %>
     </tbody>
