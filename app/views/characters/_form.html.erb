@@ -9,6 +9,10 @@
       <%= f.label :name %>
       <%= f.text_field :name, required: true %>
     </div>
+    <div class="field">
+      <%= f.label :handle %>
+      <%= f.text_field :handle %>
+    </div>
     <div class="field" data-controller="options-carousel" data-action="keydown.left->options-carousel#prev:prevent keydown.right->options-carousel#next:prevent">
       <%= f.label :role %>
       <button class="back" data-action="options-carousel#prev" type="button"></button>

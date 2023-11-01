@@ -16,6 +16,7 @@ ActiveRecord::Schema[7.2].define(version: 2023_10_17_155439) do
     t.string "player", null: false
     t.string "name", null: false
     t.string "role", null: false
+    t.string "handle"
     t.string "origins"
     t.string "personality"
     t.string "clothing"

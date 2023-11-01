@@ -5,6 +5,7 @@ class CreateCharacters < ActiveRecord::Migration[7.2]
       t.string :player, null: false
       t.string :name, null: false
       t.string :role, null: false
+      t.string :handle
       t.string :origins
       t.string :personality
       t.string :clothing
