@@ -1,5 +1,6 @@
 module RoleLifepath
   class Medtech < Base
+    
     attribute :kind, :string
     attribute :work_alone, :boolean
     attribute :partner, :string

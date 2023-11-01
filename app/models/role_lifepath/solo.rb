@@ -1,7 +1,6 @@
 module RoleLifepath
-    class Solo
-    include ActiveModel::API
-    
+    class Solo < Base
+
     attribute :kind, :string
     attribute :morality, :string
     attribute :territory, :string

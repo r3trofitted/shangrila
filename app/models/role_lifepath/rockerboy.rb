@@ -1,5 +1,6 @@
 module RoleLifepath
   class Rockerboy < Base
+    
     attribute :kind, :string
     attribute :currently_in_a_band, :boolean
     attribute :formerly_in_a_band, :boolean

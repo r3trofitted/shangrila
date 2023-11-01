@@ -1,5 +1,6 @@
 module RoleLifepath
   class Nomad < Base
+    
     attribute :pack_size, :string
     attribute :kind, :string, default: "land"
     attribute :pack_trade, :string

@@ -1,5 +1,6 @@
 module RoleLifepath
   class Media < Base
+    
     attribute :kind, :string
     attribute :channel, :string
     attribute :ethics, :string

@@ -1,5 +1,6 @@
 module RoleLifepath
   class Lawman < Base
+    
     attribute :position, :string
     attribute :jurisdiction, :string
     attribute :corruption_level, :string
