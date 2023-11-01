@@ -1,10 +1,10 @@
 module RoleLifepath
-    class Exec
-    include ActiveModel::API
-    
+    class Exec < Base
+      
     attribute :sector, :string
     attribute :division, :string
     attribute :morality, :string
+    attribute :location, :string
     attribute :rival, :string
     attribute :boss_relation, :string
     
