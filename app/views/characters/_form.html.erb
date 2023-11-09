@@ -15,12 +15,12 @@
     </div>
     <div class="field" data-controller="options-carousel" data-action="keydown.left->options-carousel#prev:prevent keydown.right->options-carousel#next:prevent">
       <%= f.label :role %>
-      <button class="back" data-action="options-carousel#prev" type="button"></button>
       <%= f.text_field :role, list: "roles", data: { options_carousel_target: "field" } %>
-      <button class="forward" data-action="options-carousel#next" type="button"></button>
       <datalist id="roles">
         <%= options_for_select Character::ROLES.map { |r| Character.human_attribute_name "role.#{r}" } %>
       </datalist>
+      <button class="back" data-action="options-carousel#prev" type="button"></button>
+      <button class="forward" data-action="options-carousel#next" type="button"></button>
     </div>
     
     <%= f.button(:next, value: "personals", class: "slanted-button next", data: { turbo: false }) { t(".next") } %>
