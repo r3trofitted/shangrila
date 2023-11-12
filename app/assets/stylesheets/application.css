@@ -1,9 +1,15 @@
 :root {
-  --clr-neutral-100: white;
+  --clr-neutral-100: rgb(255, 253, 230);
   --clr-neutral-300: #eaeaea;
-  --clr-neutral-900: black;
-  --clr-primary-200: orangered;
-  --clr-primary-400: red;
+  --clr-neutral-900: #0b001b;
+  
+  --clr-primary-900: #072327;
+  --clr-primary-700: #0F808F;
+  --clr-primary-400: #16DEF8;
+  --clr-primary-200: #80F0FF;
+  --clr-primary-100: #F0FDFF;
+
+  
   --clr-secondary-200: yellow;
   --clr-secondary-400: orange;
   
@@ -36,9 +42,11 @@ html {
 }
 
 body {
-  --text-color: var(--clr-neutral-900);
+  /* --text-color: var(--clr-neutral-100); */
+  --text-color: #363400;
   --text-font-size: var(--fs-400);
   
+  background: var(--clr-neutral-900);
   color: var(--text-color);
   font-size: var(--text-font-size);
   font-family: var(--ff-body);
@@ -50,6 +58,10 @@ body {
 
 form {
   container-type: inline-size;
+}
+
+input {
+  background: var(--clr-neutral-900);
 }
 
 fieldset.lifepath_entry {
@@ -102,7 +114,7 @@ legend {
   grid-auto-flow: column;
   place-content: center right;
   
-  color: var(--clr-neutral-100);
+  color: var(--text-color);
   font-family: var(--ff-heading);
   font-size: var(--banner-font-size);
   text-transform: uppercase;
@@ -344,7 +356,7 @@ fieldset.secondary-fields {
     z-index: -1;
     
     inset: var(--border-width);
-    background: var(--clr-neutral-100);
+    background: var(--clr-neutral-900);
     
     /* slanted shape */
     clip-path: polygon(
@@ -448,7 +460,7 @@ fieldset.secondary-fields {
   & thead {
     border: var(--border);
     background-color: var(--main-color);
-    color: var(--clr-neutral-100);
+    color: var(--clr-neutral-900);
   }
   
   & thead th:first-of-type {
