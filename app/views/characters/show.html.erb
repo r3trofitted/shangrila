@@ -1,43 +1,66 @@
 <%= tag.main id: dom_id(@character), class: "character-sheet" do %>
-  <header>
+  <header class="sr-only">
     <h1>Chrome Shift</h1>
   </header>
-  
+
   <article class="character">
-    <div class="field-border xtra">
-      <header>
-        <h2><%= @character.name %></h2>
-        <dl>
-          <dt>Role</dt>
-          <dd><%= @character.role %></dd>
+    <div class="column left">
+      <div id="id-block" class="field-border">
+        <header>
+          <h2><%= @character.name %></h2>
+          <dl>
+            <dt class="sr-only">Role</dt>
+            <dd><%= @character.role %></dd>
+          </dl>
+        </header>
+      </div>
+
+      <section id="stats">
+        <h3 class="sr-only">Stats</h3>
+        <dl class="stats">
+          <dt data-stat="INT">Intelligence</dt>
+          <dd class="field-border" data-stat="INT"><%= @character.intelligence %>
+          <dt data-stat="WILL">Willpower</dt>
+          <dd class="field-border" data-stat="WILL"><%= @character.willpower %>
+          <dt data-stat="COOL">Cool</dt>
+          <dd class="field-border" data-stat="COOL"><%= @character.cool %>
+          <dt data-stat="EMP">Empathy</dt>
+          <dd class="field-border" data-stat="EMP"><%= @character.empathy %>
+          <dt data-stat="BODY">Body</dt>
+          <dd class="field-border" data-stat="BODY"><%= @character.body %>
+          <dt data-stat="DEX">Dexterity</dt>
+          <dd class="field-border" data-stat="DEX"><%= @character.dexterity %>
+          <dt data-stat="MOVE">Move</dt>
+          <dd class="field-border" data-stat="MOVE"><%= @character.move %>
+          <dt data-stat="REF">Reflexes</dt>
+          <dd class="field-border" data-stat="REF"><%= @character.reflexes %>
+          <dt data-stat="TECH">Technique</dt>
+          <dd class="field-border" data-stat="TECH"><%= @character.technique %>
+          <dt data-stat="LUCK">Luck</dt>
+          <dd class="field-border" data-stat="LUCK"><%= @character.luck %>
         </dl>
-      </header>
+      </section>
+
+      <section id="role-abilities" class="field-border">
+        <h3 class="sr-only">Role ability</h3>
+        <dl class="stats">
+          <%= render partial: "skill", object: @character.role_ability %>
+        </dl>
+      </section>
+
+      <section id="picture" class="field-border">
+        <h3 class="sr-only">Picture</h3>
+        <%= image_tag "tteoksoon.jpg" %>
+      </section>
     </div>
-    
-    <section class="field-border">
-      <h3>Stats</h3>
-      <dl class="stats">
-        <dt data-stat="INT">Intelligence</dt>
-        <dd data-stat="INT"><%= @character.intelligence %>
-        <dt data-stat="WILL">Willpower</dt>
-        <dd data-stat="WILL"><%= @character.willpower %>
-        <dt data-stat="COOL">Cool</dt>
-        <dd data-stat="COOL"><%= @character.cool %>
-        <dt data-stat="EMP">Empathy</dt>
-        <dd data-stat="EMP"><%= @character.empathy %>
-        <dt data-stat="BODY">Body</dt>
-        <dd data-stat="BODY"><%= @character.body %>
-        <dt data-stat="DEX">Dexterity</dt>
-        <dd data-stat="DEX"><%= @character.dexterity %>
-        <dt data-stat="MOVE">Move</dt>
-        <dd data-stat="MOVE"><%= @character.move %>
-        <dt data-stat="REF">Reflexes</dt>
-        <dd data-stat="REF"><%= @character.reflexes %>
-        <dt data-stat="TECH">Technique</dt>
-        <dd data-stat="TECH"><%= @character.technique %>
-        <dt data-stat="LUCK">Luck</dt>
-        <dd data-stat="LUCK"><%= @character.luck %>
-      </dl>
-    </section>
+
+    <div class="right-column">
+      <section id="skills" class="field-border">
+        <h3>Skills</h3>
+        <dl class="skills-list">
+          <%= render partial: "skill", collection: @character.all_skills %>
+        </dl>
+      </section>
+    </div>
   </article>
 <% end %>

@@ -3,17 +3,17 @@
   --clr-neutral-100: #f9fafb;
   --clr-neutral-300: #d1d5db;
   --clr-neutral-900: #030712;
-  
+
   --clr-primary-100: #ecfeff;
   --clr-primary-200: #80F0FF;
   --clr-primary-400: #16DEF8;
   --clr-primary-700: #0F808F;
   --clr-primary-900: #072327;
 
-  
+
   --clr-secondary-200: yellow;
   --clr-secondary-400: orange; /* #363400; */
-  
+
   --fs-100: 0.354rem;
   --fs-200: 0.5rem;
   --fs-300: 0.707rem;
@@ -23,12 +23,12 @@
   --fs-700: 2.827rem;
   --fs-800: 3.998rem;
   --fs-900: 5.653rem;
-  
+
   --ff-body: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
   --ff-heading: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
   --ff-heading-xl: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
   --fs-cursive: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
-  
+
 }
 
 *,
@@ -46,66 +46,156 @@ html {
 body {
   --main-color: var(--clr-primary-400);
   --background-color: var(--clr-neutral-900);
-  
+
   --text-color: var(--main-color);
   --text-font-size: var(--fs-400);
-  
+
   /* Slanted borders and shapes */
   --border-width: 3px;
   --cutoff-gap: 2px;
   --cutoff-width: var(--text-font-size);
   --block-cutoff-width: calc(var(--cutoff-width) / 2);
-  
+
   background: var(--background-color);
   color: var(--text-color);
   font-size: var(--text-font-size);
   font-family: var(--ff-body);
-  
+
   counter-reset: section -1;
-  
+
   margin: 0;
+}
+
+dd {
+  margin-inline: 0;
+}
+
+/* source: https://css-tricks.com/inclusively-hidden/ */
+.sr-only:not(:focus):not(:active) {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 /**/
 
 .character {
-  /* position: relative; */
-  /* isolation: isolate; */
-  
+  --row-gap: 1rem;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20ch, 50ch));
+  grid-auto-flow: column;
+  gap: var(--row-gap);
+  align-items: start;
+
+  padding: var(--row-gap);
+
   & :is(h1, h2, h3, h4, h5, h6, dl) {
     margin: 0;
   }
+
+  .column {
+    display: grid;
+    grid-template-columns: 1fr minmax(8ch, auto);
+    row-gap: var(--row-gap);
+
+    &.left {
+      grid-column: 1;
+    }
+
+    &.right {
+
+    }
+
+    & > section {
+      grid-column: 1 / -1;
+
+      display: grid;
+      grid-template-columns: subgrid;
+      row-gap: calc(var(--row-gap) * 0.75);
+      align-items: center;
+
+      &:not(.field-border) {
+        padding-inline-start: var(--cutoff-width);
+      }
+    }
+  }
 }
 
-.character .xtra {
-  /* padding:  */
-}
+#id-block {
+  grid-column: 1 / -1;
+  display: flex;
+  place-content: center;
+  padding-block: calc(var(--cutoff-width) / 2); /* TODO use var */
 
-section.field-border {
-  padding: calc(var(--cutoff-width) / 2) var(--cutoff-width);
-}
+  h2 {
+    font-size: var(--fs-700);
+    margin-block-end: 0;
+  }
 
-.character header {
-  width: calc(100% - var(--cutoff-width)*2);
-  margin: calc(var(--cutoff-width) / 2) var(--cutoff-width);
+  dd {
+    margin-block-start: -.5em;
+    text-align: end;
+  }
 }
 
 dl.stats {
-  max-width: max-content;
-  
-  display: grid;
-  grid-template-columns: 1fr 4ch;
-  gap: .5em;
-  
-  & dt {
+  display: contents;
+
+  font-size: var(--fs-500);
+
+  dt {
     grid-column: 1 / span 1;
     justify-self: start;
+
+    /* TODO: decide whether to use this or not */
+    /* &::after {
+      content: '[' attr(data-stat) ']';
+      font-size: var(--fs-300);
+      margin-inline-start: 1ch;
+    } */
   }
-  
-  & dd {
-    margin-inline: 0;
+
+  dd {
+    width: 100%;
+
+    font-size: var(--fs-600);
+    text-align: center;
+    padding: .1em .5em;
+
     grid-column: 2 / span 1;
     justify-self: center;
+  }
+}
+
+#role-abilities {
+  /* ignoring the normal field-border padding so that the dd is aligned with the dd.field-border above */
+  padding-block: 0;
+  padding-inline-end: 0;
+}
+
+#picture {
+  grid-row: 2;
+  aspect-ratio: 1;
+  padding: var(--border-width);
+
+  img {
+    grid-column: 1 / -1;
+    width: 100%;
+    height: 100%;
+
+    clip-path: polygon(
+      0% 0%,
+      calc(100% - var(--cutoff-width)) 0%,
+      100% var(--cutoff-width),
+      100% 100%,
+      var(--cutoff-width) 100%,
+      0% calc(100% - var(--cutoff-width))
+    );
   }
 }
 
@@ -122,28 +212,28 @@ input {
 
 fieldset.lifepath_entry {
   --margin-inline: .5rem;
-  
+
   --main-color: var(--clr-primary-400);
   --secondary-color: var(--clr-secondary-400);
-  
+
   --banner-font-size: var(--fs-700);
   --banner-width: calc(var(--banner-font-size) * 1.25);
-  
+
   --cutoff-gap: 2px;
   --cutoff-width: var(--text-font-size);
   --block-cutoff-width: calc(var(--cutoff-width) / 2);
-  
+
   --gap: 2rem;
   --label-height: calc(1.5 * var(--text-font-size));
-  
+
   position: relative;
-  
+
   border: none;
   padding: var(--gap) 0 0 0;
   margin-inline: var(--margin-inline);
-  
+
   min-height: 100vh;
-  
+
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: [banner] var(--banner-width) [main] 1fr [aside] 1fr [end] min-content [gutter];
@@ -151,9 +241,9 @@ fieldset.lifepath_entry {
   column-gap: var(--gap);
   align-content: start;
   align-items: start;
-  
+
   counter-increment: section;
-  
+
   @container (width < 70ch) {
     margin-inline: 0;
     column-gap: calc(var(--gap) / 2);
@@ -165,17 +255,17 @@ legend {
   position: absolute;
   grid-column: banner / main;
   inset: 0; /* relative to the containing grid cell, which is pretty cool */
-  
+
   display: grid;
   grid-auto-flow: column;
   place-content: center right;
-  
+
   color: var(--text-color);
   font-family: var(--ff-heading);
   font-size: var(--banner-font-size);
   text-transform: uppercase;
   word-spacing: .3em;
-  
+
   padding-inline-end: var(--gap); /* making up for the fieldset's top padding */
   background: var(--main-color);
 
@@ -183,7 +273,7 @@ legend {
   text-align: end;
   text-orientation: mixed;
   transform: rotateZ(180deg);
-  
+
   &::before {
     content: counter(section) "_";
   }
@@ -196,15 +286,15 @@ legend {
   background-color: var(--main-color);
   color: var(--clr-neutral-100);
   border: none;
-  
+
   display: inline-block;
   width: auto;
   padding: .5em 1em;
-  
+
   font-family: var(--ff-heading);
   font-size: var(--fs-400);
   font-weight: 500;
-  
+
   /* slanted shape */
   clip-path: polygon(
     0% var(--border-margin-top),
@@ -219,7 +309,7 @@ legend {
 .next {
   margin-top: calc(var(--label-height)*2);
   margin-bottom: calc(var(--label-height)*4);
-  
+
   grid-column: main / aside;
 }
 
@@ -227,36 +317,36 @@ legend {
 .field {
   --border-width: 3px;
   --border-margin-top: var(--label-height);
-  
+
   grid-column: main / aside;
-  
+
   position: relative;
   isolation: isolate;
-  
+
   color: var(--text-color);
   font-size: var(--text-font-size);
-  
+
   & label {
     display: block;
     min-height: var(--label-height);
     color: var(--main-color);
-    
+
     place-self: center left;
   }
-  
+
   /* form-sizing: normal; */
   & input {
     --text-font-size: var(--fs-600);
     font-size: var(--text-font-size);
     font-family: var(--fs-cursive);
-    
+
     width: calc(100% - var(--cutoff-width)*2);
     margin: calc(var(--cutoff-width) / 2) var(--cutoff-width);
-    
+
     border: none;
-    
+
     place-self: stretch left;
-    
+
     &:focus-visible {
       border: none;
       outline: none;
@@ -268,28 +358,28 @@ legend {
 fieldset.secondary-fields {
   --main-color: var(--clr-primary-200);
   --secondary-color: var(--clr-secondary-200);
-  
+
   border: none;
   padding: 0;
   margin-top: calc(-7/8 * var(--gap)); /* reducing the first outer row gap to the same size as the inner row gap*/
   margin-left: calc(var(--gap)*2);
   margin-right: 0;
   margin-bottom: 0;
-  
+
   display: grid;
   grid-template-columns: subgrid;
   grid-column: main / end;
   row-gap: calc(var(--gap) / 8);
-  
+
   & label::before {
     content: "↳ ";
   }
-  
+
   & table.options-table {
     position: absolute;
     display: none;
   }
-  
+
   & .field:focus-within table.options-table {
     display: revert;
   }
@@ -299,29 +389,29 @@ fieldset.secondary-fields {
   display: grid;
   grid-auto-flow: column;
   column-gap: var(--gap);
-  
+
   & label {
     place-self: stretch;
     color: var(--main-color);
   }
-  
+
   & label:has(input:checked) .field-border {
     color: var(--clr-neutral-100);
   }
-  
+
   & label:has(input:checked) .field-border::after {
     background: var(--main-color);
   }
-  
+
   & span {
     display: inline-block;
-    
+
     width: 100%;
     padding: .5em 1em;
-    
+
     text-align: center;
   }
-  
+
   & input {
     /* aka the sr-only properties */
     clip: rect(0 0 0 0);
@@ -329,7 +419,7 @@ fieldset.secondary-fields {
     height: 1px;
     overflow: hidden;
     position: absolute;
-    white-space: nowrap; 
+    white-space: nowrap;
     width: 1px;
   }
 }
@@ -338,35 +428,35 @@ fieldset.secondary-fields {
   position: relative;
   z-index: 1;
   align-self: start;
-  
+
   &:has(input:focus-visible)::before {
     position: absolute;
     content: '';
-    
+
     top: 0;
     bottom: 0;
     left: calc(-1 * var(--block-cutoff-width) - var(--cutoff-gap));
     width: calc(var(--cutoff-width) + var(--block-cutoff-width));
-    
+
     background-color: var(--main-color);
     clip-path: polygon(
-      0 0, 
+      0 0,
       var(--block-cutoff-width) 0,
       var(--block-cutoff-width) calc(100% - var(--cutoff-width)),
       calc(100% - var(--cutoff-gap)*0.414) 100%,
       0 100%
      );
   }
-  
+
   &:has(input[required])::after {
     position: absolute;
     content: '';
-    
+
     top: 0;
     right: 0;
     width: var(--cutoff-width);
     aspect-ratio: 1;
-    
+
     background-color: var(--main-color);
     clip-path: polygon(
       var(--cutoff-gap) 0,
@@ -379,6 +469,8 @@ fieldset.secondary-fields {
 .field-border {
   position: relative;
   height: 100%;
+  padding-block: calc(var(--cutoff-width) / 2);
+  padding-inline: var(--cutoff-width);
 
   /* outer slanted background (border color) */
   &::before {
@@ -386,10 +478,10 @@ fieldset.secondary-fields {
     content: '';
     display: block;
     z-index: -2;
-    
+
     inset: 0;
     background: var(--main-color);
-    
+
     /* slanted shape */
     clip-path: polygon(
       0% 0%,
@@ -400,20 +492,20 @@ fieldset.secondary-fields {
       0% calc(100% - var(--cutoff-width))
     );
   }
-  
+
   /* inner slanted background (background color) */
   &::after {
     /* 0.4142 */
     --cutoff-width: calc(var(--text-font-size) - (var(--border-width) / 2)); /* smaller cutoff to make up for the border width */
-    
+
     position: absolute;
     content: '';
     display: block;
     z-index: -1;
-    
+
     inset: var(--border-width);
     background: var(--background-color);
-    
+
     /* slanted shape */
     clip-path: polygon(
       0% 0%,
@@ -437,7 +529,7 @@ fieldset.secondary-fields {
   --arrow-cutoff-width: calc(2 * var(--block-cutoff-width));
   --button-extra-margin: calc(var(--arrow-cutoff-width) + var(--block-cutoff-width));
   --button-offset: calc(-1 * (var(--block-cutoff-width) + var(--cutoff-gap)));
-  
+
   & > .field-indicators {
     margin-inline: var(--button-extra-margin);
   }
@@ -445,23 +537,23 @@ fieldset.secondary-fields {
   & button {
     position: absolute;
     border: none;
-    
+
     background-color: var(--main-color);
-    
+
     top: var(--border-margin-top);
     bottom: 0;
-    
+
     --button-width: calc((2 * var(--arrow-cutoff-width)) + var(--cutoff-width));
     width: var(--button-width);
-    
+
     &:active {
       background-color: var(--secondary-color);
     }
   }
-  
+
   & button.back {
     left: var(--button-offset);
-    
+
     clip-path: polygon(
       0 50%,
       var(--arrow-cutoff-width) 0,
@@ -471,10 +563,10 @@ fieldset.secondary-fields {
       var(--arrow-cutoff-width) 100%
     );
   }
-  
+
   & button.forward {
     right: var(--button-offset);
-    
+
     clip-path: polygon(
       0% 0%,
       calc(var(--arrow-cutoff-width) + var(--cutoff-width)) 0%,
@@ -488,82 +580,82 @@ fieldset.secondary-fields {
 
 .field:has(.options-table) {
   grid-column: main / end;
-  
+
   display: grid;
   grid-auto-flow: row;
   grid-template-columns: subgrid;
-  
+
   & :not(table) {
     grid-column: main;
   }
-  
+
   & table {
     --border: 1px solid var(--main-color);
-    
+
     grid-column: aside;
     grid-row-start: 2;
     table-layout: fixed;
-    
+
     width: 100%;
     border-collapse: collapse;
     text-align: center;
   }
-  
+
   & table:hover {
     display: revert !important;
   }
-  
+
   & thead {
     border: var(--border);
     background-color: var(--main-color);
     color: var(--clr-neutral-900);
   }
-  
+
   & thead th:first-of-type {
     width: 8ch;
     border-right-color: var(--clr-neutral-100);
   }
-  
+
   & tbody {
     border: var(--border);
   }
-  
+
   & tfoot {
     border: none;
     border-top: var(--border);
     text-align: right;
   }
-  
+
   & tr:nth-of-type(even) * {
     background-color: var(--clr-neutral-300);
   }
-  
+
   &:not(.locked) tr[data-table-picker-target='option'] {
     cursor: pointer;
   }
-  
+
   &:not(.locked) tr[data-table-picker-target='option']:is(.selected, :hover) {
     outline: 3px solid var(--secondary-color);
     outline-left-width: 6px;
   }
-  
+
   & th {
     border-inline: 1px solid var(--main-color);
   }
-  
+
   & :is(th, td) {
     padding-block: .35em;
   }
-  
+
   & :is(th, td)[data-role="description"] {
     display: none;
-    
+
   }
-  
+
   & tfoot td {
     padding-bottom: 0;
   }
-  
+
   & p[data-field-target="description"] {
     margin-left: calc(var(--cutoff-width) + var(--border-width));
     font-style: italic;

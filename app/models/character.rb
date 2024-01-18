@@ -1,4 +1,6 @@
 class Character < ApplicationRecord
+  STATS = %i(int cool will emp tech body ref dex move luck)
+
   serialize :friends, coder: Relationships.coder_for(Friend)
   serialize :enemies, coder: Relationships.coder_for(Enemy)
   serialize :tragic_love_affairs, coder: Relationships.coder_for(TragicLoveAffair)
@@ -194,7 +196,7 @@ class Character < ApplicationRecord
       10 => :become_respected
     }
   end
-  
+
   # SLIME
   def intelligence = rand(1..10)
   def willpower = rand(1..10)
@@ -206,4 +208,14 @@ class Character < ApplicationRecord
   def reflexes = rand(1..10)
   def technique = rand(1..10)
   def luck = rand(1..10)
+
+
+  def role_ability
+    # SLIME
+    Skill.new(name: :operator, score: 4)
+  end
+
+  def all_skills
+    Skill.all.each { |s| s.score ||= 0 } # FIXME: merge the character's skills or skill scores
+  end
 end

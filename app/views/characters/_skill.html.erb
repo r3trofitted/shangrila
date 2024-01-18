@@ -1,0 +1,6 @@
+<%= tag.dt data: { stat: skill.stat, score: skill.score, double_cost: skill.costly? } do %>
+  <%= tag.span skill.human_name, class: "skill-name" %>
+  <%= tag.span " (#{skill.stat})", class: "skill-stat" if skill.stat.present? %>
+  <%= tag.span(" ×2", class: "skill-cost") if skill.costly? %>
+<% end %>
+<%= tag.dd skill.score %>
