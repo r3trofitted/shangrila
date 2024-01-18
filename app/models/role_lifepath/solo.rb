@@ -1,11 +1,10 @@
 module RoleLifepath
     class Solo < Base
-
     attribute :kind, :string
     attribute :morality, :string
     attribute :territory, :string
     attribute :enemy, :string
-    
+
     KINDS = {
       1 => :bodyguard,
       2 => :street_muscle,
@@ -14,7 +13,7 @@ module RoleLifepath
       5 => :vigilante,
       6 => :assassin
     }
-    
+
     MORALITIES = {
       1 => :good,
       2 => :spares_the_innocent,
@@ -23,7 +22,7 @@ module RoleLifepath
       5 => :occasionally_slips,
       6 => :evil
     }
-    
+
     TERRITORIES = {
       1 => :corporate_zone,
       2 => :combat_zones,
@@ -32,7 +31,7 @@ module RoleLifepath
       5 => :fixer,
       6 => :wherever
     }
-    
+
     RIVALS = {
       1 => :corporation,
       2 => :boostergang,
@@ -41,5 +40,5 @@ module RoleLifepath
       5 => :fixer,
       6 => :rival_nemesis_solo
     }
-  end
+    end
 end

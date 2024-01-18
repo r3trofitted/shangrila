@@ -1,9 +1,9 @@
 class Enemy < Friend
   attr_accessor :cause, :wronged_party, :means_of_retaliation, :intensity
-  
+
   validates_presence_of :cause, :wronged_party, :means_of_retaliation, :intensity
   validates_inclusion_of :wronged_party, in: %w[character enemy]
-  
+
   ORIGINS = {
      1 => :ex_friend,
      2 => :ex_lover,
@@ -16,7 +16,7 @@ class Enemy < Friend
      9 => :government_official,
     10 => :boosterganger
   }
-  
+
   CAUSES = {
      1 => :loss_face_or_status,
      2 => :loss_of_relative,
@@ -29,7 +29,7 @@ class Enemy < Friend
      9 => :former_business_rival,
     10 => :setup
   }
-  
+
   MEANS_OF_RETALIATION = {
      1 => :wont_go_out_of_their_way,
      2 => :themselves,
@@ -42,12 +42,12 @@ class Enemy < Friend
      9 => :powerful_corporation,
     10 => :entire_city
   }
-  
+
   INTENSITIES = {
-    [1,2] => :avoid,
-    [3,4] => :murderous_rage,
-    [5,6] => :backstab,
-    [7,8] => :verbal_attack,
+    [1, 2] => :avoid,
+    [3, 4] => :murderous_rage,
+    [5, 6] => :backstab,
+    [7, 8] => :verbal_attack,
         9 => :setup,
        10 => :murder
   }

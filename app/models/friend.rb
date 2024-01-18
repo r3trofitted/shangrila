@@ -1,10 +1,10 @@
 class Friend
   include ActiveModel::API
-  
+
   attr_accessor :name, :origin
-  
+
   validates_presence_of :origin, :nature
-  
+
   ORIGINS = {
      1 => :like_an_older_sibling,
      2 => :teacher_or_mentor,

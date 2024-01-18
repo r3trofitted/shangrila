@@ -1,15 +1,14 @@
 module RoleLifepath
   class Nomad < Base
-    
     attribute :pack_size, :string
     attribute :kind, :string, default: "land"
     attribute :pack_trade, :string
     attribute :position, :string
     attribute :pack_philosophy, :string
     attribute :pack_enemy, :string
-    
+
     KINDS = %w[air sea land]
-    
+
     PACK_SIZES = {
       1 => :single_tribe,
       2 => :couple_dozen,
@@ -18,7 +17,7 @@ module RoleLifepath
       5 => :blood_family,
       6 => :affiliated_family
     }
-    
+
     AIR_TRADES = {
       1 => :air_piracy,
       2 => :cargo_transport,
@@ -27,7 +26,7 @@ module RoleLifepath
       5 => :smuggling,
       6 => :combat_support
     }
-    
+
     SEA_TRADES = {
       1 => :piracy,
       2 => :cargo_transport,
@@ -36,7 +35,7 @@ module RoleLifepath
       5 => :combat_support,
       6 => :submarine_warfare
     }
-    
+
     LAND_TRADES = {
        1 => :gogang,
        2 => :passenger_transport,
@@ -49,7 +48,7 @@ module RoleLifepath
        9 => :mercenary_army,
       10 => :work_gang
     }
-    
+
     POSITIONS = {
       1 => :scout,
       2 => :outrider,
@@ -58,7 +57,7 @@ module RoleLifepath
       5 => :solo_smuggler,
       6 => :procurement
     }
-    
+
     PACK_PHILOSOPHIES = {
       1 => :good,
       2 => :fair_and_honest,
@@ -67,7 +66,7 @@ module RoleLifepath
       5 => :ruthless,
       6 => :evil
     }
-    
+
     PACK_ENEMIES = {
       1 => :organized_crime,
       2 => :boostergangs,

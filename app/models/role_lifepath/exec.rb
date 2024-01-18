@@ -1,13 +1,12 @@
 module RoleLifepath
-    class Exec < Base
-      
+  class Exec < Base
     attribute :sector, :string
     attribute :division, :string
     attribute :morality, :string
     attribute :location, :string
     attribute :rival, :string
     attribute :boss_relation, :string
-    
+
     SECTORS = {
        1 => :financial,
        2 => :media,
@@ -20,7 +19,7 @@ module RoleLifepath
        9 => :consumer_services,
       10 => :real_estate
     }
-    
+
     DIVISIONS = {
       1 => :procurement,
       2 => :manufacturing,
@@ -29,7 +28,7 @@ module RoleLifepath
       5 => :pr,
       6 => :m_and_a
     }
-    
+
     MORALITIES = {
       1 => :good,
       2 => :mostly_fair,
@@ -38,7 +37,7 @@ module RoleLifepath
       5 => :ruthless,
       6 => :evil
     }
-    
+
     LOCATIONS = {
       1 => :one_city,
       2 => :several_cities,
@@ -47,7 +46,7 @@ module RoleLifepath
       5 => :international_some_offices,
       6 => :international_offices_everywhere
     }
-    
+
     RIVALS = {
       1 => :rival_corp,
       2 => :law_enforcement,
@@ -56,7 +55,7 @@ module RoleLifepath
       5 => :local_government,
       6 => :international_corporations
     }
-    
+
     BOSS_RELATIONS = {
       1 => :mentor,
       2 => :trusting,

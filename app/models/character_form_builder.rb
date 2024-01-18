@@ -6,20 +6,20 @@ class CharacterFormBuilder < ActionView::Helpers::FormBuilder
       end
     end
   end
-  
+
   def options_table(attribute, collection = options_collection_for_attribute(attribute))
     @template.render "options_table", f: self, attribute:, collection:
   end
-  
+
   def wrapper_field_id(attr)
     field_id(attr) + "_field"
   end
-  
+
   private
-  
+
   def options_collection_for_attribute(attribute)
     klass = object.class
-    
+
     begin
       klass.const_get(attribute.to_s.pluralize.upcase)
     rescue NameError

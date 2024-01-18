@@ -1,13 +1,12 @@
 module RoleLifepath
   class Fixer < Base
-    
     attribute :kind, :string
     attribute :work_alone, :boolean
     attribute :partner, :string
     attribute :office, :string
     attribute :clients, :string
     attribute :enemy, :string
-    
+
     KINDS = {
        1 => :gangs_deal_broker,
        2 => :purveyor_of_rarities,
@@ -20,7 +19,7 @@ module RoleLifepath
        9 => :combat_zone_broker,
       10 => :agent
     }
-    
+
     PARTNERS = {
       1 => :family_member,
       2 => :old_friend,
@@ -29,16 +28,16 @@ module RoleLifepath
       5 => :secret_with_mob_connections,
       6 => :secret_with_corp_connections
     }
-    
+
     OFFICES = {
       1 => :none,
       2 => :booth,
       3 => :data_pool_messages,
       4 => :warehouse,
       5 => :abandoned_building,
-      6 => :cube_hotel_lobby,
+      6 => :cube_hotel_lobby
     }
-    
+
     CLIENTS = {
       1 => :rockerboys,
       2 => :gangers,
@@ -47,7 +46,7 @@ module RoleLifepath
       5 => :nomads,
       6 => :politicos
     }
-    
+
     ENEMIES = {
       1 => :gangers,
       2 => :rival_about_clients,

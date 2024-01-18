@@ -1,11 +1,10 @@
 module RoleLifepath
   class Media < Base
-    
     attribute :kind, :string
     attribute :channel, :string
     attribute :ethics, :string
     attribute :stories, :string
-    
+
     KINDS = {
       1 => :blogger,
       2 => :writer,
@@ -14,7 +13,7 @@ module RoleLifepath
       5 => :investigative_reporter,
       6 => :street_scribe
     }
-    
+
     CHANNELS = {
       1 => :monthly_magazine,
       2 => :blog,
@@ -23,7 +22,7 @@ module RoleLifepath
       5 => :book_sales,
       6 => :screamsheets
     }
-    
+
     ETHICS = {
       1 => :fair_and_honest,
       2 => :fair_but_iffy,
@@ -32,7 +31,7 @@ module RoleLifepath
       5 => :ruthless,
       6 => :totally_corrupt
     }
-    
+
     STORIES = {
       1 => :political_intrigue,
       2 => :ecological_impact,

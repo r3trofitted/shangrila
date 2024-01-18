@@ -1,12 +1,11 @@
 module RoleLifepath
   class Lawman < Base
-    
     attribute :position, :string
     attribute :jurisdiction, :string
     attribute :corruption_level, :string
     attribute :enemy, :string
     attribute :target, :string
-    
+
     POSITIONS = {
       1 => :guard,
       2 => :beat,
@@ -15,7 +14,7 @@ module RoleLifepath
       5 => :motor_patrol,
       6 => :internal_affairs
     }
-    
+
     JURISDICTIONS = {
       1 => :corporate_zones,
       2 => :patrol_zone,
@@ -24,7 +23,7 @@ module RoleLifepath
       5 => :recovery_zones,
       6 => :open_highways
     }
-    
+
     CORRUPTION_LEVELS = {
       1 => :fair_and_ethical,
       2 => :fair_but_hard,
@@ -33,7 +32,7 @@ module RoleLifepath
       5 => :ruthless,
       6 => :totally_corrupt
     }
-    
+
     ENEMIES = {
       1 => :organized_crime,
       2 => :boostergangs,
@@ -42,7 +41,7 @@ module RoleLifepath
       5 => :smugglers,
       6 => :street_criminals
     }
-    
+
     TARGETS = {
       1 => :organized_crime,
       2 => :boostergangs,

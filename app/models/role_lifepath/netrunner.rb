@@ -1,6 +1,5 @@
 module RoleLifepath
   class Netrunner < Base
-    
     attribute :kind, :string
     attribute :work_alone, :boolean
     attribute :partner, :string
@@ -8,7 +7,7 @@ module RoleLifepath
     attribute :clients, :string
     attribute :supplier, :string
     attribute :enemy, :string
-    
+
     KINDS = {
       1 => :freelancer,
       2 => :corporate_runner,
@@ -17,7 +16,7 @@ module RoleLifepath
       5 => :team_freelancer,
       6 => :solo_freelancer
     }
-    
+
     PARTNERS = {
       1 => :family_member,
       2 => :old_friend,
@@ -26,7 +25,7 @@ module RoleLifepath
       5 => :secret_with_mobconnections,
       6 => :secret_with_corporate_connections
     }
-    
+
     WORKSPACES = {
       1 => :screens_everywhere,
       2 => :better_in_virtuality,
@@ -35,7 +34,7 @@ module RoleLifepath
       5 => :minimalist,
       6 => :everywhere
     }
-    
+
     CLIENTS = {
       1 => :local_fixers,
       2 => :local_gangers,
@@ -44,7 +43,7 @@ module RoleLifepath
       5 => :local_nomads,
       6 => :you_work_for_yourself
     }
-    
+
     SUPPLIERS = {
       1 => :scavenges_combat_zones,
       2 => :loot_enemies,
@@ -53,7 +52,7 @@ module RoleLifepath
       5 => :corporate_warehouses,
       6 => :night_markets
     }
-    
+
     ENEMIES = {
       1 => :rogue_ai,
       2 => :rival_netrunners,

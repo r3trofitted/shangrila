@@ -2,3 +2,11 @@
 inherit_gem:
   rubocop-rails-omakase: rubocop.yml
 
+Layout/SpaceInsideArrayLiteralBrackets:
+  EnforcedStyle: no_space
+
+Style/PercentLiteralDelimiters:
+  Enabled: false
+
+Rails/RefuteMethods:
+  EnforcedStyle: refute

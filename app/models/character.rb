@@ -3,7 +3,7 @@ class Character < ApplicationRecord
   serialize :enemies, coder: Relationships.coder_for(Enemy)
   serialize :tragic_love_affairs, coder: Relationships.coder_for(TragicLoveAffair)
   serialize :role_lifepath, coder: RoleLifepath
-  
+
   # SMELL: repetitions
   after_initialize do
     self.friends             = Relationships.of(Friend) if friends.blank?
@@ -11,7 +11,7 @@ class Character < ApplicationRecord
     self.tragic_love_affairs = Relationships.of(TragicLoveAffair) if tragic_love_affairs.blank?
     self.role_lifepath       = RoleLifepath.for(role) if role_lifepath.blank?
   end
-  
+
   concerning :CreationTables do
     ROLES = %i[
       exec
@@ -25,7 +25,7 @@ class Character < ApplicationRecord
       solo
       tech
     ]
-    
+
     ORIGINS = {
        1 => :north_american,
        2 => :south_central_american,
@@ -38,7 +38,7 @@ class Character < ApplicationRecord
        9 => :east_asian,
       10 => :oceania_pacific_islander
     }
-    
+
     PERSONALITIES = {
        1 => :shy_and_secretive,
        2 => :rebellious_antisocial_and_violent,
@@ -51,7 +51,7 @@ class Character < ApplicationRecord
        9 => :intellectual_and_detached,
       10 => :friendly_and_outgoing
     }
-    
+
     CLOTHINGS = {
        1 => :generic_chic,
        2 => :urban_flash,
@@ -64,7 +64,7 @@ class Character < ApplicationRecord
        9 => :bohemian,
       10 => :asia_pop
     }
-    
+
     HAIRSTYLES = {
        1 => :mohawk,
        2 => :long_and_ratty,
@@ -77,7 +77,7 @@ class Character < ApplicationRecord
        9 => :short_and,
       10 => :long_and_straight
     }
-    
+
     AFFECTATIONS = {
        1 => :tattoos,
        2 => :mirrorshades,
@@ -90,7 +90,7 @@ class Character < ApplicationRecord
        9 => :fingerless_gloves,
       10 => :strange_contacts
     }
-    
+
     VALUED_THINGS = {
        1 => :money,
        2 => :honor,
@@ -103,9 +103,9 @@ class Character < ApplicationRecord
        9 => :family,
       10 => :friendship
     }
-    
+
     OPINIONS_ON_PEOPLE = {
-       [1,2] => :neutral,
+       [1, 2] => :neutral,
            3 => :like,
            4 => :hate,
            5 => :tools,
@@ -115,7 +115,7 @@ class Character < ApplicationRecord
            9 => :wipe_em_all_out,
           10 => :wonderful
     }
-    
+
     VALUED_PEOPLE = {
        1 => :parent,
        2 => :sibling,
@@ -128,7 +128,7 @@ class Character < ApplicationRecord
        9 => :personal_hero,
       10 => :no_one
     }
-    
+
     VALUED_POSSESSIONS = {
        1 => :weapon,
        2 => :tool,
@@ -141,7 +141,7 @@ class Character < ApplicationRecord
        9 => :toy,
       10 => :letter
     }
-    
+
     ORIGINAL_BACKGROUNDS = {
        1 => :corporate_execs,
        2 => :corporate_managers,
@@ -154,7 +154,7 @@ class Character < ApplicationRecord
        9 => :reclaimers,
       10 => :edgerunners
     }
-    
+
     CHILDHOOD_ENVIRONMENTS = {
        1 => :ran_on_the_street,
        2 => :safe_corp_zone,
@@ -165,9 +165,9 @@ class Character < ApplicationRecord
        7 => :megastructure,
        8 => :city_taken_over_by_reclaimers,
        9 => :drift_nation,
-      10 => :corporate_starscraper,
+      10 => :corporate_starscraper
     }
-    
+
     FAMILY_CRISES = {
        1 => :lost_everything_through_betrayal,
        2 => :lost_everything_through_bad_management,
@@ -180,7 +180,7 @@ class Character < ApplicationRecord
        9 => :cursed_with_a_hereditary_feud,
       10 => :inheritor_of_a_family_debt
     }
-    
+
     LIFE_GOALS = {
        1 => :get_rid_of_bad_rep,
        2 => :power,
