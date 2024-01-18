@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-ruby "3.2.2"
+ruby file: ".ruby-version"
 
 # Use main development branch of Rails
 gem "rails", github: "rails/rails", branch: "main"
@@ -65,3 +65,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "rubocop-rails-omakase", "~> 1.0", :group => :development, :require => false

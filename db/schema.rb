@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2023_10_17_155439) do
+ActiveRecord::Schema[7.2].define(version: 2024_01_19_075146) do
   create_table "characters", force: :cascade do |t|
     t.boolean "finalized", default: false, null: false
     t.string "player", null: false
