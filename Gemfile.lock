@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 8f386d73215867d5f55058a252f066b1040a7f2b
+  revision: 9c3ffab47c3bf59320ba08e9dafdb0275cf91a5a
   branch: main
   specs:
     actioncable (7.2.0.alpha)
@@ -105,6 +105,8 @@ GEM
     bindex (0.8.1)
     bootsnap (1.17.1)
       msgpack (~> 1.2)
+    brakeman (6.1.1)
+      racc
     builder (3.2.4)
     capybara (3.39.2)
       addressable
@@ -287,6 +289,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
+  brakeman
   capybara
   debug
   importmap-rails

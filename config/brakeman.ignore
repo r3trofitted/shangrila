@@ -1,0 +1,29 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Mass Assignment",
+      "warning_code": 70,
+      "fingerprint": "00e2974b1ada0d1e10a45e95f26b41b88c7e7bce316c13defe1e7b8fa8f838c4",
+      "check_name": "MassAssignment",
+      "message": "Specify exact keys allowed for mass assignment instead of using `permit!` which allows any keys",
+      "file": "app/controllers/characters_controller.rb",
+      "line": 32,
+      "link": "https://brakemanscanner.org/docs/warning_types/mass_assignment/",
+      "code": "params.require(:character).except(:next).permit!",
+      "render_path": null,
+      "location": {
+        "type": "method",
+        "class": "CharactersController",
+        "method": "character_params"
+      },
+      "user_input": null,
+      "confidence": "Medium",
+      "cwe_id": [
+        915
+      ],
+      "note": ""
+    }
+  ],
+  "updated": "2024-01-19 12:36:14 +0100",
+  "brakeman_version": "6.1.1"
+}
