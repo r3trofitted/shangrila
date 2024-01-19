@@ -1,17 +1,18 @@
 :root {
-  --clr-neutral-100: rgb(255, 253, 230);
-  --clr-neutral-300: #eaeaea;
-  --clr-neutral-900: #0b001b;
+  /* Stealing from Tailwind ("gray" palette) */
+  --clr-neutral-100: #f9fafb;
+  --clr-neutral-300: #d1d5db;
+  --clr-neutral-900: #030712;
   
-  --clr-primary-900: #072327;
-  --clr-primary-700: #0F808F;
-  --clr-primary-400: #16DEF8;
+  --clr-primary-100: #ecfeff;
   --clr-primary-200: #80F0FF;
-  --clr-primary-100: #F0FDFF;
+  --clr-primary-400: #16DEF8;
+  --clr-primary-700: #0F808F;
+  --clr-primary-900: #072327;
 
   
   --clr-secondary-200: yellow;
-  --clr-secondary-400: orange;
+  --clr-secondary-400: orange; /* #363400; */
   
   --fs-100: 0.354rem;
   --fs-200: 0.5rem;
@@ -27,6 +28,7 @@
   --ff-heading: Bahnschrift, 'DIN Alternate', 'Franklin Gothic Medium', 'Nimbus Sans Narrow', sans-serif-condensed, sans-serif;
   --ff-heading-xl: Rockwell, 'Rockwell Nova', 'Roboto Slab', 'DejaVu Serif', 'Sitka Small', serif;
   --fs-cursive: 'Segoe Print', 'Bradley Hand', Chilanka, TSCu_Comic, casual, cursive;
+  
 }
 
 *,
@@ -42,11 +44,19 @@ html {
 }
 
 body {
-  /* --text-color: var(--clr-neutral-100); */
-  --text-color: #363400;
+  --main-color: var(--clr-primary-400);
+  --background-color: var(--clr-neutral-900);
+  
+  --text-color: var(--main-color);
   --text-font-size: var(--fs-400);
   
-  background: var(--clr-neutral-900);
+  /* Slanted borders and shapes */
+  --border-width: 3px;
+  --cutoff-gap: 2px;
+  --cutoff-width: var(--text-font-size);
+  --block-cutoff-width: calc(var(--cutoff-width) / 2);
+  
+  background: var(--background-color);
   color: var(--text-color);
   font-size: var(--text-font-size);
   font-family: var(--ff-body);
@@ -55,6 +65,52 @@ body {
   
   margin: 0;
 }
+
+/**/
+
+.character {
+  /* position: relative; */
+  /* isolation: isolate; */
+  
+  & :is(h1, h2, h3, h4, h5, h6, dl) {
+    margin: 0;
+  }
+}
+
+.character .xtra {
+  /* padding:  */
+}
+
+section.field-border {
+  padding: calc(var(--cutoff-width) / 2) var(--cutoff-width);
+}
+
+.character header {
+  width: calc(100% - var(--cutoff-width)*2);
+  margin: calc(var(--cutoff-width) / 2) var(--cutoff-width);
+}
+
+dl.stats {
+  max-width: max-content;
+  
+  display: grid;
+  grid-template-columns: 1fr 4ch;
+  gap: .5em;
+  
+  & dt {
+    grid-column: 1 / span 1;
+    justify-self: start;
+  }
+  
+  & dd {
+    margin-inline: 0;
+    grid-column: 2 / span 1;
+    justify-self: center;
+  }
+}
+
+
+/* *** */
 
 form {
   container-type: inline-size;
@@ -324,7 +380,7 @@ fieldset.secondary-fields {
   position: relative;
   height: 100%;
 
-  /* outer slanted background (red) */
+  /* outer slanted background (border color) */
   &::before {
     position: absolute;
     content: '';
@@ -345,7 +401,7 @@ fieldset.secondary-fields {
     );
   }
   
-  /* inner slanted background (white) */
+  /* inner slanted background (background color) */
   &::after {
     /* 0.4142 */
     --cutoff-width: calc(var(--text-font-size) - (var(--border-width) / 2)); /* smaller cutoff to make up for the border width */
@@ -356,7 +412,7 @@ fieldset.secondary-fields {
     z-index: -1;
     
     inset: var(--border-width);
-    background: var(--clr-neutral-900);
+    background: var(--background-color);
     
     /* slanted shape */
     clip-path: polygon(

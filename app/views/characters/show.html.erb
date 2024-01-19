@@ -1,0 +1,43 @@
+<%= tag.main id: dom_id(@character), class: "character-sheet" do %>
+  <header>
+    <h1>Chrome Shift</h1>
+  </header>
+  
+  <article class="character">
+    <div class="field-border xtra">
+      <header>
+        <h2><%= @character.name %></h2>
+        <dl>
+          <dt>Role</dt>
+          <dd><%= @character.role %></dd>
+        </dl>
+      </header>
+    </div>
+    
+    <section class="field-border">
+      <h3>Stats</h3>
+      <dl class="stats">
+        <dt data-stat="INT">Intelligence</dt>
+        <dd data-stat="INT"><%= @character.intelligence %>
+        <dt data-stat="WILL">Willpower</dt>
+        <dd data-stat="WILL"><%= @character.willpower %>
+        <dt data-stat="COOL">Cool</dt>
+        <dd data-stat="COOL"><%= @character.cool %>
+        <dt data-stat="EMP">Empathy</dt>
+        <dd data-stat="EMP"><%= @character.empathy %>
+        <dt data-stat="BODY">Body</dt>
+        <dd data-stat="BODY"><%= @character.body %>
+        <dt data-stat="DEX">Dexterity</dt>
+        <dd data-stat="DEX"><%= @character.dexterity %>
+        <dt data-stat="MOVE">Move</dt>
+        <dd data-stat="MOVE"><%= @character.move %>
+        <dt data-stat="REF">Reflexes</dt>
+        <dd data-stat="REF"><%= @character.reflexes %>
+        <dt data-stat="TECH">Technique</dt>
+        <dd data-stat="TECH"><%= @character.technique %>
+        <dt data-stat="LUCK">Luck</dt>
+        <dd data-stat="LUCK"><%= @character.luck %>
+      </dl>
+    </section>
+  </article>
+<% end %>

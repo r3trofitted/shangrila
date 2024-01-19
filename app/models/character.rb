@@ -194,4 +194,16 @@ class Character < ApplicationRecord
       10 => :become_respected
     }
   end
+  
+  # SLIME
+  def intelligence = rand(1..10)
+  def willpower = rand(1..10)
+  def cool = rand(1..10)
+  def empathy = rand(1..10)
+  def body = rand(1..10)
+  def dexterity = rand(1..10)
+  def move = rand(1..10)
+  def reflexes = rand(1..10)
+  def technique = rand(1..10)
+  def luck = rand(1..10)
 end

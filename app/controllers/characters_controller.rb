@@ -1,5 +1,8 @@
 class CharactersController < ApplicationController
-  before_action :set_character, only: %i[edit update]
+  before_action :set_character, only: %i[show edit update]
+
+  def show
+  end
 
   def new
     @character = Character.new
